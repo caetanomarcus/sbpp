@@ -1,4 +1,9 @@
 import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {setEmail } from '../../Dataflow/reducers-and-actions/auth'
+
+//Utils
+import { handleInputChange } from '../../../../utils';
 
 //Style
 import * as S from './style';
@@ -12,8 +17,12 @@ import Button from '../../../../components/Buttons/ConfirmSendButton';
 
 const ForgetPassword = ({ setScreen}) => {
 
-    const [email, setEmail] = useState('');
     const [sent, setSent]= useState(false);
+
+    //Redux State and actions
+
+    const email = useSelector(state => state.auth.email)
+    const dispatch = useDispatch()
 
 
     const validateEmail = (email) => {
@@ -40,7 +49,7 @@ const ForgetPassword = ({ setScreen}) => {
             type='email' 
             label='Email' 
             value={email} 
-            setValue={setEmail}
+            handleChange={(ev) => handleInputChange(ev, dispatch, setEmail)}
             haveAutoFocus={true}
             />
             <S.RedText isVisible={(email.length > 0 && !validateEmail(email))} >Email inválido</S.RedText>

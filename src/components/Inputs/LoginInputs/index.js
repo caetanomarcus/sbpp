@@ -15,11 +15,9 @@ const Input = ({
     handleClick,
     handleBlur,
     marginBottom,
+    handleChange,
     isHide }) => {
 
-    const handleChange = (ev) => {
-        setValue(ev.target.value)
-    }
 
     return (
         <S.Container marginBottom={marginBottom} >
@@ -46,7 +44,7 @@ const Input = ({
             </S.CrossError>
             )}
             {id === 'password' && (
-                <S.DisplayBtn isHide={!isHide} onClick={(ev) => handleClick(ev, type)} />
+                <S.DisplayBtn type='button' isHide={!isHide} onClick={(ev) => handleClick(ev, type)} />
             )}
         </S.Container>
     )

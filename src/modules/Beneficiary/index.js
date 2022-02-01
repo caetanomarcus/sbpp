@@ -1,53 +1,45 @@
 import React, {useState} from 'react'
-
+import { useSelector } from 'react-redux';
 import * as S from './style'
 
-import logo from '../../assets/images/sbpp-logo.png';
-import logoSula from '../../assets/images/sulamerica-logo.png';
-import houseIcon from '../../assets/icons/house.svg';
-import guideIcon from '../../assets/icons/guide.png';
+import AsideMenu from './Components/AsideMenu';
+import InitialScreen from './Components/InitialScreen';
+import Pending from './Components/Pending';
+import Registration from './Components/Registration';
 
+const Beneficiary = () => {
 
-const InitialScreen = () => {
-    const [openDropDown, setDropDown] = useState(false);
+    //Redux State
+    const screen = useSelector(state => state.beneficiary.screen);
+
+    const initial = 'inicio';
+    const pending = 'beneficiarios/pendentes';
+    const registration = 'beneficiarios/pendentes/cadastro'
+    const query = 'beneficiarios/consulta';
+
+    const renderScreen = (screen) => {
+        switch (screen) {
+            case initial: 
+            return <InitialScreen />
+
+            case pending:
+                return <Pending />
+
+            case registration:
+                return <Registration />
+                
+            default:
+                return null
+        }
+    }
 
     return (
         <S.Container>
-            <S.MenuContainer>
-                <S.Logo src={logo} alt='logo sbpp' />
-                <S.ButtonBox>
-                    <S.DropDownArrow openDropDown={openDropDown} onClick={() => setDropDown(!openDropDown)} />
-                    <S.ButtonTextBox first>
-                        <S.MenuButon
-                            background={houseIcon}
-                            width='20px'
-                            height='18px'
-                        ></S.MenuButon>
-                        <S.TextBtn>Início</S.TextBtn>
-                    </S.ButtonTextBox>
-                    <S.ButtonTextBox>
-                        <S.MenuButon
-                            background={guideIcon}
-                            width='21px'
-                            height='17px'
-                        ></S.MenuButon>
-                        <S.TextBtn>Beneficiários</S.TextBtn>
-                        {openDropDown && (
-                        <S.DropDownBox>
-                            <S.DropDownItems>Pendentes</S.DropDownItems>
-                            <S.DropDownItems>Consulta</S.DropDownItems>
-                        </S.DropDownBox>
-                        )}
-                    </S.ButtonTextBox>
-                </S.ButtonBox>
-                <S.MenuFooter>
-                    <S.SulaLogo src={logoSula} alt='logo sulamerica' />
-                    <S.LeaveButton>Sair</S.LeaveButton>
-                </S.MenuFooter>
-            </S.MenuContainer>
+            <AsideMenu />
+           {renderScreen(screen)}
             <S.ContentContainer></S.ContentContainer>
         </S.Container>
     )
 }
 
-export default InitialScreen
+export default Beneficiary

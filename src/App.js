@@ -1,17 +1,25 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import { GlobalStyle } from './components/GlobalStyle';
-import InitialScreen from './modules/Beneficiary';
+import PrivateRoute from './components/PrivateRoute'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Beneficiary from './modules/Beneficiary';
 import LoginScreen from "./modules/Auth";
 
 
 
 function App() {
   return (
-    <Fragment>
-      <GlobalStyle />
-      {/* <LoginScreen /> */}
-      <InitialScreen />
-    </Fragment>
+    <BrowserRouter>
+    <GlobalStyle />
+    <Routes>
+      <Route path='/' element={<LoginScreen />} />
+      <Route path='/beneficiary' 
+      element={ <PrivateRoute> 
+        <Beneficiary />
+      </PrivateRoute> } />
+
+    </Routes>
+    </BrowserRouter>
   );
 }
 
