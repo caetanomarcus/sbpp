@@ -61,6 +61,7 @@ export const SearchBox = styled.div `
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    margin-top: 24px;
     align-items: center;
     background: #EFEFEF;
     border-radius: 4px;

@@ -66,7 +66,7 @@ const AsideMenu = () => {
                         {openDropDown && (
                         <S.DropDownBox>
                             <S.DropDownItems 
-                            screen={screen === (pending || registrationScreen)}
+                            screen={(screen ===  pending) || (screen === registrationScreen)}
                             onClick={() => handleClick(pending)}
                             >Pendentes</S.DropDownItems>
                             <S.DropDownItems 
