@@ -29,7 +29,7 @@ const Beneficiary = () => {
                 return <Registration />
                 
             default:
-                return <InitialScreen />
+                return null
         }
     }
 

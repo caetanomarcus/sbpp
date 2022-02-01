@@ -17,9 +17,9 @@ const Registration = () => {
         </div>
         <div>
             <h1>Cadastro! Tela em construção</h1>
-            <h2>{client.name}</h2>
-            <h2>{client.registration}</h2>
-            <h2>{client.cpfOrCnpj}</h2>
+            <h2>nome: {client.name}</h2>
+            <h2>mátricula: {client.registration}</h2>
+            <h2>cpf/cnpj: {client.cpfOrCnpj}</h2>
         </div>
         </div>
     )
