@@ -49,7 +49,7 @@ export const HouseIcon = styled.button`
 `;
 
 export const HeaderTitle= styled.p `
-    font: 16px/46px 'Aestetico', sans-serif;
+    font: 16px 'Aestetico', sans-serif;
     font-weight: ${props => props.weight};
     color: #FF5000;
     margin-right: 5px;

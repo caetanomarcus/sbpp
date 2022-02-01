@@ -5,7 +5,8 @@ const beneficiaryState = {
 	screen: 'inicio',
 	filterOpened: false,
 	isMounthAndYear: true,
-	selectedClient: {}
+	selectedClient: {},
+	step: 'beneficiary'
 
 };
 
@@ -24,6 +25,9 @@ const beneficiarySlice = createSlice({
 		},
 		setSelectedClient: (state, action) => {
 			state.selectedClient = action.payload
+		},
+		setStep: (state, action) => {
+			state.step = action.payload
 		}
 	}
 })

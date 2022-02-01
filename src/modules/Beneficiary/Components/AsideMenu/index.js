@@ -21,6 +21,7 @@ const AsideMenu = () => {
 
     const initial = 'inicio';
     const pending = 'beneficiarios/pendentes';
+    const registrationScreen = 'beneficiarios/pendentes/cadastro'
     const query = 'beneficiarios/consulta';
 
     const navigate = useNavigate();
@@ -65,7 +66,7 @@ const AsideMenu = () => {
                         {openDropDown && (
                         <S.DropDownBox>
                             <S.DropDownItems 
-                            screen={screen === pending}
+                            screen={screen === (pending || registrationScreen)}
                             onClick={() => handleClick(pending)}
                             >Pendentes</S.DropDownItems>
                             <S.DropDownItems 

@@ -183,6 +183,7 @@ const Pending = () => {
                             <S.StatusBox><S.Status /></S.StatusBox>
                         </S.Clients>
                     ))}
+                    {!filteredClients.length && <p style={{'height': '100%'}} >Nenhum resultado encontrado para a pesquisa de beneficiário</p>}
                     <S.Line />
                     {selectedClient.name && (
                         <S.RegisterBtn onClick={handleRegistration} >Seguir para o cadastro <S.RightIcon src={right} alt='icone para a direita'/> </S.RegisterBtn>

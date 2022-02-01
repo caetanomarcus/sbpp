@@ -17,7 +17,6 @@ function App() {
       element={ <PrivateRoute> 
         <Beneficiary />
       </PrivateRoute> } />
-
     </Routes>
     </BrowserRouter>
   );
