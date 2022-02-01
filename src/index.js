@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { FontStyle } from './components/GlobalStyle'
+import {Provider} from 'react-redux'
+import store from './config/store'
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <FontStyle /> */}
-    <App />
+    <Provider store={store} >
+      {/* <FontStyle /> */}
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

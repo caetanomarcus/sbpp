@@ -26,7 +26,7 @@ const LoginScreen = () => {
                 </S.Header>
                 {screen === 'login' ? (
                     <Login setScreen={setScreen} />
-                ): (
+                ):(
                     <ForgetPassword setScreen={setScreen} />
                 )
                 }

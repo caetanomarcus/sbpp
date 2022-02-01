@@ -81,23 +81,24 @@ export const CrossTwo = styled.div `
 export const DisplayBtn = styled.button `
     position: absolute;
     right: 37px;
-    top: -12px;
-    width: 50px;
-    height: 50px;
+    top: 25%;
+    width: 25px;
+    height: 25px;
     background: transparent;
     border: none;
     outline: none;
+    transform: translateY(-25%);
 
     :after {
         content: '';
         position: absolute;
-        top: 50%;
+        top: ${props => props.isHide? '54%': '50%'};
         left: 50%;
         background: url(${props => props.isHide? hideDisplayIcon: displayIcon});
         background-repeat: no-repeat;
         background-size: contain;
-        width: 35px;
-        height: 35px;
+        width: 25px;
+        height: 25px;
         transform: translate(50%, 50%);
         cursor: pointer;
     }
