@@ -37,7 +37,7 @@ const AsideMenu = () => {
     const handleClickLeave = () => {
         dispatch(setLogin(''));
         dispatch(setPassword(''))
-        navigate('/auth');
+        navigate('/');
     }
     
     return (
