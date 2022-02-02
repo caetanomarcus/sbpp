@@ -116,7 +116,7 @@ const Form = () => {
 						handleClickSelect={ handleOpenSelect }
 						options={paises}
 						source={grayArrow}
-						action ={setNationality}
+						action={setNationality}
 						isOpened={openNationality}
 					/>
 				</S.Row>

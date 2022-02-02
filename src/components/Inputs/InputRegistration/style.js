@@ -46,7 +46,8 @@ export const Arrow = styled.img`
 
 export const Options = styled.div`
     width: 95%;
-    height: 160px;
+    height: ${props => props.height}px;
+    max-height: 160px;
     overflow: auto;
     background: transparent;
   
@@ -56,6 +57,7 @@ export const Options = styled.div`
     border-radius: 3px;
     position: absolute;  
     top: 55px;
+    z-index: 3;
 
     /* width */
     ::-webkit-scrollbar {
@@ -88,4 +90,5 @@ export const Button = styled.button`
     color: #323232;
     text-align: left;
     padding: 0 10px;
+    cursor: pointer;
 `
