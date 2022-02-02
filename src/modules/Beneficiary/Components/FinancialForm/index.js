@@ -11,7 +11,7 @@ const FinancialForm = () => {
     const [openAccount, setOpenAccount] = useState(false)
 
     //Redux State and dispatch
-    const accountType = useSelector(state => state.beneficiary.accountType)
+    const accountType = useSelector(state => state.beneficiary.beneficiaryData.accountType)
 
     const handleOpenSelect = (e, setFunction, state) => {
 		e.preventDefault();
