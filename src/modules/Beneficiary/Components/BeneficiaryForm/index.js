@@ -14,7 +14,7 @@ const Form = () => {
 
 	//Redux State and dispatch
 	const client = useSelector(state => state.beneficiary.selectedClient);
-	const nationality = useSelector(state => state.beneficiary.nationality);
+	const nationality = useSelector(state => state.beneficiary.beneficiaryData.nationality);
 
 
 	const paises = ["Brasil", "Argentina", "Uruguai", "aaaa", "bbbb", "cccc", "ddddd", "eeeee"]

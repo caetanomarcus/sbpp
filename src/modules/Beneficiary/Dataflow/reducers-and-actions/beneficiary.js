@@ -7,9 +7,11 @@ const beneficiaryState = {
 	isMounthAndYear: true,
 	selectedClient: {},
 	step: 'beneficiary',
-	accountType:'',
-	Bank:'',
-	nationality: ''
+	beneficiaryData: {
+		accountType:'',
+		Bank:'',
+		nationality: ''
+	}
 };
 
 const beneficiarySlice = createSlice({
@@ -32,13 +34,13 @@ const beneficiarySlice = createSlice({
 			state.step = action.payload
 		},
 		setAccountType: (state, action) => {
-			state.accountType = action.payload
+			state.beneficiaryData.accountType = action.payload
 		},
 		setBank: (state, action) => {
-			state.Bank = action.payload
+			state.beneficiaryData.Bank = action.payload
 		},
 		setNationality: (state, action) => {
-			state.nationality = action.payload
+			state.beneficiaryData.nationality = action.payload
 		},
 	}
 })
