@@ -1,5 +1,8 @@
 import React from 'react';
 import * as S from './style'
+import { useSelector , useDispatch} from "react-redux";
+import { setNationality } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
+
 
 export const Input = ({
 	type,
@@ -11,6 +14,8 @@ export const Input = ({
 	handleChange,
 	noPadding
 }) => {
+
+	
 
 	return (
 		<S.Label width={width} row={row}> {label}
@@ -30,19 +35,20 @@ export const Select = ({
 	width,
 	label,
 	value,
-	handleClick,
 	handleClickSelect,
 	options = [],
 	source,
-	isOpened
+	isOpened,
+	action
 }) => {
 
-	const handleClickOption = (e, value) => {
+	const dispatch = useDispatch();
+
+	const handleClick = (e, option)=> {
 		e.preventDefault();
-		handleClick(value);
-		console.log(value);
-		console.log(handleClick);
+		dispatch(action(option))
 	}
+
 	return (
 		<>
 			<S.Label width={width} > {label}
@@ -61,7 +67,7 @@ export const Select = ({
 						return (
 							<S.Button 
 								key={index} 
-								onClick={(e) => handleClickOption(e, option)} 
+								onClick={(ev) => handleClick(ev,option)} 
 							>
 								{option}
 							</S.Button>

@@ -15,7 +15,7 @@ const Form = () => {
 	//Redux State and dispatch
 	const client = useSelector(state => state.beneficiary.selectedClient);
 	const nationality = useSelector(state => state.beneficiary.nationality);
-	const dispatch = useDispatch();
+
 
 	const paises = ["Brasil", "Argentina", "Uruguai", "aaaa", "bbbb", "cccc", "ddddd", "eeeee"]
 
@@ -101,10 +101,10 @@ const Form = () => {
 						width="40%"
 						label="Naturalidade"
 						value={nationality}
-						handleClick={ () => dispatch(setNationality()) }
 						handleClickSelect={ handleOpenSelect }
 						options={paises}
 						source={grayArrow}
+						action ={setNationality}
 						isOpened={openNationality}
 					/>
 				</S.Row>
