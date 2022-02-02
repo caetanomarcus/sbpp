@@ -39,7 +39,9 @@ export const Select = ({
 	options = [],
 	source,
 	isOpened,
-	action
+	action,
+	toogle,
+	state
 }) => {
 
 	const dispatch = useDispatch();
@@ -47,6 +49,7 @@ export const Select = ({
 	const handleClick = (e, option)=> {
 		e.preventDefault();
 		dispatch(action(option))
+		toogle(!state)
 	}
 
 	return (
@@ -62,7 +65,7 @@ export const Select = ({
 				</S.Select>
 
 				{isOpened && (
-				<S.Options >
+				<S.Options height={options * 36} >
 					{options.map((option, index) => {
 						return (
 							<S.Button 

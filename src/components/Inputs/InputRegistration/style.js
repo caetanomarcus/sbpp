@@ -29,8 +29,8 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-    width: 100%;
-    height: 32px;
+    /* width: 100%; */
+    height: ${props => props.height || '32px'};
     display: flex;
     background: transparent;
     border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
@@ -76,7 +76,8 @@ export const Arrow = styled.img`
 
 export const Options = styled.div`
     width: 95%;
-    height: 160px;
+    height: ${props => props.height}px;
+    max-height: 160px;
     overflow: auto;
     background: transparent;
   
@@ -86,6 +87,7 @@ export const Options = styled.div`
     border-radius: 3px;
     position: absolute;  
     top: 55px;
+    z-index: 3;
 
     /* width */
     ::-webkit-scrollbar {
@@ -118,4 +120,5 @@ export const Button = styled.button`
     color: #323232;
     text-align: left;
     padding: 0 10px;
+    cursor: pointer;
 `
