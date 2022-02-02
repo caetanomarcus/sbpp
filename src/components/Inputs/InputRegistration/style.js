@@ -1,55 +1,25 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
-    width: 100%;
-    border: none;
-    margin-top: 36px;
-`;
-
-export const Fieldset = styled.fieldset`
-    margin-bottom: 20px;
-    border: 1px solid #EFEFEF;
-    padding: 20px 20px 20px 10px;
-`;
-
-export const Legend = styled.legend`
-    width: 100%;
-    border: none;
-    color: #5a5a5a;
-`;
-
 export const Label = styled.label`
     width: ${props => props.width};
     display: flex;
     flex-direction: ${props => props.row? 'row': 'column'};
-    color: ${props => props.optional? 'gray': '#001E64'};
+    color: #001E64;
     font-weight: ${props => props.optional? '400': '600'};
     padding-right: 20px;
     position: relative;
 `;
 
 export const Input = styled.input`
-    width: 100%;
-    height: 32px;
-    display: flex;
+    width: ${props => props.type === 'text'? '100%' : '20px'};
+    height: ${props => props.type === 'text'? '32px' : '20px'};
     background: transparent;
     border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
     border-radius: 3px; 
+    outline: none;
     color: #323232;
     padding: ${props => props.noPadding? '0' : '0 10px'};
-    margin-top: 15px;
-`;
-
-export const Row = styled.div`
-    width: 100%;
-    padding: 0 0 20px 10px;
-    display: flex;
-`;
-
-export const InputCheckbox = styled.input`
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
+    margin: ${props => props.row? '0 0 0 10px' : '10px 0 0 0'};
 `;
 
 export const Select = styled.button`

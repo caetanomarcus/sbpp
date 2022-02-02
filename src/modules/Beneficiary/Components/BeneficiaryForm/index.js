@@ -65,34 +65,46 @@ const Form = () => {
 						width="60%"
 						label="Nome"
 						value={client.name}
-						handleChange=""
 					/>
 
-					<S.Label htmlFor="" width="35%"> Email
-						<S.Input id=""></S.Input>
-					</S.Label>
+					<Input
+						type="text"
+						width="35%"
+						label="Email"
+					/>
 				</S.Row>
 				<S.Row>
-					<S.Label htmlFor="" width="100%" row > Possui nome social?
-						<S.InputCheck type="checkbox"></S.InputCheck>
-					</S.Label>
-
+					<Input
+						type="checkbox"
+						width="95%"
+						label="Possui nome social?"
+						row
+					/>
 				</S.Row>
 				<S.Row>
-					<S.Label htmlFor="" width="60%" optional> Nome social
-						<S.Input id=""></S.Input>
-					</S.Label>
+					<Input
+						type="text"
+						width="60%"
+						label="Nome social"
+						optional
+					/>
 				</S.Row>
 				<S.Row>
-					<S.Label htmlFor="" width="20%"> Data de Nascimento
-						<S.Input id="" placeholder="DD/MM/AAAA"></S.Input>
-					</S.Label>
-
-					<S.Label htmlFor="" width="5%" > Sexo
-						<S.Row>
-							<S.InputCheck type="radio" value="feminino"></S.InputCheck>
-							<S.InputCheck type="radio" value="masculino"></S.InputCheck>
-						</S.Row>
+					<Input
+						type="text"
+						width="20%"
+						label="Data de Nascimento"
+						placeholder="DD/MM/AAAA"
+					/>
+					<S.Label row>Sexo
+						<S.LabelRadio>
+							<S.RadioInput type='radio' name='sexo' />
+							Masculino
+						</S.LabelRadio>
+						<S.LabelRadio>
+							<S.RadioInput type='radio' name='sexo' />
+							Feminino
+						</S.LabelRadio>
 					</S.Label>
 				</S.Row>
 

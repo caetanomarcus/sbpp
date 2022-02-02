@@ -10,21 +10,25 @@ export const Input = ({
 	label,
 	value,
 	row,
+	optional,
 	disabled,
 	handleChange,
+	placeholder,
 	noPadding
 }) => {
 
 	
 
 	return (
-		<S.Label width={width} row={row}> {label}
+		<S.Label width={width} row={row} optional={optional}> {label}
 			<S.Input 
 				type={type}
 				value={value} 
 				disabled={disabled} 
 				onChange={handleChange}
 				noPadding={noPadding}
+				row={row}
+				placeholder={placeholder}
 			/>
 		</S.Label>
 	)
