@@ -1,27 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector , useDispatch} from "react-redux";
-import { setScreen } from "../../Dataflow/reducers-and-actions/beneficiary";
+import { setNationality } from '../../Dataflow/reducers-and-actions/beneficiary';
+
 import * as S from './style'
+import { Input, Select } from "../../../../components/Inputs/InputRegistration"
+import grayArrow from '../../../../assets/icons/gray-arrow.svg'
+
 
 const Form = () => {
 
+	// Local State
+	const [openNationality, setOpenNationality] = useState(false);
+
 	//Redux State and dispatch
 	const client = useSelector(state => state.beneficiary.selectedClient);
+	const nationality = useSelector(state => state.beneficiary.nationality);
 	const dispatch = useDispatch();
 
+	const paises = ["Brasil", "Argentina", "Uruguai", "aaaa", "bbbb", "cccc", "ddddd", "eeeee"]
+
+	const handleOpenSelect = (e) => {
+		e.preventDefault();
+		setOpenNationality(!openNationality);
+	}
+
+	const handleClick = (e, setValue) => {
+		e.preventDefault();
+		return setValue()
+	}
 	return (
 		<S.Form>
 			<S.Fieldset>
 				<S.Legend>Participante</S.Legend>
 
 				<S.Row>
-					<S.Label htmlFor="matricula" width="25%"> Matricula
-						<S.Input id="matricula" value={client.registration} disabled="true"></S.Input>
-					</S.Label>
+					<Input
+						type="text"
+						width="20%"
+						label="Matrícula"
+						value={client.registration}
+						disabled={true}
+						handleChange=""
+						noPadding
+					/>
 
-					<S.Label htmlFor="" width="20%"> CPF/CNPJ
-						<S.Input value={client.cpfOrCnpj} disabled></S.Input>
-					</S.Label>
+					<Input
+						type="text"
+						width="20%"
+						label="CPF/CNPJ"
+						value={client.cpfOrCnpj}
+						disabled={true}
+						handleChange=""
+						noPadding
+					/>
 				</S.Row>
 
 			</S.Fieldset>
@@ -29,9 +60,13 @@ const Form = () => {
 			<S.Fieldset>
 				<S.Legend>Dados </S.Legend>
 				<S.Row>
-					<S.Label htmlFor="" width="60%"> Nome
-						<S.Input id="" value={client.name}></S.Input>
-					</S.Label>
+					<Input
+						type="text"
+						width="60%"
+						label="Nome"
+						value={client.name}
+						handleChange=""
+					/>
 
 					<S.Label htmlFor="" width="35%"> Email
 						<S.Input id=""></S.Input>
@@ -59,6 +94,19 @@ const Form = () => {
 							<S.InputCheck type="radio" value="masculino"></S.InputCheck>
 						</S.Row>
 					</S.Label>
+				</S.Row>
+
+				<S.Row>
+					<Select
+						width="40%"
+						label="Naturalidade"
+						value={nationality}
+						handleClick={ () => dispatch(setNationality()) }
+						handleClickSelect={ handleOpenSelect }
+						options={paises}
+						source={grayArrow}
+						isOpened={openNationality}
+					/>
 				</S.Row>
 
 			</S.Fieldset>

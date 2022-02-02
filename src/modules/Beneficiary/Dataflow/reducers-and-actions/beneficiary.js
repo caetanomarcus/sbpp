@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const beneficiaryState = {
-	screen: 'inicio',
+	screen: 'beneficiarios/pendentes',
 	filterOpened: false,
 	isMounthAndYear: true,
 	selectedClient: {},
-	step: 'beneficiary'
-
+	step: 'beneficiary',
+	nationality: ''
 };
 
 const beneficiarySlice = createSlice({
@@ -28,12 +28,15 @@ const beneficiarySlice = createSlice({
 		},
 		setStep: (state, action) => {
 			state.step = action.payload
+		},
+		setNationality: (state, action) => {
+			state.nationality = action.payload
 		}
 	}
 })
 
 //Actions
-export const { setScreen, setFilterOpened, setSelectedClient, setStep } = beneficiarySlice.actions;
+export const { setScreen, setFilterOpened, setSelectedClient, setStep, setNationality } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;
 

@@ -16,7 +16,6 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Aestetico', sans-serif;
   font-weight: 400;
 }
-
 `
 
 export const FontStyle = createGlobalStyle`

@@ -1,9 +1,30 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+export const Form = styled.div`
     width: 100%;
+    height: 75vh;
     border: none;
     margin-top: 36px;
+    overflow: auto;
+    /* width */
+    ::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 1px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 1px;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #AAAAAA;
+        border-radius: 1px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 `;
 
 export const Fieldset = styled.fieldset`
@@ -13,7 +34,6 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const Legend = styled.legend`
-    width: 100%;
     border: none;
     color: #5a5a5a;
 `;

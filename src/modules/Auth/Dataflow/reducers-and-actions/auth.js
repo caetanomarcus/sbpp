@@ -3,7 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 
 const authState = {
-    token: '',
+    token: 'aaaa',
     error: '',
     login: '',
     password: '',
