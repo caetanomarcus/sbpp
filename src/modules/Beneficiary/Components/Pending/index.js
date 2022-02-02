@@ -5,6 +5,7 @@ import { setScreen, setSelectedClient } from '../../Dataflow/reducers-and-action
 
 import house from '../../../../assets/icons/circled-house.svg';
 import right from '../../../../assets/icons/right.png';
+import Button from '../../../../components/Buttons/BeneficiaryButton';
 
 const clients =[
     {
@@ -186,7 +187,12 @@ const Pending = () => {
                     {!filteredClients.length && <p style={{'height': '100%'}} >Nenhum resultado encontrado para a pesquisa de beneficiário</p>}
                     <S.Line />
                     {selectedClient.name && (
-                        <S.RegisterBtn onClick={handleRegistration} >Seguir para o cadastro <S.RightIcon src={right} alt='icone para a direita'/> </S.RegisterBtn>
+                        <Button 
+                        handleClick={handleRegistration} 
+                        text='Seguir para o cadastro' 
+                        alt='icone para a direita' 
+                        source={right}
+                        width='177px' />
                     )}
                 </S.ClientBox>
             </S.Content>

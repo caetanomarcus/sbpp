@@ -1,7 +1,12 @@
 import React from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import Form from "../RegistrationForm";
+import {setStep} from '../../Dataflow/reducers-and-actions/beneficiary'
+import BeneficiaryForm from "../BeneficiaryForm";
+import Button from "../../../../components/Buttons/BeneficiaryButton";
+
+import right from '../../../../assets/icons/right.png';
+import  FinancialForm  from "../FinancialForm";
 
 
 const Registration = () => {
@@ -13,8 +18,22 @@ const Registration = () => {
 	const beneficiary = 'beneficiary';
 	const financial = 'financial';
 	const benefit = 'benefit';
+	const finalStep = 'finalStep'
 
 	const pending = 'beneficiarios/pendentes';
+
+	const handleClickNext = () => {
+       switch (step) {
+				 case beneficiary:
+					dispatch(setStep(financial))
+					break;
+					case financial:
+						dispatch(setStep(benefit))
+						break;
+						case benefit:
+							dispatch(setStep(finalStep))
+			 }
+	}
 
 	return (
 		<S.Container>
@@ -39,7 +58,16 @@ const Registration = () => {
 					</S.RegistrationFluxBox>
 					<S.CancelButton>Cancelar</S.CancelButton>
 				</S.Header>
-				<Form />
+				{(step === beneficiary)  && <BeneficiaryForm />}
+				{(step === financial) && <FinancialForm />}
+				{step !== beneficiary &&(<S.CancelButton onClick={() => dispatch(setStep(beneficiary))} >Voltar</S.CancelButton>)}
+				<Button 
+				text='Próximo'
+			 	alt='botão próximo' 
+				source={right} 
+				width='101px'
+				handleClick={handleClickNext}
+				 />
 			</S.Content>
 		</S.Container>
 	)

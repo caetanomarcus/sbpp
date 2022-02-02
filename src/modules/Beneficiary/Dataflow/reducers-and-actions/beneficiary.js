@@ -33,7 +33,7 @@ const beneficiarySlice = createSlice({
 })
 
 //Actions
-export const { setScreen, setFilterOpened, setSelectedClient } = beneficiarySlice.actions;
+export const { setScreen, setFilterOpened, setSelectedClient, setStep } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;
 
