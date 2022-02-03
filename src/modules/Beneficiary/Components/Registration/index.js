@@ -47,16 +47,16 @@ const Registration = () => {
 						<S.HeaderTitle>Cadastro</S.HeaderTitle>
 					</S.IconAndTitle>
 					<S.RegistrationFluxBox>
-						<S.Circle step={step === beneficiary} >
-							<S.Step step={step === beneficiary}  >BENEFICIÁRIO</S.Step>
+						<S.Circle steps={step === beneficiary} >
+							<S.Step steps={step === beneficiary}  >BENEFICIÁRIO</S.Step>
 						</S.Circle>
 						<S.Line />
-						<S.Circle step={step === financial}  >
-							<S.Step step={step === financial}  >FINANCEIRO</S.Step>
+						<S.Circle steps={step === financial}  >
+							<S.Step steps={step === financial}  >FINANCEIRO</S.Step>
 						</S.Circle>
 						<S.Line />
-						<S.Circle step={step === benefit} >
-							<S.Step step={step === benefit} >BENEFÍCIO</S.Step>
+						<S.Circle steps={step === benefit} >
+							<S.Step steps={step === benefit} >BENEFÍCIO</S.Step>
 						</S.Circle>
 					</S.RegistrationFluxBox>
 					<S.CancelButton>Cancelar</S.CancelButton>

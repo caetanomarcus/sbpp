@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import house from '../../../../assets/icons/circled-house.svg'
+import registration from '../../../../assets/icons/registration.svg'
 
 export const Container = styled.section`
     width: 100%;
@@ -52,7 +52,7 @@ export const PersonIcon = styled.button`
         right: 0;
         width: 21px;
         height: 21px;
-        background-image:url(${house});
+        background-image:url(${registration});
         transform: translateY(-5%);
     }
 `;
@@ -72,7 +72,7 @@ export const Circle = styled.div `
     position: relative;
     width: 6px;
     height: 6px;
-    background: ${props => props.step? '#FF5000' : '#AAAAAA'};
+    background: ${props => props.steps? '#FF5000' : '#AAAAAA'};
     border-radius: 50%;
 `;
 
@@ -81,7 +81,7 @@ export const Step = styled.h3`
     bottom: -18px;
     right: -30px;
     font: 700 10px 'Aestetico', sans-serif;
-    color: ${props => props.step? '#FF5000': '#828282'};
+    color: ${props => props.steps? '#FF5000': '#828282'};
 `;
 
 export const Line = styled.div`
