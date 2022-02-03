@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import * as S from '../style'
 import { Input } from '../../../../../components/Inputs/InputRegistration';
 
-export const Participant = ({client}) => {
+export const Participant = ({
+   client
+}) => {
 
 	return (
       <S.Fieldset>
