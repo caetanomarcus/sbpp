@@ -40,7 +40,7 @@ export const Legend = styled.legend`
 
 export const Row = styled.div`
     width: 100%;
-    padding: 0 0 20px 10px;
+    padding: 0 0 24px 10px;
     display: flex;
 `;
 
@@ -50,16 +50,27 @@ export const Label = styled.label`
     flex-direction: ${props => props.row? 'row': 'column'};
     color: #001E64;
     font-weight: ${props => props.optional? '400': '600'};
-    border: solid red;
+    // border: solid red;
 `;
 
 export const LabelRadio = styled.label`
     font: 400 14px 'Aestetico', sans-serif;
     display: flex;
     align-items: center;
-    margin-right: 45px;
+    margin-right: 10px;
 `;
 
+export const DivRadio = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    // border: solid green;
+`
+
 export const RadioInput = styled.input`
+    width: 19px;
+    height: 19px;
     margin-right: 10.5px;
 `;
+

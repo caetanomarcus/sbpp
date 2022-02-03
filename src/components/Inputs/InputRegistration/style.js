@@ -4,17 +4,20 @@ export const Label = styled.label`
     width: ${props => props.width};
     display: flex;
     flex-direction: ${props => props.row? 'row': 'column'};
+    align-items: ${props => props.row? 'center': ''};
     color: #001E64;
-    font-weight: ${props => props.optional? '400': '600'};
+    font-weight: ${props => props.optional? '200': '600'};
     padding-right: 20px;
     position: relative;
+    opacity: ${props => props.optional? '0.6': ''};
+
 `;
 
 export const Input = styled.input`
-    width: ${props => props.type === 'text'? '100%' : '20px'};
-    height: ${props => props.type === 'text'? '32px' : '20px'};
+    width: ${props => props.widthInput? props.widthInput: '100%' };
+    height: ${props => props.heightInput? props.heightInput: '32px' };
     background: transparent;
-    border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
+    border: ${props => props.isDisabled? 'none' : '1px solid #D1D1D1'};
     border-radius: 3px; 
     outline: none;
     color: #323232;
@@ -29,7 +32,7 @@ export const Select = styled.button`
     outline: none;
     border: 1px solid #D1D1D1;
     border-radius: 3px;
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 0 10px;
     color: #323232;
     text-align: left;
@@ -91,4 +94,11 @@ export const Button = styled.button`
     text-align: left;
     padding: 0 10px;
     cursor: pointer;
+`
+
+export const AddressDetails = styled.p`
+    width: 100%;
+    font-size: 12px;
+    color: #5a5a5a;
+    margin-top: 5px;
 `
