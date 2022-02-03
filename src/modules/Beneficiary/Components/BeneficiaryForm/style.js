@@ -38,41 +38,39 @@ export const Legend = styled.legend`
     color: #5a5a5a;
 `;
 
-export const Label = styled.label`
-    width: ${props => props.width};
-    height: ${props => props.row? '15px': '60px;'};
-
-    display: flex;
-    flex-direction: ${props => props.row? 'row': 'column'};
-    justify-content: ${props => props.row? '': 'space-between;'}; 
-    
-    color: ${props => props.optional? 'gray': '#001E64'};
-    font-weight: ${props => props.optional? '400': '600'};
-    
-    padding-right: 20px;
-`;
-
-
-export const Input = styled.input`
-    width: 100%;
-    display: flex;
-
-    background: transparent;
-    border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
-    border-radius: 3px; 
-
-    color: #323232;
-    padding: 8px 10px;
-`;
-
 export const Row = styled.div`
     width: 100%;
-    padding: 0 0 20px 10px;
+    padding: 0 0 24px 10px;
     display: flex;
 `;
 
-export const InputCheck = styled.input`
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
+export const Label = styled.label`
+    width: ${props => props.width};
+    display: flex;
+    flex-direction: ${props => props.row? 'row': 'column'};
+    color: #001E64;
+    font-weight: ${props => props.optional? '400': '600'};
+    // border: solid red;
 `;
+
+export const LabelRadio = styled.label`
+    font: 400 14px 'Aestetico', sans-serif;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+`;
+
+export const DivRadio = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    // border: solid green;
+`
+
+export const RadioInput = styled.input`
+    width: 19px;
+    height: 19px;
+    margin-right: 10.5px;
+`;
+
