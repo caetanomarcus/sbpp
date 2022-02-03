@@ -7,29 +7,41 @@ import { setNationality } from '../../../modules/Beneficiary/Dataflow/reducers-a
 export const Input = ({
 	type,
 	width,
+	widthInput,
+	HeightInput,
 	label,
 	value,
 	row,
+	optional,
 	disabled,
 	isDisabled,
 	handleChange,
+	optional,
+	placeholder,
 	noPadding,
-	optional
+	isDetailed
 }) => {
 
-	
-
 	return (
-		<S.Label optional={optional} width={width} row={row}> {label}
+		<S.Label width={width} row={row} optional={optional}> {label}
 			<S.Input 
 				type={type}
+				widthInput={widthInput}
+				HeightInput={HeightInput}
 				value={value} 
 				isDisabled={isDisabled}
 				disabled={disabled} 
+				isDisabled={isDisabled}
 				onChange={handleChange}
 				noPadding={noPadding}
-				
+				row={row}
+				placeholder={placeholder}
 			/>
+			{isDetailed && (
+				<S.AddressDetails>
+					Campo controlado pelo CEP
+				</S.AddressDetails>
+			)}
 		</S.Label>
 	)
 }

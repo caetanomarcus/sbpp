@@ -11,7 +11,12 @@ const beneficiaryState = {
 		accountType:'',
 		bank:'',
 		nationality: '',
-		paymentMethod: ''
+		paymentMethod: '',
+		naturalness: '',
+		gender: '',
+		ufDefault: '',
+		ufOptional: '',
+		ufRG: ''
 	}
 };
 
@@ -40,12 +45,27 @@ const beneficiarySlice = createSlice({
 		setBank: (state, action) => {
 			state.beneficiaryData.bank = action.payload
 		},
+		setNaturalness: (state, action) => {
+			state.beneficiaryData.naturalness = action.payload
+		},
 		setNationality: (state, action) => {
 			state.beneficiaryData.nationality = action.payload
 		},
 		setPaymentMethod: (state, action) => {
 			state.beneficiaryData.paymentMethod = action.payload
-		}
+		},
+		setGender: (state, action) => {
+			state.beneficiaryData.gender = action.payload
+		},
+		setUfDefault: (state, action) => {
+			state.beneficiaryData.ufDefault = action.payload
+		},
+		setUfOptional: (state, action) => {
+			state.beneficiaryData.ufOptional = action.payload
+		},
+		setUfRG: (state, action) => {
+			state.beneficiaryData.ufRG = action.payload
+		},
 	}
 })
 
@@ -55,10 +75,15 @@ export const {
 	setFilterOpened, 
 	setSelectedClient, 
 	setStep, 
+	setNaturalness,
 	setNationality,
+	setGender,
 	setAccountType,
 	setBank,
-	setPaymentMethod
+	setPaymentMethod,
+	setUfDefault,
+	setUfOptional,
+	setUfRG
  } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;

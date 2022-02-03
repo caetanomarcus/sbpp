@@ -1,60 +1,32 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
-    width: 100%;
-    border: none;
-    margin-top: 36px;
-`;
-
-export const Fieldset = styled.fieldset`
-    margin-bottom: 20px;
-    border: 1px solid #EFEFEF;
-    padding: 20px 20px 20px 10px;
-`;
-
-export const Legend = styled.legend`
-    width: 100%;
-    border: none;
-    color: #5a5a5a;
-`;
-
 export const Label = styled.label`
     width: ${props => props.width};
     display: flex;
     flex-direction: ${props => props.row? 'row': 'column'};
     color: ${props => props.optional? 'gray': '#001E64'};
     font-weight: ${props => props.optional? '400': '600'};
+    align-items: ${props => props.row? 'center': ''};
     font-size: 15px;
     font-family: "Aestetico", sans-serif;
     padding-right: 20px;
     position: relative;
+    opacity: ${props => props.optional? '0.6': ''};
+
 `;
 
 export const Input = styled.input`
-    /* width: 100%; */
-    height: ${props => props.height || '32px'};
-    display: flex;
+    width: ${props => props.widthInput? props.widthInput: '100%' };
+    height: ${props => props.heightInput? props.heightInput: '32px' };
     background: transparent;
     border: ${props => props.isDisabled? 'none' : '1px solid #D1D1D1'};
     border-radius: 3px; 
+    outline: none;
     color: #323232;
     font-size: 14px;
     font-family: "Aestetico", sans-serif;
     padding: ${props => props.noPadding? '0' : '0 10px'};
-    margin-top: 15px;
-    outline: none;
-`;
-
-export const Row = styled.div`
-    width: 100%;
-    padding: 0 0 20px 10px;
-    display: flex;
-`;
-
-export const InputCheckbox = styled.input`
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
+    margin: ${props => props.row? '0 0 0 10px' : '10px 0 0 0'};
 `;
 
 export const Select = styled.button`
@@ -64,7 +36,7 @@ export const Select = styled.button`
     outline: none;
     border: 1px solid #D1D1D1;
     border-radius: 3px;
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 0 10px;
     color: #323232;
     text-align: left;
@@ -126,4 +98,11 @@ export const Button = styled.button`
     text-align: left;
     padding: 0 10px;
     cursor: pointer;
+`
+
+export const AddressDetails = styled.p`
+    width: 100%;
+    font-size: 12px;
+    color: #5a5a5a;
+    margin-top: 5px;
 `
