@@ -20,9 +20,9 @@ const beneficiaryState = {
 			socialName: '',
 			birthDate: '',
 			sex: '',
-			openGender: '',
-			openNaturalness: '',
-			openNationality: '',
+			gender: '',
+			naturalness: '',
+			nationality: '',
 			deathDate: '',
 			deathInfoDate: '',
 			filiation1: '',
@@ -31,7 +31,7 @@ const beneficiaryState = {
 		document: {
 			rg: '',
 			issuer: '',
-			openUfRG: '',
+			uf: '',
 			issueDate: '',
 		},
 		addressDefault: {
@@ -41,7 +41,7 @@ const beneficiaryState = {
 			complement: '',
 			district: '',
 			county: '',
-			openUf: '',
+			uf: '',
 		},
 		addressOptional: {
 			cep: '',
@@ -51,9 +51,9 @@ const beneficiaryState = {
 			referencePoint: '',
 			district: '',
 			county: '',
-			openUf: '',
+			uf: '',
 		},
-		phone: {
+		contact: {
 			phone1: '',
 			phone2: '',
 		}		
@@ -92,115 +92,110 @@ const beneficiarySlice = createSlice({
 		setCpfOrCnpj: (state, action) => {
 			state.beneficiaryData.cpfOrCnpj = action.payload
 		},
-		setPersonalData: {
-			setName: (state, action) => {
-				state.beneficiaryData.personalData.name = action.payload
-			},
-			setEmail: (state, action) => {
-				state.beneficiaryData.personalData.email = action.payload
-			},
-			setSocialName: (state, action) => {
-				state.beneficiaryData.personalData.socialName = action.payload
-			},
-			setBirthDate: (state, action) => {
-				state.beneficiaryData.personalData.birthDate = action.payload
-			},
-			setSex: (state, action) => {
-				state.beneficiaryData.personalData.sex = action.payload
-			},
-			setOpenGender: (state, action) => {
-				state.beneficiaryData.personalData.openGender = action.payload
-			},
-			setOpenNaturalness: (state, action) => {
-				state.beneficiaryData.personalData.openNaturalness = action.payload
-			},
-			setOpenNationality: (state, action) => {
-				state.beneficiaryData.personalData.openNationality = action.payload
-			},
-			setDeathDate: (state, action) => {
-				state.beneficiaryData.personalData.deathDate = action.payload
-			},
-			setDeathInfoDate: (state, action) => {
-				state.beneficiaryData.personalData.deathInfoDate = action.payload
-			},
-			setFiliation1: (state, action) => {
-				state.beneficiaryData.personalData.filiation1 = action.payload
-			},
-			setFiliation2: (state, action) => {
-				state.beneficiaryData.personalData.filiation2 = action.payload
-			},
+		//setPersonalData
+		setName: (state, action) => {
+			state.beneficiaryData.personalData.name = action.payload
 		},
-		setDocument: {
-			setRG: (state, action) => {
-				state.beneficiaryData.document.rg = action.payload
-			},
-			setIssuer: (state, action) => {
-				state.beneficiaryData.document.issuer = action.payload
-			},
-			setOpenUfRG: (state, action) => {
-				state.beneficiaryData.document.openUfRG = action.payload
-			},
-			setIssueDate: (state, action) => {
-				state.beneficiaryData.document.issueDate = action.payload
-			},
+		setEmail: (state, action) => {
+			state.beneficiaryData.personalData.email = action.payload
 		},
-		setAddressDefault: {
-			setCep: (state, action) => {
-				state.beneficiaryData.addressDefault.cep = action.payload
-			},
-			setAddress: (state, action) => {
-				state.beneficiaryData.addressDefault.address = action.payload
-			},
-			setNumber: (state, action) => {
-				state.beneficiaryData.addressDefault.number = action.payload
-			},
-			setComplement: (state, action) => {
-				state.beneficiaryData.addressDefault.complement = action.payload
-			},
-			setDistrict: (state, action) => {
-				state.beneficiaryData.addressDefault.district = action.payload
-			},
-			setCounty: (state, action) => {
-				state.beneficiaryData.addressDefault.county = action.payload
-			},
-			setOpenUf: (state, action) => {
-				state.beneficiaryData.addressDefault.openUf = action.payload
-			},
+		setSocialName: (state, action) => {
+			state.beneficiaryData.personalData.socialName = action.payload
 		},
-		setAddressOptional: {
-			setCep: (state, action) => {
-				state.beneficiaryData.addressOptional.cep = action.payload
-			},
-			setAddress: (state, action) => {
-				state.beneficiaryData.addressOptional.address = action.payload
-			},
-			setNumber: (state, action) => {
-				state.beneficiaryData.addressOptional.number = action.payload
-			},
-			setComplement: (state, action) => {
-				state.beneficiaryData.addressOptional.complement = action.payload
-			},
-			setReferencePoint: (state, action) => {
-				state.beneficiaryData.addressOptional.referencePoint = action.payload
-			},
-			setDistrict: (state, action) => {
-				state.beneficiaryData.addressOptional.district = action.payload
-			},
-			setCounty: (state, action) => {
-				state.beneficiaryData.addressOptional.county = action.payload
-			},
-			setOpenUf: (state, action) => {
-				state.beneficiaryData.addressOptional.openUf = action.payload
-			},
+		setBirthDate: (state, action) => {
+			state.beneficiaryData.personalData.birthDate = action.payload
 		},
-		setPhone: {
-			setPhone1: (state, action) => {
-				state.beneficiaryData.phone.phone1 = action.payload
-			},
-			setPhone2: (state, action) => {
-				state.beneficiaryData.phone.phone2 = action.payload
-			},
-		}		
+		setSex: (state, action) => {
+			state.beneficiaryData.personalData.sex = action.payload
+		},
+		setGender: (state, action) => {
+			state.beneficiaryData.personalData.gender = action.payload
+		},
+		setNaturalness: (state, action) => {
+			state.beneficiaryData.personalData.naturalness = action.payload
+		},
+		setNationality: (state, action) => {
+			state.beneficiaryData.personalData.nationality = action.payload
+		},
+		setDeathDate: (state, action) => {
+			state.beneficiaryData.personalData.deathDate = action.payload
+		},
+		setDeathInfoDate: (state, action) => {
+			state.beneficiaryData.personalData.deathInfoDate = action.payload
+		},
+		setFiliation1: (state, action) => {
+			state.beneficiaryData.personalData.filiation1 = action.payload
+		},
+		setFiliation2: (state, action) => {
+			state.beneficiaryData.personalData.filiation2 = action.payload
+		},
+		// setDocument
+		setRg: (state, action) => {
+			state.beneficiaryData.document.rg = action.payload
+		},
+		setIssuer: (state, action) => {
+			state.beneficiaryData.document.issuer = action.payload
+		},
+		setUfRg: (state, action) => {
+			state.beneficiaryData.document.ufRG = action.payload
+		},
+		setIssueDate: (state, action) => {
+			state.beneficiaryData.document.issueDate = action.payload
+		},
+		//setAddressDefault	
+		setCepDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.cep = action.payload
+		},
+		setAddressDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.address = action.payload
+		},
+		setNumberDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.number = action.payload
+		},
+		setComplementDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.complement = action.payload
+		},
+		setDistrictDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.district = action.payload
+		},
+		setCountyDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.county = action.payload
+		},
+		setUfDefault: (state, action) => {
+			state.beneficiaryData.addressDefault.Uf = action.payload
+		},
+		//setAddressOptional	
+		setCepOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.cep = action.payload
+		},
+		setAddressOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.address = action.payload
+		},
+		setNumberOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.number = action.payload
+		},
+		setComplementOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.complement = action.payload
+		},
+		setReferencePointOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.referencePoint = action.payload
+		},
+		setDistrictOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.district = action.payload
+		},
+		setCountyOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.county = action.payload
+		},
+		setUfOptional: (state, action) => {
+			state.beneficiaryData.addressOptional.uf = action.payload
+		},
+		//setContact
+		setPhone1: (state, action) => {
+			state.beneficiaryData.contact.phone1 = action.payload
+		},
+		setPhone2: (state, action) => {
+			state.beneficiaryData.phone.phone2 = action.payload
+		},
 	}
 })
 
@@ -214,11 +209,44 @@ export const {
 	//beneficiary
 	setRegistration,
 	setCpfOrCnpj,
-	setPersonalData,
-	setDocument,
+	//
+	setName,
+	setEmail,
+	setSocialName,
+	setBirthDate,
+	setSex,
+	setGender,
+	setNaturalness,
+	setNationality,
+	setDeathDate,
+	setDeathInfoDate,
+	setFiliation1,
+	setFiliation2,
+	//
+	setRg,
+	setIssuer,
+	setUfRg,
+	setIssueDate,
+	//
+	setCepDefault,
 	setAddressDefault,
+	setNumberDefault,
+	setComplementDefault,
+	setDistrictDefault,
+	setCountyDefault,
+	setUfDefault,
+	//
+	setCepOptional,
 	setAddressOptional,
-	setPhone,
+	setNumberOptional,
+	setComplementOptional,
+	setReferencePointOptional,
+	setDistrictOptional,
+	setCountyOptional,
+	setUfOptional,
+	//
+	setPhone1,
+	setPhone2
  } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;

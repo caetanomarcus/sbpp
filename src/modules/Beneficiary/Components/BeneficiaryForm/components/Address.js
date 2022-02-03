@@ -9,10 +9,24 @@ import grayArrow from '../../../../../assets/icons/gray-arrow.svg';
 // mocks
 import { ufs } from '../mocks';
 
-// reducers
+// actions
 import { 
+	setCepDefault,
 	setAddressDefault,
+	setNumberDefault,
+	setComplementDefault,
+	setDistrictDefault,
+	setCountyDefault,
+	setUfDefault,
+   // Optional
+	setCepOptional,
 	setAddressOptional,
+	setNumberOptional,
+	setComplementOptional,
+	setReferencePointOptional,
+	setDistrictOptional,
+	setCountyOptional,
+	setUfOptional,
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
@@ -42,7 +56,7 @@ export const Address = ({
                width="12%"
                label="CEP"
                value={addressDefault.cep}
-               action={setAddressDefault.cep}
+               action={setCepDefault}
             />
 
             <Input
@@ -51,7 +65,7 @@ export const Address = ({
                label="Logradouro"
                isDetailed
                value={addressDefault.address}
-               action={setAddressDefault.address}
+               action={setAddressDefault}
             />            
          </S.Row>
          
@@ -61,7 +75,7 @@ export const Address = ({
                width="12%"
                label="Número"
                value={addressDefault.number}
-               action={setAddressDefault.number}
+               action={setNumberDefault}
             />
 
             <Input
@@ -69,7 +83,7 @@ export const Address = ({
                width="36%"
                label="Complemento (opcional)"
                value={addressDefault.complement}
-               action={setAddressDefault.complement}
+               action={setComplementDefault}
                optional
             />
          </S.Row>
@@ -81,7 +95,7 @@ export const Address = ({
                label="Bairro"
                isDetailed
                value={addressDefault.district}
-               action={setAddressDefault.district}
+               action={setDistrictDefault}
             />
 
             <Input
@@ -90,7 +104,7 @@ export const Address = ({
                label="Município"
                isDetailed
                value={addressDefault.county}
-               action={setAddressDefault.county}
+               action={setCountyDefault}
             />
             
             <Select
@@ -100,7 +114,7 @@ export const Address = ({
                options={ufs}
                source={grayArrow}
                value={addressDefault.uf}
-               action={setAddressDefault.uf}
+               action={setUfDefault}
                toogle={setOpenUfDefault}
                state={openUfDefault}
                isOpened={openUfDefault}
@@ -126,8 +140,8 @@ export const Address = ({
                width="12%"
                label="CEP"
                optional
-               value={addressDefault.cep}
-               action={setAddressDefault.cep}
+               value={addressOptional.cep}
+               action={setCepOptional}
             />
 
             <Input
@@ -136,8 +150,8 @@ export const Address = ({
                label="Logradouro"
                isDetailed
                optional
-               value={addressDefault.address}
-               action={setAddressDefault.address}
+               value={addressOptional.address}
+               action={setAddressOptional}
             >
             </Input>
          </S.Row>
@@ -148,8 +162,8 @@ export const Address = ({
                width="12%"
                label="Número"
                optional
-               value={addressDefault.number}
-               action={setAddressDefault.number}
+               value={addressOptional.number}
+               action={setNumberOptional}
             />
 
             <Input
@@ -157,8 +171,8 @@ export const Address = ({
                width="36%"
                label="Complemento (opcional)"
                optional
-               value={addressDefault.complement}
-               action={setAddressDefault.complement}
+               value={addressOptional.complement}
+               action={setComplementOptional}
             />
 
             <Input
@@ -166,8 +180,8 @@ export const Address = ({
                width="40%"
                label="Ponto de Referência (opcional)"
                optional
-               value={addressDefault.referencePoint}
-               action={setAddressDefault.referencePoint}
+               value={addressOptional.referencePoint}
+               action={setReferencePointOptional}
             />
          </S.Row>
 
@@ -178,8 +192,8 @@ export const Address = ({
                label="Bairro"
                isDetailed
                optional
-               value={addressDefault.district}
-               action={setAddressDefault.district}
+               value={addressOptional.district}
+               action={setDistrictOptional}
             />
 
             <Input
@@ -188,8 +202,8 @@ export const Address = ({
                label="Município"
                isDetailed
                optional
-               value={addressDefault.county}
-               action={setAddressDefault.county}
+               value={addressOptional.county}
+               action={setCountyOptional}
             />
             
             <Select
@@ -200,7 +214,7 @@ export const Address = ({
                options={ufs}
                source={grayArrow}
                value={addressOptional.uf}
-               action={setAddressOptional.uf}
+               action={setUfOptional}
                toogle={setOpenUfOptional}
                state={openUfOptional}
                isOpened={openUfOptional}
