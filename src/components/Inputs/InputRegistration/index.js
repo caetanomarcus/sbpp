@@ -16,7 +16,6 @@ export const Input = ({
 	disabled,
 	isDisabled,
 	handleChange,
-	optional,
 	placeholder,
 	noPadding,
 	isDetailed
