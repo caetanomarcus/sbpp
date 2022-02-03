@@ -9,8 +9,9 @@ const beneficiaryState = {
 	step: 'beneficiary',
 	beneficiaryData: {
 		accountType:'',
-		Bank:'',
-		nationality: ''
+		bank:'',
+		nationality: '',
+		paymentMethod: ''
 	}
 };
 
@@ -37,11 +38,14 @@ const beneficiarySlice = createSlice({
 			state.beneficiaryData.accountType = action.payload
 		},
 		setBank: (state, action) => {
-			state.beneficiaryData.Bank = action.payload
+			state.beneficiaryData.bank = action.payload
 		},
 		setNationality: (state, action) => {
 			state.beneficiaryData.nationality = action.payload
 		},
+		setPaymentMethod: (state, action) => {
+			state.beneficiaryData.paymentMethod = action.payload
+		}
 	}
 })
 
@@ -53,7 +57,8 @@ export const {
 	setStep, 
 	setNationality,
 	setAccountType,
-	setBank
+	setBank,
+	setPaymentMethod
  } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;

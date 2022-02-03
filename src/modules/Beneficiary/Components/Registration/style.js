@@ -7,6 +7,7 @@ export const Container = styled.section`
     height: 100%;
     background: #EFEFEF;
     padding: 18px;
+    overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -17,6 +18,9 @@ export const Content = styled.div`
     border-radius: 4px;
     padding: 24px;
     padding-top:16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 
@@ -87,11 +91,18 @@ export const Line = styled.div`
 `;
 
 export const CancelButton = styled.button`
-    position: relative;
-    height: 19px;
+    height: 26px;
     border: none;
+    margin-right: 16px;
     background: transparent;
     font: 500 14px 'Aestetico', sans-serif;
     color: #828282;
     cursor: pointer;
+`;
+
+export const Footer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 `;

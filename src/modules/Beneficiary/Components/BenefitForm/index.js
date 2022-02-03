@@ -4,4 +4,4 @@ const BenefitForm = () => {
     return null
 }
 
-export const BenefitForm
+export default BenefitForm

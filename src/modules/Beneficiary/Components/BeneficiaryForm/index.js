@@ -39,7 +39,7 @@ const Form = () => {
 						width="20%"
 						label="Matrícula"
 						value={client.registration}
-						disabled={true}
+						isDisabled={true}
 						handleChange=""
 						noPadding
 					/>
@@ -49,7 +49,7 @@ const Form = () => {
 						width="20%"
 						label="CPF/CNPJ"
 						value={client.cpfOrCnpj}
-						disabled={true}
+						isDisabled={true}
 						handleChange=""
 						noPadding
 					/>

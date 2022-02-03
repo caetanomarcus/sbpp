@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const Fieldset = styled.fieldset`
     margin-top: 32px;
-    margin-bottom: 20px;
     border: 1px solid #EFEFEF;
-    padding: 20px 20px 20px 10px;
+    padding: 20px 0px 20px 10px;
 `;
 
 export const Legend = styled.legend`
@@ -13,14 +12,14 @@ export const Legend = styled.legend`
 `;
 
 export const Row = styled.div`
-    width: 100%;
     padding: 0 0 20px 10px;
     display: flex;
 `;
 
 export const Label = styled.label`
-    font: 400 14px 'Aestetico', sans-serif;
-    color: ${props => props.isDisabled? '#32323255': '#323232'};
+    font: 14px 'Aestetico', sans-serif;
+    font-weight: ${props => props.checkbox? 600: 400};
+    color: ${props => props.checkbox? '#001E64': props.isDisabled? '#32323255': '#323232'};
     display: flex;
     align-items: center;
     margin-right: 45px;
@@ -28,4 +27,12 @@ export const Label = styled.label`
 
 export const RadioInput = styled.input`
     margin-right: 10.5px;
+
+    ${ props => props.checkbox && `
+    margin-right: 0;
+    margin-left: 10.5px;
+    width: 15px;
+    height: 15px;
+    `}
 `;
+

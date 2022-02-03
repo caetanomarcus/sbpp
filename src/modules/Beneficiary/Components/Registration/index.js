@@ -2,12 +2,15 @@ import React from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import {setStep} from '../../Dataflow/reducers-and-actions/beneficiary'
-import BeneficiaryForm from "../BeneficiaryForm";
+
+//Components
 import Button from "../../../../components/Buttons/BeneficiaryButton";
+import BeneficiaryForm from "../BeneficiaryForm";
+import FinancialForm  from "../FinancialForm";
+import  BenefitForm  from "../BenefitForm";
 
+//Images
 import right from '../../../../assets/icons/right.png';
-import  FinancialForm  from "../FinancialForm";
-
 
 const Registration = () => {
 
@@ -60,14 +63,17 @@ const Registration = () => {
 				</S.Header>
 				{(step === beneficiary)  && <BeneficiaryForm />}
 				{(step === financial) && <FinancialForm />}
-				{step !== beneficiary &&(<S.CancelButton onClick={() => dispatch(setStep(beneficiary))} >Voltar</S.CancelButton>)}
-				<Button 
-				text='Próximo'
-			 	alt='botão próximo' 
-				source={right} 
-				width='101px'
-				handleClick={handleClickNext}
-				 />
+				{(step === benefit) && <BenefitForm />}
+				<S.Footer>
+					{step !== beneficiary &&(<S.CancelButton onClick={() => dispatch(setStep(beneficiary))} >Voltar</S.CancelButton>)}
+					<Button 
+					text='Próximo'
+					alt='botão próximo' 
+					source={right} 
+					width='101px'
+					handleClick={handleClickNext}
+					/>
+				</S.Footer>
 			</S.Content>
 		</S.Container>
 	)

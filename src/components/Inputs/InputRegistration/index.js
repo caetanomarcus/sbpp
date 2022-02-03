@@ -11,20 +11,24 @@ export const Input = ({
 	value,
 	row,
 	disabled,
+	isDisabled,
 	handleChange,
-	noPadding
+	noPadding,
+	optional
 }) => {
 
 	
 
 	return (
-		<S.Label width={width} row={row}> {label}
+		<S.Label optional={optional} width={width} row={row}> {label}
 			<S.Input 
 				type={type}
 				value={value} 
+				isDisabled={isDisabled}
 				disabled={disabled} 
 				onChange={handleChange}
 				noPadding={noPadding}
+				
 			/>
 		</S.Label>
 	)
@@ -52,6 +56,8 @@ export const Select = ({
 		toogle(!state)
 	}
 
+	console.log(options)
+
 	return (
 		<>
 			<S.Label width={width} > {label}
@@ -65,14 +71,14 @@ export const Select = ({
 				</S.Select>
 
 				{isOpened && (
-				<S.Options height={options * 36} >
+				<S.Options height={options.length * 36} >
 					{options.map((option, index) => {
 						return (
 							<S.Button 
 								key={index} 
 								onClick={(ev) => handleClick(ev,option)} 
 							>
-								{option}
+								{option.name || option}
 							</S.Button>
 						)
 					})}

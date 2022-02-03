@@ -24,6 +24,8 @@ export const Label = styled.label`
     flex-direction: ${props => props.row? 'row': 'column'};
     color: ${props => props.optional? 'gray': '#001E64'};
     font-weight: ${props => props.optional? '400': '600'};
+    font-size: 15px;
+    font-family: "Aestetico", sans-serif;
     padding-right: 20px;
     position: relative;
 `;
@@ -33,11 +35,14 @@ export const Input = styled.input`
     height: ${props => props.height || '32px'};
     display: flex;
     background: transparent;
-    border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
+    border: ${props => props.isDisabled? 'none' : '1px solid #D1D1D1'};
     border-radius: 3px; 
     color: #323232;
+    font-size: 14px;
+    font-family: "Aestetico", sans-serif;
     padding: ${props => props.noPadding? '0' : '0 10px'};
     margin-top: 15px;
+    outline: none;
 `;
 
 export const Row = styled.div`
