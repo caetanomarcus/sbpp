@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 // Style
@@ -11,22 +11,25 @@ import { ufs } from '../mocks';
 
 // reducers
 import { 
-	setUfDefault,
-   setUfOptional
+	setAddressDefault,
+	setAddressOptional,
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
 import { handleOpenSelect } from '../handles'
 
-export const Address = () => {
+export const Address = ({
+   openUfDefault,
+   setOpenUfDefault,
+   openUfOptional,
+   setOpenUfOptional,
+}) => {
 
-   // Local State
-   const [openUfDefault, setOpenUfDefault] = useState(false);
-   const [openUfOptional, setOpenUfOptional] = useState(false);
 
    //Redux State and dispatch
-   const ufDefault = useSelector(state => state.beneficiary.beneficiaryData.ufDefault);
-   const ufOptional = useSelector(state => state.beneficiary.beneficiaryData.ufOptional);
+   const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
+   const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
+
 
 	return (
       <S.Fieldset>
@@ -38,6 +41,8 @@ export const Address = () => {
                type="text"
                width="12%"
                label="CEP"
+               value={addressDefault.cep}
+               action={setAddressDefault.cep}
             />
 
             <Input
@@ -45,10 +50,9 @@ export const Address = () => {
                width="80%"
                label="Logradouro"
                isDetailed
-            >
-            </Input>
-            
-            
+               value={addressDefault.address}
+               action={setAddressDefault.address}
+            />            
          </S.Row>
          
          <S.Row>
@@ -56,12 +60,16 @@ export const Address = () => {
                type="text"
                width="12%"
                label="Número"
+               value={addressDefault.number}
+               action={setAddressDefault.number}
             />
 
             <Input
                type="text"
                width="36%"
                label="Complemento (opcional)"
+               value={addressDefault.complement}
+               action={setAddressDefault.complement}
                optional
             />
          </S.Row>
@@ -72,6 +80,8 @@ export const Address = () => {
                width="49%"
                label="Bairro"
                isDetailed
+               value={addressDefault.district}
+               action={setAddressDefault.district}
             />
 
             <Input
@@ -79,20 +89,22 @@ export const Address = () => {
                width="41%"
                label="Município"
                isDetailed
+               value={addressDefault.county}
+               action={setAddressDefault.county}
             />
             
             <Select
                width="12%"
                label="UF"
-               value={ufDefault}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault ) }
+               isDetailed
                options={ufs}
+               source={grayArrow}
+               value={addressDefault.uf}
+               action={setAddressDefault.uf}
                toogle={setOpenUfDefault}
                state={openUfDefault}
-               source={grayArrow}
-               action={setUfDefault}
                isOpened={openUfDefault}
-               isDetailed
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault ) }
             />
          </S.Row>
 
@@ -114,6 +126,8 @@ export const Address = () => {
                width="12%"
                label="CEP"
                optional
+               value={addressDefault.cep}
+               action={setAddressDefault.cep}
             />
 
             <Input
@@ -122,6 +136,8 @@ export const Address = () => {
                label="Logradouro"
                isDetailed
                optional
+               value={addressDefault.address}
+               action={setAddressDefault.address}
             >
             </Input>
          </S.Row>
@@ -132,6 +148,8 @@ export const Address = () => {
                width="12%"
                label="Número"
                optional
+               value={addressDefault.number}
+               action={setAddressDefault.number}
             />
 
             <Input
@@ -139,6 +157,8 @@ export const Address = () => {
                width="36%"
                label="Complemento (opcional)"
                optional
+               value={addressDefault.complement}
+               action={setAddressDefault.complement}
             />
 
             <Input
@@ -146,6 +166,8 @@ export const Address = () => {
                width="40%"
                label="Ponto de Referência (opcional)"
                optional
+               value={addressDefault.referencePoint}
+               action={setAddressDefault.referencePoint}
             />
          </S.Row>
 
@@ -156,6 +178,8 @@ export const Address = () => {
                label="Bairro"
                isDetailed
                optional
+               value={addressDefault.district}
+               action={setAddressDefault.district}
             />
 
             <Input
@@ -164,21 +188,23 @@ export const Address = () => {
                label="Município"
                isDetailed
                optional
+               value={addressDefault.county}
+               action={setAddressDefault.county}
             />
             
             <Select
                width="12%"
                label="UF"
-               value={ufOptional}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfOptional, openUfOptional ) }
-               options={ufs}
-               toogle={setOpenUfOptional}
-               state={openUfOptional}
-               source={grayArrow}
-               action={setUfOptional}
-               isOpened={openUfOptional}
                isDetailed
                optional
+               options={ufs}
+               source={grayArrow}
+               value={addressOptional.uf}
+               action={setAddressOptional.uf}
+               toogle={setOpenUfOptional}
+               state={openUfOptional}
+               isOpened={openUfOptional}
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfOptional, openUfOptional ) }
             />
          </S.Row>
 
