@@ -17,10 +17,10 @@ import {
 // handles
 import { handleOpenSelect } from '../handles'
 
-export const Document = () => {
-
-   // Local State
-   const [openUfRG, setOpenUfRG] = useState(false);
+export const Document = ({
+   openUfRG,
+   setOpenUfRG,
+}) => {
 
    //Redux State and dispatch
    const ufRG = useSelector(state => state.beneficiary.beneficiaryData.ufRG);

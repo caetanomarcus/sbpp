@@ -19,12 +19,15 @@ import {
 // handles
 import { handleOpenSelect } from '../handles'
 
-export const Data = ({client}) => {
-
-   // Local State
-	const [openNaturalness, setOpenNaturalness] = useState(false);
-	const [openNationality, setOpenNationality] = useState(false);
-	const [openGender, setOpenGender] = useState(false);
+export const PersonalData = ({
+   client,
+   openGender,
+   setOpenGender,
+   openNaturalness,
+   setOpenNaturalness,
+   openNationality,
+   setOpenNationality,
+}) => {
 
 	//Redux State and dispatch
 	const naturalness = useSelector(state => state.beneficiary.beneficiaryData.naturalness);
