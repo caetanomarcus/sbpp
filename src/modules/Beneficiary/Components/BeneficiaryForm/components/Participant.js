@@ -5,9 +5,20 @@ import { useSelector } from 'react-redux';
 import * as S from '../style'
 import { Input } from '../../../../../components/Inputs/InputRegistration';
 
+// actions
+import { 
+   setRegistration,
+	setCpfOrCnpj,
+} from '../../../Dataflow/reducers-and-actions/beneficiary';
+
 export const Participant = ({
    client
 }) => {
+
+   //Redux State and dispatch
+   const registration = useSelector(state => state.beneficiary.beneficiaryData.registration);
+   const cpfOrCnpj = useSelector(state => state.beneficiary.beneficiaryData.cpfOrCnpj);
+
 
 	return (
       <S.Fieldset>
@@ -22,6 +33,8 @@ export const Participant = ({
                disabled
                isDisabled
                noPadding
+               // value={registration}
+               action={setRegistration}
             />
 
             <Input
@@ -32,6 +45,8 @@ export const Participant = ({
                disabled
                isDisabled
                noPadding
+                // value={cpfOrCnpj}
+               action={setCpfOrCnpj}
             />
          </S.Row>
 

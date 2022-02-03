@@ -9,9 +9,12 @@ import grayArrow from '../../../../../assets/icons/gray-arrow.svg';
 // mocks
 import { ufs } from '../mocks';
 
-// reducers
+// actions
 import { 
-	setUfRG
+	setRg,
+	setIssuer,
+	setUfRg,
+	setIssueDate,
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
@@ -23,7 +26,8 @@ export const Document = ({
 }) => {
 
    //Redux State and dispatch
-   const ufRG = useSelector(state => state.beneficiary.beneficiaryData.ufRG);
+   const document = useSelector(state => state.beneficiary.beneficiaryData.document);
+
 
 	return (
       <S.Fieldset>
@@ -33,31 +37,37 @@ export const Document = ({
                type="text"
                width="20%"
                label="RG"
+               value={document.rg}
+               action={setRg}
             />
             <Input
                type="text"
                width="20%"
                label="Órgão Emissor"
+               value={document.setIssuer}
+               action={setIssuer}
             />
             <Select
                width="12%"
                label="UF"
-               value={ufRG}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfRG, openUfRG ) }
                options={ufs}
+               source={grayArrow}
+               value={document.ufRG}
+               action={setUfRg}
                toogle={setOpenUfRG}
                state={openUfRG}
-               source={grayArrow}
-               action={setUfRG}
                isOpened={openUfRG}
                isDetailed
-            />
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfRG, openUfRG ) }
+               />
             <Input
                type="text"
                width="18%"
                label="Data de Expedição"
                placeholder="DD/MM/AAAA"
                widthInput="70%"
+               value={document.issueDate}
+               action={setIssueDate}
             />
          </S.Row>
       </S.Fieldset>

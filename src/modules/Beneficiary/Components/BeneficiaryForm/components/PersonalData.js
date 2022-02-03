@@ -9,11 +9,20 @@ import grayArrow from '../../../../../assets/icons/gray-arrow.svg';
 // mocks
 import { countries, genders } from '../mocks';
 
-// reducers
+// actions
 import { 
-	setNaturalness, 
-	setNationality, 
-	setGender 
+	setName,
+	setEmail,
+	setSocialName,
+	setBirthDate,
+	setSex,
+	setGender,
+	setNaturalness,
+	setNationality,
+	setDeathDate,
+	setDeathInfoDate,
+	setFiliation1,
+	setFiliation2,
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
@@ -30,11 +39,8 @@ export const PersonalData = ({
 }) => {
 
 	//Redux State and dispatch
-	const naturalness = useSelector(state => state.beneficiary.beneficiaryData.naturalness);
-	const nationality = useSelector(state => state.beneficiary.beneficiaryData.nationality);
-	const gender = useSelector(state => state.beneficiary.beneficiaryData.gender);
+   const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
 
-   console.log(client);
 
 	return (
       <S.Fieldset>
@@ -45,12 +51,16 @@ export const PersonalData = ({
                width="60%"
                label="Nome"
                value={client.name}
+               // value={personalData.name}
+               action={setName}
             />
 
             <Input
                type="text"
                width="35%"
                label="Email"
+               value={personalData.email}
+               action={setEmail}
             />
          </S.Row>
          <S.Row>
@@ -69,6 +79,8 @@ export const PersonalData = ({
                width="60%"
                label="Nome social"
                optional
+               vvalue={personalData.socialName}
+               action={setSocialName}
             />
          </S.Row>
          <S.Row>
@@ -78,15 +90,28 @@ export const PersonalData = ({
                label="Data de Nascimento"
                placeholder="DD/MM/AAAA"
                widthInput="70%"
+               value={personalData.birthDate}
+               action={setBirthDate}
             />
             <S.Label width="22%">Sexo
                <S.DivRadio>
                   <S.LabelRadio>
-                     <S.RadioInput type='radio' name='sexo' />
+                     <S.RadioInput 
+                        type='radio' 
+                        name='sexo' 
+                        value={personalData.sex}
+                        action={setSex}
+                     />
                      Feminino
                   </S.LabelRadio>
+
                   <S.LabelRadio>
-                     <S.RadioInput type='radio' name='sexo' />
+                     <S.RadioInput 
+                        type='radio' 
+                        name='sexo' 
+                        value={personalData.sex}
+                        action={setSex}
+                     />
                      Masculino
                   </S.LabelRadio>
                </S.DivRadio>
@@ -95,7 +120,7 @@ export const PersonalData = ({
             <Select
                width="20%"
                label="Gênero (opcional)"
-               value={gender}
+               value={personalData.gender}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenGender, openGender ) }
                options={genders}
                toogle={setOpenGender}
@@ -111,7 +136,7 @@ export const PersonalData = ({
             <Select
                width="40%"
                label="Naturalidade"
-               value={naturalness}
+               value={personalData.naturalness}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenNaturalness, openNaturalness ) }
                options={countries}
                toogle={setOpenNaturalness}
@@ -124,7 +149,7 @@ export const PersonalData = ({
             <Select
                width="40%"
                label="Nacionalidade"
-               value={nationality}
+               value={personalData.nationality}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenNationality, openNationality ) }
                options={countries}
                toogle={setOpenNationality}
@@ -153,6 +178,8 @@ export const PersonalData = ({
                label="Data de óbito"
                placeholder="DD/MM/AAAA"
                optional
+               value={personalData.deathDate}
+               action={setDeathDate}
             />
 
             <Input
@@ -162,6 +189,8 @@ export const PersonalData = ({
                label="Data de Informação de óbito"
                placeholder="DD/MM/AAAA"
                optional
+               value={personalData.deathInfoDate}
+               action={setDeathInfoDate}
             />
          </S.Row>
 
@@ -170,12 +199,16 @@ export const PersonalData = ({
                type="text"
                width="50%"
                label="Filiação 1"
+               value={personalData.filiation1}
+               action={setFiliation1}
             />
 
             <Input
                type="text"
                width="50%"
                label="Filiação 2"
+               value={personalData.filiation2}
+               action={setFiliation2}
             />
          </S.Row>
       </S.Fieldset>
