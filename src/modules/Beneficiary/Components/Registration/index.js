@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import {setStep} from '../../Dataflow/reducers-and-actions/beneficiary'
+import {setStep, setScreen, setResetStates} from '../../Dataflow/reducers-and-actions/beneficiary'
 
 //Components
 import Button from "../../../../components/Buttons/BeneficiaryButton";
@@ -22,7 +22,6 @@ const Registration = () => {
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
-
 	const pending = 'beneficiarios/pendentes';
 
 	const handleClickNext = () => {
@@ -34,8 +33,24 @@ const Registration = () => {
 						dispatch(setStep(benefit))
 						break;
 						case benefit:
-							dispatch(setStep(finalStep))
+							return null
 			 }
+	}
+
+	const handleClickBack = () => {
+		switch (step) {
+				 case beneficiary:
+					return null
+					case financial:
+						dispatch(setStep(beneficiary))
+						break;
+						case benefit:
+							dispatch(setStep(financial))
+							break;
+							case finalStep:
+								dispatch(setStep(benefit))
+								break;
+		}
 	}
 
 	return (
@@ -59,13 +74,13 @@ const Registration = () => {
 							<S.Step steps={step === benefit} >BENEFÍCIO</S.Step>
 						</S.Circle>
 					</S.RegistrationFluxBox>
-					<S.CancelButton>Cancelar</S.CancelButton>
+					<S.CancelButton onClick={() => dispatch(setResetStates())} >Cancelar</S.CancelButton>
 				</S.Header>
 				{(step === beneficiary)  && <BeneficiaryForm />}
 				{(step === financial) && <FinancialForm />}
 				{(step === benefit) && <BenefitForm />}
 				<S.Footer>
-					{step !== beneficiary &&(<S.CancelButton onClick={() => dispatch(setStep(beneficiary))} >Voltar</S.CancelButton>)}
+					{step !== beneficiary &&(<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
 					<Button 
 					text='Próximo'
 					alt='botão próximo' 

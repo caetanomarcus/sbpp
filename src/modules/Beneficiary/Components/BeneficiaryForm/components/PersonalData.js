@@ -38,6 +38,11 @@ export const PersonalData = ({
    setOpenNationality,
 }) => {
 
+   //LocalState
+   const [hasSocialName, setSocialName] = useState(false);
+   const [hasDeathInformation, setDeathInformation] = useState(false);
+   
+
 	//Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
 
@@ -59,7 +64,7 @@ export const PersonalData = ({
                type="text"
                width="35%"
                label="Email"
-               value={personalData.email}
+               value={client.email}
                action={setEmail}
             />
          </S.Row>
@@ -67,9 +72,10 @@ export const PersonalData = ({
             <Input
                type="checkbox"
                width="95%"
-               widthInput="20px"
-               HeightInput="20px"
+               widthInput="15px"
+               HeightInput="15px"
                label="Possui nome social?"
+               handleChange={() => setSocialName(!hasSocialName)}
                row
             />
          </S.Row>
@@ -79,8 +85,10 @@ export const PersonalData = ({
                width="60%"
                label="Nome social"
                optional
-               vvalue={personalData.socialName}
+               value={personalData.socialName}
                action={setSocialName}
+               optional={!hasSocialName}
+               disabled={!hasSocialName}
             />
          </S.Row>
          <S.Row>
@@ -164,9 +172,10 @@ export const PersonalData = ({
             <Input
                type="checkbox"
                width="95%"
-               widthInput="20px"
-               HeightInput="20px"
+               widthInput="15px"
+               HeightInput="15px"
                label="Possui informação de óbito?"
+               handleChange={() => setDeathInformation(!hasDeathInformation)}
                row
             />
          </S.Row>
@@ -177,7 +186,8 @@ export const PersonalData = ({
                widthInput="90%"
                label="Data de óbito"
                placeholder="DD/MM/AAAA"
-               optional
+               optional={!hasDeathInformation}
+               disabled={!hasDeathInformation}
                value={personalData.deathDate}
                action={setDeathDate}
             />
@@ -188,7 +198,8 @@ export const PersonalData = ({
                widthInput="45%"
                label="Data de Informação de óbito"
                placeholder="DD/MM/AAAA"
-               optional
+               optional={!hasDeathInformation}
+               disabled={!hasDeathInformation}
                value={personalData.deathInfoDate}
                action={setDeathInfoDate}
             />

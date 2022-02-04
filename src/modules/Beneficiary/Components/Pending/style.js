@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import house from '../../../../assets/icons/circled-house.svg'
 import erase from '../../../../assets/icons/erase.svg'
+import arrow from '../../../../assets/icons/arrow.svg'
+
 
 export const Container = styled.section`
     width: 100%;
@@ -118,13 +120,61 @@ export const CleanButton = styled.button`
 export const ResultsAndPagination = styled.div`
     width: 100%;
     height: 30px;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     p{
         font: 400 12px 'Aestetico', sans-serif;
         color: #5A5A5A;
-
     }
 `;
+
+export const PaginationCounter = styled.p`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 400 12px 'Aestetico', sans-serif;
+    color: #5A5A5A;
+`;
+
+export const Pagination = styled.div`
+    width: 15%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+
+export const PaginationButton = styled.button`
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    color: #5A5A5A;
+    font: 400 12px 'Aestetico', sans-serif;
+    transform: rotate(${props => props.left ? '-90deg' : '90deg'});
+
+    :after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: ${props => props.left ? 'translate(-45%, -50%)' : 'translate(-50%, -50%)'};
+        width: 8px;
+        height: 8px;
+        background: url(${arrow});
+        background-size: cover;
+        background-position: center;
+    }
+`;
+
 
 export const ClientBox = styled.div`
     display: flex;

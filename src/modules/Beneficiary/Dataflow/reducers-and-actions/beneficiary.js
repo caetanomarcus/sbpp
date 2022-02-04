@@ -79,12 +79,6 @@ const beneficiarySlice = createSlice({
 		setStep: (state, action) => {
 			state.step = action.payload
 		},
-		setAccountType: (state, action) => {
-			state.beneficiaryData.accountType = action.payload
-		},
-		setBank: (state, action) => {
-			state.beneficiaryData.bank = action.payload
-		},
 		// beneficiary
 		setRegistration: (state, action) => {
 			state.beneficiaryData.registration = action.payload
@@ -196,11 +190,26 @@ const beneficiarySlice = createSlice({
 		setPhone2: (state, action) => {
 			state.beneficiaryData.phone.phone2 = action.payload
 		},
+		//bancary data
+		setAccountType: (state, action) => {
+			state.beneficiaryData.accountType = action.payload
+		},
+		setBank: (state, action) => {
+			state.beneficiaryData.bank = action.payload
+		},
+		setPaymentMethod: (state, action) => {
+			state.beneficiaryData.paymentMethod = action.payload
+		},
+		setResetStates: () => {
+			return beneficiaryState
+		},
+
 	}
 })
 
 //Actions
 export const { 
+	setResetStates,
 	setScreen, 
 	setFilterOpened, 
 	setSelectedClient, 
@@ -209,6 +218,8 @@ export const {
 	//beneficiary
 	setRegistration,
 	setCpfOrCnpj,
+	setBank,
+	setPaymentMethod,
 	//
 	setName,
 	setEmail,

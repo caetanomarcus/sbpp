@@ -7,7 +7,7 @@ export const Label = styled.label`
     color: ${props => props.optional? 'gray': '#001E64'};
     font-weight: ${props => props.optional? '400': '600'};
     align-items: ${props => props.row? 'center': ''};
-    font-size: 15px;
+    font-size: 14px;
     font-family: "Aestetico", sans-serif;
     padding-right: 20px;
     position: relative;
@@ -36,6 +36,7 @@ export const Select = styled.button`
     outline: none;
     border: 1px solid #D1D1D1;
     border-radius: 3px;
+    font-weight: ${props => props.optional? '400': '600'};
     margin-top: 10px;
     padding: 0 10px;
     color: #323232;
@@ -64,7 +65,7 @@ export const Options = styled.div`
     border-radius: 3px;
     position: absolute;  
     top: 55px;
-    z-index: 3;
+    z-index: 5;
 
     /* width */
     ::-webkit-scrollbar {

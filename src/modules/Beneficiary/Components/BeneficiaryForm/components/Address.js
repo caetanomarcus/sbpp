@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 
 // Style
@@ -39,6 +39,8 @@ export const Address = ({
    setOpenUfOptional,
 }) => {
 
+   //LocalState
+   const [hasMailingAddress, setMailingAdress] = useState(false);
 
    //Redux State and dispatch
    const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
@@ -126,9 +128,10 @@ export const Address = ({
             <Input
                type="checkbox"
                width="95%"
-               widthInput="20px"
-               HeightInput="20px"
+               widthInput="15px"
+               HeightInput="15px"
                label="Possui endereço de correspondência?"
+               handleChange={() => setMailingAdress(!hasMailingAddress)}
                row
             />
          </S.Row>
@@ -139,7 +142,8 @@ export const Address = ({
                type="text"
                width="12%"
                label="CEP"
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.cep}
                action={setCepOptional}
             />
@@ -149,7 +153,8 @@ export const Address = ({
                width="80%"
                label="Logradouro"
                isDetailed
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.address}
                action={setAddressOptional}
             >
@@ -161,7 +166,8 @@ export const Address = ({
                type="text"
                width="12%"
                label="Número"
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.number}
                action={setNumberOptional}
             />
@@ -170,7 +176,8 @@ export const Address = ({
                type="text"
                width="36%"
                label="Complemento (opcional)"
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.complement}
                action={setComplementOptional}
             />
@@ -179,7 +186,8 @@ export const Address = ({
                type="text"
                width="40%"
                label="Ponto de Referência (opcional)"
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.referencePoint}
                action={setReferencePointOptional}
             />
@@ -191,7 +199,8 @@ export const Address = ({
                width="49%"
                label="Bairro"
                isDetailed
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.district}
                action={setDistrictOptional}
             />
@@ -201,7 +210,8 @@ export const Address = ({
                width="41%"
                label="Município"
                isDetailed
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                value={addressOptional.county}
                action={setCountyOptional}
             />
@@ -210,7 +220,8 @@ export const Address = ({
                width="12%"
                label="UF"
                isDetailed
-               optional
+               optional={!hasMailingAddress}
+               disabled={!hasMailingAddress}
                options={ufs}
                source={grayArrow}
                value={addressOptional.uf}

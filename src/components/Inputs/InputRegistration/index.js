@@ -56,7 +56,9 @@ export const Select = ({
 	isOpened,
 	action,
 	toogle,
-	state
+	state,
+	optional,
+	disabled
 }) => {
 
 	const dispatch = useDispatch();
@@ -69,12 +71,15 @@ export const Select = ({
 
 	console.log(options)
 
-	const calcHeight = options.length > 3 ? options.length * 36 : 'fit-content'
+	const calcHeight = options.length > 3 ? (options.length * 32) + .5: 'fit-content'
 
 	return (
 		<>
-			<S.Label width={width} > {label}
-				<S.Select onClick={handleClickSelect}>
+			<S.Label 
+			width={width}
+			optional={optional} 
+			> {label}
+				<S.Select onClick={handleClickSelect} disabled={disabled} >
 					{value}
 					<S.Arrow
 						src={source}
