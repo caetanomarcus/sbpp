@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
     <GlobalStyle />
     <Routes>
-      <Route path='/' element={<LoginScreen />} />
+      {/* <Route path='/' element={<LoginScreen />} /> */}
       <Route path='/beneficiary' 
       element={ <PrivateRoute> 
         <Beneficiary />

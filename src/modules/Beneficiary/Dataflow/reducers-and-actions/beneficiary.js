@@ -10,19 +10,19 @@ const beneficiaryState = {
 	beneficiaryData: {
 		registration: '',
 		cpfOrCnpj: '',
-		// Finance
-		accountType:'',
-		bank:'',
-		paymentMethod: '',
 		personalData: {
+			registration:'',
+			identification: '',
 			name: '',
 			email: '',
+			hasSocialName: false,
 			socialName: '',
 			birthDate: '',
 			sex: '',
 			gender: '',
 			naturalness: '',
 			nationality: '',
+			hasDeathInformation: false,
 			deathDate: '',
 			deathInfoDate: '',
 			filiation1: '',
@@ -56,7 +56,38 @@ const beneficiaryState = {
 		contact: {
 			phone1: '',
 			phone2: '',
-		}		
+		},
+		bankData: {
+			national: true,
+			accountType: '',
+			bank: '',
+			paymentMethod: '',
+			accountNumber: '',
+			accountDigit: '',
+			agency: '',
+			agencyDigit: '',
+			hasPowerOfAttorney: false,
+			powerOfAttorney: '',
+			powerOfAttorneyCPF: '',
+		},
+		paymentData: {
+			paymentMethod: '',
+			start: '',
+			end: ''
+		},
+		benefitData: {
+			plan: '',
+			product: '',
+			susep: '',
+			proposalNumber: '',
+			benefitType: '',
+			proposalData: '',
+			salesStructure: '',
+			taxationType: '',
+
+
+
+		}
 	}
 };
 
@@ -192,14 +223,44 @@ const beneficiarySlice = createSlice({
 		},
 		//bancary data
 		setAccountType: (state, action) => {
-			state.beneficiaryData.accountType = action.payload
+			state.beneficiaryData.bankData.accountType = action.payload
 		},
 		setBank: (state, action) => {
-			state.beneficiaryData.bank = action.payload
+			state.beneficiaryData.bankData.bank = action.payload
 		},
+	
+		setAgency: (state, action) => {
+			state.beneficiaryData.bankData.agency = action.payload
+		},
+		setAgencyDigit: (state, action) => {
+			state.beneficiaryData.bankData.agencyDigit = action.payload
+		},
+		setAccountNumber: (state, action) => {
+			state.beneficiaryData.bankData.accountNumber = action.payload
+		},
+		setAccountDigit: (state, action) => {
+			state.beneficiaryData.bankData.accountDigit = action.payload
+		},
+		setHasPowerOfAttorney: (state, action) => {
+			state.beneficiaryData.bankData.hasPowerOfAttorney = action.payload
+		},
+		setPowerOfAttorney: (state, action) => {
+			state.beneficiaryData.bankData.powerOfAttorney = action.payload
+		},
+		setPowerOfAttorneyCpf: (state, action) => {
+			state.beneficiaryData.bankData.powerOfAttorneyCpf = action.payload
+		},
+		//payment data
 		setPaymentMethod: (state, action) => {
-			state.beneficiaryData.paymentMethod = action.payload
+			state.beneficiaryData.bankData.paymentMethod = action.payload
 		},
+		setStart: (state, action) => {
+			state.beneficiaryData.paymentData.start = action.payload
+		},
+		setEnd: (state, action) => {
+			state.beneficiaryData.paymentData.end = action.payload
+		},
+		// Universal actions
 		setResetStates: () => {
 			return beneficiaryState
 		},
@@ -218,8 +279,6 @@ export const {
 	//beneficiary
 	setRegistration,
 	setCpfOrCnpj,
-	setBank,
-	setPaymentMethod,
 	//
 	setName,
 	setEmail,
@@ -257,7 +316,19 @@ export const {
 	setUfOptional,
 	//
 	setPhone1,
-	setPhone2
+	setPhone2,
+	//
+	setBank,
+	setPaymentMethod,
+	setAgency,
+	setAgencyDigit,
+	setAccountNumber,
+	setAccountDigit,
+	setHasPowerOfAttorney,
+	setPowerOfAttorney,
+	setPowerOfAttorneyCpf,
+	setStart,
+	setEnd,
  } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;

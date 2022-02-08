@@ -1,7 +1,21 @@
 import React, {useState, useEffect} from "react";
 import { Input, Select } from "../../../../components/Inputs/InputRegistration";
 import {useSelector, useDispatch} from 'react-redux'
-import { setAccountType, setBank, setPaymentMethod } from '../../Dataflow/reducers-and-actions/beneficiary';
+import { setAccountType,
+    setBank,
+    setPaymentMethod,
+    setBankAccount,
+    setBankAccountDigit,
+    setAgency,
+    setAgencyDigit,
+    setAccountNumber,
+    setAccountDigit,
+    setHasPowerOfAttorney,
+    setPowerOfAttorney,
+    setPowerOfAttorneyCpf,
+    setStart,
+    setEnd,
+     } from '../../Dataflow/reducers-and-actions/beneficiary';
 import * as S from './style'
 
 import grayArrow from '../../../../assets/icons/gray-arrow.svg'
@@ -16,9 +30,9 @@ const FinancialForm = () => {
 
 
     //Redux State and dispatch
-    const accountType = useSelector(state => state.beneficiary.beneficiaryData.accountType);
-    const paymentMethod = useSelector(state => state.beneficiary.beneficiaryData.paymentMethod)
-    const bank = useSelector(state => state.beneficiary.beneficiaryData.bank);
+    const bankData = useSelector(state => state.beneficiary.beneficiaryData.bankData);
+    const paymentData = useSelector(state => state.beneficiary.beneficiaryData.paymentData);
+    const dispatch = useDispatch();
     
 
     const handleOpenSelect = (e, setFunction, state) => {
@@ -40,11 +54,9 @@ const FinancialForm = () => {
             .then((item) => setBanks(item))
 
     },[])
-
-    console.log(bank)
-
+    
     return(
-        <>
+        <div class='pam'>
             <S.Fieldset>
             <S.Legend>Dados bancários</S.Legend>
             <S.Row>
@@ -61,7 +73,7 @@ const FinancialForm = () => {
            <Select 
             	width="15%"
                 label="Tipo de Conta"
-                value={accountType}
+                value={bankData.accountType}
                 handleClickSelect={(e) => handleOpenSelect(e, setOpenAccount, openAccount) }
                 options={accountTypes}
                 toogle={setOpenAccount}
@@ -73,7 +85,7 @@ const FinancialForm = () => {
             <Select 
             	width="30%"
                 label="Banco"
-                value={bank?.name}
+                value={bankData.bank.name}
                 handleClickSelect={(e) => handleOpenSelect(e, setOpenBanks, openBanks) }
                 options={banks}
                 toogle={setOpenBanks}
@@ -86,8 +98,8 @@ const FinancialForm = () => {
                 type="text"
                 width="10%"
                 label="Agência"
-                value=''
-                handleChange=""
+                value={bankData.agencyNumber}
+                action={setAgency}
              
              
             />
@@ -95,30 +107,30 @@ const FinancialForm = () => {
                 type="text"
                 width="7%"
                 label="Dígito"
-                value=''
-                handleChange=""
+                value={bankData.agencyDigit}
+               action={setAgencyDigit}
                
             />
              <Input 
                 type="text"
                 width="15%"
                 label="Conta Corrente"
-                value=''
-                handleChange=""
+                value={bankData.accountNumber}
+                action={setAccountNumber}
               
             />
              <Input 
                 type="text"
                 width="7%"
                 label="Dígito"
-                value=''
-                handleChange=""
+                value={bankData.accountDigit}
+                action={setAccountDigit}
             
             />
            </S.Row>
            <S.Label checkbox  >
                     Possui Procuração Judicial?
-                <S.RadioInput checkbox type='checkbox' name='account' value={hasProcuration} onChange={() => setProcuration(!hasProcuration)} />
+                <S.RadioInput checkbox type='checkbox' name='account' value={bankData.hasPowerOfAttorney} onChange={() => dispatch(setHasPowerOfAttorney(!bankData.hasPowerOfAttorney))} />
                 
             </S.Label>
             <div style={{'height': '22px'}} ></div>
@@ -127,16 +139,16 @@ const FinancialForm = () => {
                     type='text'
                     width='40%'
                     label='Nome'
-                    optional={!hasProcuration}
-                    disabled={!hasProcuration}
+                    optional={!bankData.hasPowerOfAttorney}
+                    disabled={!bankData.hasPowerOfAttorney}
                     
                 />
                 <Input 
                     type='text'
                     width='20%'
                     label='CPF'
-                    optional={!hasProcuration}
-                    disabled={!hasProcuration}
+                    optional={!bankData.hasPowerOfAttorney}
+                    disabled={!bankData.hasPowerOfAttorney}
                     
                 />
             </S.Row>
@@ -148,7 +160,7 @@ const FinancialForm = () => {
             <Select 
             	width="25%"
                 label="Forma de Pagamento"
-                value={paymentMethod}
+                value={bankData.paymentMethod}
                 handleClickSelect={(e) => handleOpenSelect(e, setOpenPayment, openPayment) }
                 options={payments}
                 toogle={setOpenPayment}
@@ -161,17 +173,21 @@ const FinancialForm = () => {
                     type='date'
                     width='20%'
                     label='Início da Operação'
+                    value={paymentData.start}
+                    action={setStart}
                     
                 />
                 <Input 
                     type='date'
                     width='20%'
                     label='Fim da Operação'
+                    value={paymentData.end}
+                    action={setEnd}
                     
                 />
             </S.Row>
         </S.Fieldset>
-        </>
+        </div>
     )
 }
 

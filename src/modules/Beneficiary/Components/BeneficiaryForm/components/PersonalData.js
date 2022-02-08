@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Style
 import * as S from '../style'
@@ -28,6 +28,7 @@ import {
 // handles
 import { handleOpenSelect } from '../handles'
 
+
 export const PersonalData = ({
    client,
    openGender,
@@ -45,7 +46,7 @@ export const PersonalData = ({
 
 	//Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
-
+   const dispatch = useDispatch();
 
 	return (
       <S.Fieldset>
@@ -76,6 +77,7 @@ export const PersonalData = ({
                HeightInput="15px"
                label="Possui nome social?"
                handleChange={() => setSocialName(!hasSocialName)}
+               checked={hasSocialName}
                row
             />
          </S.Row>
@@ -107,8 +109,9 @@ export const PersonalData = ({
                      <S.RadioInput 
                         type='radio' 
                         name='sexo' 
-                        value={personalData.sex}
+                        value='Feminino'
                         action={setSex}
+                        onChange={(e) => dispatch(setSex(e.target.value))}
                      />
                      Feminino
                   </S.LabelRadio>
@@ -117,8 +120,9 @@ export const PersonalData = ({
                      <S.RadioInput 
                         type='radio' 
                         name='sexo' 
-                        value={personalData.sex}
+                        value='Masculino'
                         action={setSex}
+                        onChange={(e) => dispatch(setSex(e.target.value))}
                      />
                      Masculino
                   </S.LabelRadio>

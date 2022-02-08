@@ -15,11 +15,19 @@ export const Input = ({
 	optional,
 	disabled,
 	isDisabled,
-	handleChange,
 	placeholder,
 	noPadding,
-	isDetailed
+	isDetailed,
+	action,
 }) => {
+
+	const dispatch = useDispatch();
+
+	const handleChange = (e, action) => {
+		e.preventDefault();
+		console.log(e)
+		dispatch(action(e.target.value));
+	}
 
 	return (
 		<S.Label width={width} row={row} optional={optional}> {label}
@@ -31,7 +39,7 @@ export const Input = ({
 				isDisabled={isDisabled}
 				disabled={disabled}
 				isDisabled={isDisabled}
-				onChange={handleChange}
+				onChange={(e) => handleChange(e, action)}
 				noPadding={noPadding}
 				row={row}
 				placeholder={placeholder}
