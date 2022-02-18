@@ -9,7 +9,7 @@ export const Label = styled.label`
     align-items: ${props => props.row? 'center': ''};
     font-size: 14px;
     font-family: "Aestetico", sans-serif;
-    padding-right: 20px;
+    margin-right: ${props => props.noLabel ? '0': '20px'};
     position: relative;
     opacity: ${props => props.optional? '0.6': ''};
 
@@ -53,7 +53,7 @@ export const Arrow = styled.img`
 `
 
 export const Options = styled.div`
-    width: 95%;
+    width: 100%;
     height: ${props => props.height}px;
     max-height: 160px;
     overflow: auto;
@@ -64,7 +64,7 @@ export const Options = styled.div`
     border-bottom: 0;
     border-radius: 3px;
     position: absolute;  
-    top: 55px;
+    top: ${props => props.initialModal? '25px': '55px'};
     z-index: 5;
 
     /* width */

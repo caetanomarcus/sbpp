@@ -31,7 +31,6 @@ const FinancialForm = () => {
 
     //Redux State and dispatch
     const bankData = useSelector(state => state.beneficiary.beneficiaryData.bankData);
-    const paymentData = useSelector(state => state.beneficiary.beneficiaryData.paymentData);
     const dispatch = useDispatch();
     
 
@@ -54,12 +53,22 @@ const FinancialForm = () => {
             .then((item) => setBanks(item))
 
     },[])
-    
+
     return(
-        <div class='pam'>
-            <S.Fieldset>
-            <S.Legend>Dados bancários</S.Legend>
+        <S.Container>
             <S.Row>
+            <Select 
+            	width="25%"
+                label="Forma de Pagamento"
+                value={bankData.paymentMethod}
+                handleClickSelect={(e) => handleOpenSelect(e, setOpenPayment, openPayment) }
+                options={payments}
+                toogle={setOpenPayment}
+                state={openPayment}
+                source={grayArrow}
+                action ={setPaymentMethod}
+                isOpened={openPayment}
+            />
             <S.Label>
                 <S.RadioInput checked type='radio' name='account' />
                 Nacional
@@ -94,7 +103,9 @@ const FinancialForm = () => {
                 action ={setBank}
                 isOpened={openBanks}
             />
-            <Input 
+           </S.Row>
+           <S.Row>
+           <Input 
                 type="text"
                 width="10%"
                 label="Agência"
@@ -134,7 +145,7 @@ const FinancialForm = () => {
                 
             </S.Label>
             <div style={{'height': '22px'}} ></div>
-            <S.Row>
+            <S.Row disabled={!bankData.hasPowerOfAttorney}>
                 <Input 
                     type='text'
                     width='40%'
@@ -152,42 +163,34 @@ const FinancialForm = () => {
                     
                 />
             </S.Row>
-           
-        </S.Fieldset>
-        <S.Fieldset>
-            <S.Legend>Pagamento</S.Legend>
-            <S.Row>
-            <Select 
-            	width="25%"
-                label="Forma de Pagamento"
-                value={bankData.paymentMethod}
-                handleClickSelect={(e) => handleOpenSelect(e, setOpenPayment, openPayment) }
-                options={payments}
-                toogle={setOpenPayment}
-                state={openPayment}
-                source={grayArrow}
-                action ={setPaymentMethod}
-                isOpened={openPayment}
-            />
-             <Input 
-                    type='date'
-                    width='20%'
-                    label='Início da Operação'
-                    value={paymentData.start}
-                    action={setStart}
+            {/* <S.Label checkbox  >
+                   Pagamento ao Tutor?
+                <S.RadioInput checkbox type='checkbox' name='account' value={bankData.hasPowerOfAttorney} onChange={() => dispatch(setHasPowerOfAttorney(!bankData.hasPowerOfAttorney))} />
+                
+            </S.Label>
+            <div style={{'height': '22px'}} ></div>
+            <S.Row disabled={!bankData.hasPowerOfAttorney}>
+                <Input 
+                    type='text'
+                    width='40%'
+                    label='Nome'
+                    optional={!bankData.hasPowerOfAttorney}
+                    disabled={!bankData.hasPowerOfAttorney}
                     
                 />
                 <Input 
-                    type='date'
+                    type='text'
                     width='20%'
-                    label='Fim da Operação'
-                    value={paymentData.end}
-                    action={setEnd}
+                    label='CPF'
+                    optional={!bankData.hasPowerOfAttorney}
+                    disabled={!bankData.hasPowerOfAttorney}
                     
                 />
-            </S.Row>
-        </S.Fieldset>
-        </div>
+            </S.Row> */}
+           
+            
+      
+        </S.Container>
     )
 }
 

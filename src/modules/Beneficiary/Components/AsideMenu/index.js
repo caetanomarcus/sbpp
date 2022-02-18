@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
 import { setScreen } from "../../Dataflow/reducers-and-actions/beneficiary";
 import { setLogin, setPassword } from "../../../Auth/Dataflow/reducers-and-actions/auth";
+import  { setModalOpen, setModalType} from "../../../Beneficiary/Dataflow/reducers-and-actions/beneficiary";
 import * as S from './style'
 
 import logo from '../../../../assets/images/sbpp-logo.png';
@@ -24,8 +24,6 @@ const AsideMenu = () => {
     const registrationScreen = 'beneficiarios/pendentes/cadastro'
     const query = 'beneficiarios/consulta';
 
-    const navigate = useNavigate();
-
     const handleClick = (value) => {
         dispatch(setScreen(value))
     }
@@ -36,10 +34,14 @@ const AsideMenu = () => {
     }
 
     const handleClickLeave = () => {
-        dispatch(setLogin(''));
-        dispatch(setPassword(''))
-        navigate('/');
+        dispatch(setModalOpen());
+        dispatch(setModalType('leave'))
+        // navigate('/');
     }
+
+    useEffect(() => {
+        screen === pending? setDropDown(true): setDropDown(false)
+    }, [])
     
     return (
         <S.Container>

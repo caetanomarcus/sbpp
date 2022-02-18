@@ -77,7 +77,7 @@ export const InputBox = styled.div `
 `
 
 export const Input = styled.input `
-    width: 332px;
+    width: 50%;
     height: 100%;
     background: #FFFFFF;
     box-shadow: 0px 0.5px 6px #00000008;
@@ -180,6 +180,19 @@ export const ClientBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+export const MenssageBox = styled.div`
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const Menssage = styled.p`
+    font: 400 14px 'Aestetico', sans-serif;
+    color: #AAAAAA;
 `;
 
 export const ClientBoxHead = styled.div`

@@ -14,6 +14,7 @@ import {
 	setName,
 	setEmail,
 	setSocialName,
+   setHasSocialName,
 	setBirthDate,
 	setSex,
 	setGender,
@@ -23,6 +24,7 @@ import {
 	setDeathInfoDate,
 	setFiliation1,
 	setFiliation2,
+   setHasDeathInformation
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
@@ -39,11 +41,6 @@ export const PersonalData = ({
    setOpenNationality,
 }) => {
 
-   //LocalState
-   const [hasSocialName, setSocialName] = useState(false);
-   const [hasDeathInformation, setDeathInformation] = useState(false);
-   
-
 	//Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
    const dispatch = useDispatch();
@@ -57,7 +54,6 @@ export const PersonalData = ({
                width="60%"
                label="Nome"
                value={client.name}
-               // value={personalData.name}
                action={setName}
             />
 
@@ -70,18 +66,13 @@ export const PersonalData = ({
             />
          </S.Row>
          <S.Row>
-            <Input
-               type="checkbox"
-               width="95%"
-               widthInput="15px"
-               HeightInput="15px"
-               label="Possui nome social?"
-               handleChange={() => setSocialName(!hasSocialName)}
-               checked={hasSocialName}
-               row
-            />
+         <S.Label row  >
+               Possui Nome Social?
+            <S.RadioInput checkbox type='checkbox' name='socialname' value={personalData.hasSocialName} onChange={() => dispatch(setHasSocialName(!personalData.hasSocialName))} />
+                
+         </S.Label>
          </S.Row>
-         <S.Row>
+         <S.Row disabled={!personalData.hasSocialName} >
             <Input
                type="text"
                width="60%"
@@ -89,8 +80,8 @@ export const PersonalData = ({
                optional
                value={personalData.socialName}
                action={setSocialName}
-               optional={!hasSocialName}
-               disabled={!hasSocialName}
+               optional={!personalData.hasSocialName}
+               disabled={!personalData.hasSocialName}
             />
          </S.Row>
          <S.Row>
@@ -173,25 +164,21 @@ export const PersonalData = ({
          </S.Row>
 
          <S.Row>
-            <Input
-               type="checkbox"
-               width="95%"
-               widthInput="15px"
-               HeightInput="15px"
-               label="Possui informação de óbito?"
-               handleChange={() => setDeathInformation(!hasDeathInformation)}
-               row
-            />
+         <S.Label row  >
+               Possui Informação de Óbito?
+            <S.RadioInput checkbox type='checkbox' name='deathinformation' value={personalData.hasDeathInformation} onChange={() => dispatch(setHasDeathInformation(!personalData.hasDeathInformation))} />
+                
+         </S.Label>
          </S.Row>
-         <S.Row>
+         <S.Row disabled={!personalData.hasDeathInformation} >
             <Input
                type="text"
                width="15%"
                widthInput="90%"
                label="Data de óbito"
                placeholder="DD/MM/AAAA"
-               optional={!hasDeathInformation}
-               disabled={!hasDeathInformation}
+               optional={!personalData.hasDeathInformation}
+               disabled={!personalData.hasDeathInformation}
                value={personalData.deathDate}
                action={setDeathDate}
             />
@@ -202,14 +189,14 @@ export const PersonalData = ({
                widthInput="45%"
                label="Data de Informação de óbito"
                placeholder="DD/MM/AAAA"
-               optional={!hasDeathInformation}
-               disabled={!hasDeathInformation}
+               optional={!personalData.hasDeathInformation}
+               disabled={!personalData.hasDeathInformation}
                value={personalData.deathInfoDate}
                action={setDeathInfoDate}
             />
          </S.Row>
 
-         <S.Row>
+         <S.Row >
             <Input
                type="text"
                width="50%"

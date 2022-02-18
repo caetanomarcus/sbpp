@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import house from '../../../../assets/icons/circled-house.svg';
+import erase from '../../../../assets/icons/erase.svg'
 import arrow from '../../../../assets/icons/arrow.svg'
 
 export const Container = styled.section`
@@ -6,74 +8,165 @@ export const Container = styled.section`
     height: 100%;
     background: #EFEFEF;
     padding: 18px;
-    padding-top: 26px;
 `;
 
-export const Header = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-export const MsgBox = styled.div`
-    display: flex;
-    align-items: center;
-`;
-
-export const WelcomeMsg = styled.h2 `
-    font: 700 22px 'Aestetico', sans-serif;
-    color: #828282;
-`;
-
-export const User = styled.p`
-    font: 400 22px 'Aestetico', sans-serif;
-    color: #828282;
-    margin-left: 4px;
-`;
-
-export const FilterBtn = styled.button`
-    width: 90px;
-    height: 33px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid ;
-    border-color: ${props => props.isOpen? '#FF8C00' : '#D2D2D2'};
-    border-radius: 40px;
-    font: 700 16px 'Aestetico',sans-serif;
-    color: ${props => props.isOpen? '#FF8C00': '#828282'};
-    cursor: pointer;
-    transition: 0.5s;
-    
-    
-    :hover {
-        border-color: #FF8C00;
-    }
-    `;
-
-export const ArrowFilterBtn = styled.img`
-    transform: ${props => props.isOpen? 'translateY(-25%)': 'rotate(180deg)'};
-    transition: 0.5s;
-    fill: 'red';
-`;
-
-export const MainContainer = styled.div`
+export const Content = styled.div`
     width: 100%;
-    height: 65%;
+    height: 100%;
     background: #FFFFFF;
     box-shadow: 0px 1px 2px #0000001A;
     border-radius: 4px;
     padding: 24px;
     padding-top:16px;
-    margin-top: 23px;
 `;
 
-export const LeftTitle = styled.h2`
-    font:700 16px 'Aestetico', sans-serif;
+export const Header = styled.div`
+    width: 100%;;
+    display: flex;
+    align-items: center;
+
+`;
+
+export const HouseIcon = styled.button`
+    margin-right: 5px;
+    position: relative;
+    width:21px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    :after {
+        content: '';
+        position: absolute;
+        top:0;
+        right: 0;
+        width: 21px;
+        height: 21px;
+        background-image:url(${house});
+        transform: translateY(-5%);
+    }
+`;
+
+export const HeaderTitle= styled.p `
+    font: 16px 'Aestetico', sans-serif;
+    font-weight: ${props => props.weight};
     color: #FF5000;
-`;  
+    margin-right: 5px;
+`;
+
+
+export const HeadBox = styled.div `
+    width: 100%;
+   
+    display: flex;
+    justify-content: space-between;
+    padding:  16px;
+    margin-top: 24px;
+    align-items: center;
+    background: #EFEFEF;
+    border-radius: 4px;
+`
+
+export const InputBox = styled.div `
+    width: 664px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: ${props => props.justify}; */
+    /* align-items: center; */
+    border-radius: 4px;
+    /* flex-wrap: wrap; */
+    box-shadow: 0px 0px 6px #D2D2D2;
+
+`
+
+export const UpperBox = styled.div`
+  display: flex;
+
+  align-items: flex-start;
+`;
+
+export const BottomBox = styled.div`   
+    display: flex;
+
+  align-items: flex-start;
+`;
+
+export const FilterOptionsBox = styled.div`
+display: flex;
+background: #FFFFFF;
+padding: 8px;
+border-radius: 0 0 4px 4px;
+`;
+
+export const OptionsTitle = styled.p`
+    font: 400 12px 'Aestetico', sans-serif;
+    color: #828282;
+    margin: 4px;
+    margin-right: 20px;
+`;
+
+export const FilterOptions = styled.button`
+height: 22px;
+background: ${props => props.selected? '#001E6426': '#FFFFFF'};
+border: 1px solid;
+border-color: ${props => props.selected? '#001E64' : '#D2D2D2'};
+font: 400 12px 'Aestetico', sans-serif;
+color: ${props => props.selected? '#001E64' : '#828282'};
+padding: 4px;
+border-radius: 4px;
+margin-right: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+
+:hover {
+    border-color: #001E64;
+    color: #001E64;
+}
+`
+
+export const Input = styled.input `
+    width: 332px;
+    height: 50%;
+    background: #FFFFFF;
+    /* box-shadow: 0px 0.5px 6px #00000008; */
+    border: 1px solid #00000008;
+    outline: none;
+    padding: 8px;
+    border-radius: ${props => props.borderRadius};
+
+    ::placeholder {
+        margin-right: 8px;
+    }
+
+    :focus {
+        border-color: #001E64;
+    }
+`;
+
+
+export const CleanButton = styled.button`
+    position: relative;
+    height: 16px;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+
+    :after {
+        content: '';
+        position: absolute;
+        top:0;
+        left: -20px;
+        width: 21px;
+        height: 21px;
+        background-image:url(${erase});
+        background-repeat: no-repeat;
+    }
+`;
 
 export const ResultsAndPagination = styled.div`
     width: 100%;
@@ -81,40 +174,11 @@ export const ResultsAndPagination = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #82828233;
-    margin-bottom: 16.5px;
     
-`;
-
-export const LocalStep = styled.div`
-    width: 480px;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 8px;
- 
-`;
-
-export const StepBox = styled.button`
-    position: relative;
-    font: 12px 'Aestetico', sans-serif;
-    font-size: ${props => props.isSelected? '700': '400'};
-    color: #828282;
-    border: none;
-    outline: none;
-    background: transparent;
-    cursor: pointer;
-`;
-
-export const StepLine = styled.div`
-    width: 110%;
-    height: 4px;
-    position: absolute;
-    top: 20px;
-    left: 0;
-    background: ${props => props.isSelected? '#828282': 'transparent'};
-    transform: translateX(-5%);
-    cursor: default;
-
+    p{
+        font: 400 12px 'Aestetico', sans-serif;
+        color: #5A5A5A;
+    }
 `;
 
 export const PaginationCounter = styled.p`
@@ -214,10 +278,11 @@ export const Clients = styled.button`
     border-radius: 4px;
     padding-left: 48px;
     padding-right: 42.2px;
+    cursor: pointer;
 
-    /* :hover {
+    :hover {
         background: ${props => props.isSelected? '#FF8C004A': '#D2D2D2'};
-    } */
+    }
 `;
 
 export const ClientTexts = styled.p`
@@ -248,29 +313,4 @@ export const Line = styled.div`
     border: 1px solid #D1D1D1;
 `;
 
-export const ClassificationContainer = styled.div`
-    width: 100%;
-    height: 25%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 16px;
-`;
 
-export const Classification = styled.div`
-    width: 256px;
-    height: 134px;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 2px #0000001A;
-    border-radius: 4px;
-    padding: 10px 16px;
-    position: relative;
-`;
-
-export const Number = styled.p`
-    font: 700 53px 'Aestetico', sans-serif;
-    color: #FF5000;
-    text-align: center;
-    margin-top: 33px;
-   
-`;

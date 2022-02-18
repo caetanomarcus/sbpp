@@ -9,17 +9,17 @@ export const Form = styled.form`
     /* width */
     ::-webkit-scrollbar {
         width: 8px;
-        border-radius: 1px;
+        border-radius: 4px;
     }
     /* Track */
     ::-webkit-scrollbar-track {
         background: #f1f1f1;
-        border-radius: 1px;
+        border-radius: 4px;
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: #AAAAAA;
-        border-radius: 1px;
+        border-radius: 4px;
     }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
@@ -40,17 +40,19 @@ export const Legend = styled.legend`
 
 export const Row = styled.div`
     width: 100%;
-    padding: 0 0 24px 10px;
-    display: flex;
+    padding: 0 0 32px 10px;
+    display: ${props => props.disabled ? "none" : "flex"};
 `;
 
 export const Label = styled.label`
     width: ${props => props.width};
-    display: flex;
+    display: ${props => props.disabled ? "none" : "flex"};
     flex-direction: ${props => props.row? 'row': 'column'};
     color: #001E64;
     font-weight: ${props => props.optional? '400': '600'};
-    // border: solid red;
+    /* justify-content: ${props => props.row? 'flex-start': 'initial'}; */
+    margin-left: ${props => props.marginLeft};
+
 `;
 
 export const LabelRadio = styled.label`
@@ -61,16 +63,17 @@ export const LabelRadio = styled.label`
 `;
 
 export const DivRadio = styled.div`
-    width: 100%;
+    width: ${props => props.width? props.width: '100%'};
     height: 100%;
     display: flex;
     align-items:center;
-    // border: solid green;
+   
 `
 
 export const RadioInput = styled.input`
-    width: 19px;
-    height: 19px;
-    margin-right: 10.5px;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    margin-left: ${props => props.noMargin? '0': '10px'};
 `;
 

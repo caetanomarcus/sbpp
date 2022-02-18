@@ -108,13 +108,17 @@ const Pending = () => {
 
     const registrationScreen = 'beneficiarios/pendentes/cadastro'
 
-    const totalOfPages = Math.floor(clients.length / 10);
+    const totalOfPages = clients.length%10 === 0? Math.floor(clients.length / 10): Math.floor(clients.length / 10) + 1;
 
     const handleClickClient = (client) => {
         dispatch(setSelectedClient(client))
     };
 
     const filteredClients = clients.filter(client => {
+
+        if(registration !== '' && cpfOrCnpj !== ''){
+            return client.registration.includes(registration) && client.cpfOrCnpj.includes(cpfOrCnpj)
+        }
        
         if(registration !== ''){
             return client.registration.includes(registration)
@@ -156,8 +160,6 @@ const Pending = () => {
         }
 
     }
-
-    console.log(page)
 
     return(
         <S.Container>
@@ -229,7 +231,11 @@ const Pending = () => {
                         }
                         
                     })}
-                    {!filteredClients.length && <p style={{'height': '100%'}} >Nenhum resultado encontrado para a pesquisa de beneficiário</p>}
+                    {!filteredClients.length && (
+                        <S.MenssageBox>
+                            <S.Menssage>Nenhum resultado encontrado</S.Menssage>
+                        </S.MenssageBox>
+                    )}
                     <S.Line />
                     {selectedClient.name && (
                         <Button 

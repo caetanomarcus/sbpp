@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import logoLeave from '../../../../assets/icons/leave.png';
+import logoLeaveGray from '../../../../assets/icons/leave-gray.png';
 import arrowIcon from '../../../../assets/icons/arrow.svg';
 
 export const Container = styled.aside`
@@ -28,7 +29,7 @@ export const ButtonBox = styled.div`
     margin-top: 40px;
 `;
 
-export const DropDownArrow = styled.button `
+export const DropDownArrow = styled.button`
     position: absolute;
     top: 44px;
     right: 5px;
@@ -51,7 +52,7 @@ export const DropDownArrow = styled.button `
         background-image: url(${arrowIcon});
         background-repeat: no-repeat;
         background-size: contain;
-        transform: ${props => props.openDropDown? 'translateY(120%)': 'rotate(180deg) translateY(-60%)'};
+        transform: ${props => props.openDropDown ? 'translateY(120%)' : 'rotate(180deg) translateY(-60%)'};
         cursor: pointer;
     }
 `;
@@ -64,11 +65,11 @@ export const ButtonTextBox = styled.div`
     height: 32px;
     margin-left: -20px;
     padding-left: 20px;
-    margin-bottom: ${ props => props.first? '16px': '0'};
-    background: ${props => props.screen? '#EFEFEF': 'transparent'};
+    margin-bottom: ${props => props.first ? '16px' : '0'};
+    background: ${props => props.screen ? '#EFEFEF' : 'transparent'};
 `;
 
-export const MenuButon = styled.button `
+export const MenuButon = styled.button`
     position: relative;
     display: flex;
     justify-content: center;
@@ -96,13 +97,13 @@ export const MenuButon = styled.button `
 
 
 
-export const TextBtn = styled.p `
+export const TextBtn = styled.p`
     font: 700 15px 'Aestetico', sans-serif;
     color: #FF5000;
     cursor: pointer;
 `;
 
-export const DropDownBox = styled.div `
+export const DropDownBox = styled.div`
     position: absolute;
     bottom: -67px;
     left: 28px;
@@ -138,8 +139,8 @@ export const DropDownItems = styled.button`
         background: transparent;
         border-radius: 50%;
         transform: translateY(-65%);
-    }
-{
+    };
+
     ${props => props.screen && `
         background: #EFEFEF;
         color: #FF5000;
@@ -149,11 +150,11 @@ export const DropDownItems = styled.button`
             background: #FF5000;
         }
 
-    `}
+    `};
 `;
 
 
-export const MenuFooter = styled.div `
+export const MenuFooter = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
@@ -175,6 +176,7 @@ export const LeaveButton = styled.button`
     border-radius: 15px;
     background: transparent;
     cursor: pointer;
+    color: #828282;
     text-align: right;
    
     :after {
@@ -184,9 +186,18 @@ export const LeaveButton = styled.button`
         left: 5px;
         width: 16px;
         height: 14px;
-        background: url(${logoLeave});
+        background-image: url(${logoLeaveGray});
         background-repeat: no-repeat;
         background-size: contain;
         transform: translateY(-50%);
+    }
+
+    :hover {
+        border: 1px solid #FF5000;
+        color: #FF5000;
+
+        :after {
+            background-image:url(${logoLeave});
+        }
     }
 `

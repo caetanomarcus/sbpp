@@ -5,17 +5,23 @@ import * as S from './style'
 import AsideMenu from './Components/AsideMenu';
 import InitialScreen from './Components/InitialScreen';
 import Pending from './Components/Pending';
+import Query from './Components/Query';
 import Registration from './Components/Registration';
+import Modal from '../../components/modal/Modal';
 
 const Beneficiary = () => {
 
     //Redux State
     const screen = useSelector(state => state.beneficiary.screen);
+    const isModalOpen = useSelector(state => state.beneficiary.modalOpen);
 
     const initial = 'inicio';
     const pending = 'beneficiarios/pendentes';
     const registration = 'beneficiarios/pendentes/cadastro'
     const query = 'beneficiarios/consulta';
+
+    const isMobile = window.innerWidth <= 480
+  
 
     const renderScreen = (screen) => {
         switch (screen) {
@@ -27,7 +33,9 @@ const Beneficiary = () => {
 
             case registration:
                 return <Registration />
-                
+            
+            case query:
+                return <Query />              
             default:
                 return null
         }
@@ -35,9 +43,9 @@ const Beneficiary = () => {
 
     return (
         <S.Container>
-            <AsideMenu />
+             <AsideMenu />
+            {isModalOpen && <Modal />}
            {renderScreen(screen)}
-            <S.ContentContainer></S.ContentContainer>
         </S.Container>
     )
 }

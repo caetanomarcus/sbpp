@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setHasMailAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // Style
 import * as S from '../style'
@@ -18,6 +19,7 @@ import {
 	setDistrictDefault,
 	setCountyDefault,
 	setUfDefault,
+   setAdressType,
    // Optional
 	setCepOptional,
 	setAddressOptional,
@@ -41,11 +43,13 @@ export const Address = ({
 }) => {
 
    //LocalState
-   const [hasMailingAddress, setMailingAdress] = useState(false);
+   // const [addressDefault.hasMailAddress, setMailingAdress] = useState(false);
 
    //Redux State and dispatch
    const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
-   const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
+   const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressOptional);
+
+   const dispatch = useDispatch();
 
 
 	return (
@@ -60,6 +64,8 @@ export const Address = ({
                label="CEP"
                value={addressDefault.cep}
                action={setCepDefault}
+               id='cep'
+               adressState={addressDefault}
             />
 
             <Input
@@ -68,7 +74,8 @@ export const Address = ({
                label="Logradouro"
                isDetailed
                value={addressDefault.address}
-               action={setAddressDefault}
+               // action={setAddressDefault}
+               readOnly
             />            
          </S.Row>
          
@@ -98,7 +105,8 @@ export const Address = ({
                label="Bairro"
                isDetailed
                value={addressDefault.district}
-               action={setDistrictDefault}
+               // action={setDistrictDefault}
+               readOnly
             />
 
             <Input
@@ -106,8 +114,9 @@ export const Address = ({
                width="41%"
                label="Município"
                isDetailed
-               value={addressDefault.county}
-               action={setCountyDefault}
+               value={addressDefault.city}
+               // action={setCountyDefault}
+               readOnly
             />
             
             <Select
@@ -118,35 +127,61 @@ export const Address = ({
                source={grayArrow}
                value={addressDefault.uf}
                action={setUfDefault}
-               toogle={setOpenUfDefault}
+               // toogle={setOpenUfDefault}
                state={openUfDefault}
-               isOpened={openUfDefault}
+               // isOpened={openUfDefault}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault ) }
             />
          </S.Row>
 
          <S.Row>
-            <Input
-               type="checkbox"
-               width="95%"
-               widthInput="15px"
-               HeightInput="15px"
-               label="Possui endereço de correspondência?"
-               handleChange={() => setMailingAdress(!hasMailingAddress)}
-               row
-            />
-         </S.Row>
+          <S.Label row width="100%">
+          Deseja receber correspondência por : 
+               <S.DivRadio width='50%' marginLeft >
+                  <S.LabelRadio>
+                     <S.RadioInput 
+                        type='radio' 
+                        name='correspondence' 
+                        value='Correios'
+                        action={setAdressType}
+                        onChange={(e) => dispatch(setAdressType(e.target.value))}
+                     />
+                     Correios
+                  </S.LabelRadio>
 
-         {/* Endereco de correspondência */}
+                  <S.LabelRadio>
+                     <S.RadioInput
+                        type='radio' 
+                        name='correspondence' 
+                        value='Email'
+                        action={setAdressType}
+                        onChange={(e) => dispatch(setAdressType(e.target.value))}
+                     />
+                     Email
+                  </S.LabelRadio>
+               </S.DivRadio>
+            </S.Label>
+         </S.Row>
          <S.Row>
+         <S.Label row  disabled={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email')} >
+               Adicionar endereço diferente para correspondência?
+            <S.RadioInput marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasMailAddress} onChange={() => dispatch(setHasMailAdress(!addressDefault.hasMailAddress))} />
+                
+         </S.Label>
+         </S.Row>
+         
+         {/* Endereco de correspondência */}
+         <S.Row disabled={!addressDefault.hasMailAddress} >
             <Input
                type="text"
                width="12%"
                label="CEP"
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.cep}
                action={setCepOptional}
+               id='cep2'
+               adressState={addressOptional}
             />
 
             <Input
@@ -154,21 +189,21 @@ export const Address = ({
                width="80%"
                label="Logradouro"
                isDetailed
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.address}
                action={setAddressOptional}
             >
             </Input>
          </S.Row>
          
-         <S.Row>
+         <S.Row disabled={!addressDefault.hasMailAddress}>
             <Input
                type="text"
                width="12%"
                label="Número"
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.number}
                action={setNumberOptional}
             />
@@ -177,8 +212,8 @@ export const Address = ({
                type="text"
                width="36%"
                label="Complemento (opcional)"
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.complement}
                action={setComplementOptional}
             />
@@ -187,21 +222,21 @@ export const Address = ({
                type="text"
                width="40%"
                label="Ponto de Referência (opcional)"
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.referencePoint}
                action={setReferencePointOptional}
             />
          </S.Row>
 
-         <S.Row>
+         <S.Row disabled={!addressDefault.hasMailAddress}>
             <Input
                type="text"
                width="49%"
                label="Bairro"
                isDetailed
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.district}
                action={setDistrictOptional}
             />
@@ -211,8 +246,8 @@ export const Address = ({
                width="41%"
                label="Município"
                isDetailed
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.county}
                action={setCountyOptional}
             />
@@ -221,8 +256,8 @@ export const Address = ({
                width="12%"
                label="UF"
                isDetailed
-               optional={!hasMailingAddress}
-               disabled={!hasMailingAddress}
+               // optional={!addressDefault.hasMailAddress}
+               // disabled={!addressDefault.hasMailAddress}
                options={ufs}
                source={grayArrow}
                value={addressOptional.uf}

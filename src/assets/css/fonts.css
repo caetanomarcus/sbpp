@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Aestetico', sans-serif;
+    src: local('Aestetico'), url('../fonts/Aestetico-Light.otf') format('opentype');
+    font-weight: 300;
+    
+}
+
+    @font-face {
+    font-family: 'Aestetico', sans-serif;
+    src: local('Aestetico'), url('../fonts/Aestetico-Regular.otf') format('opentype');
+    font-weight: 400;
+    
+}
+
+    @font-face {
+    font-family: 'Aestetico', sans-serif;
+    src: local('Aestetico'), url('../fonts/Aestetico-Medium.otf') format('opentype');
+    font-weight: 500;
+    
+}
+
+@font-face {
+    font-family: 'Aestetico', sans-serif;
+    src: local('Aestetico'), url('../fonts/Aestetico-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    
+}
+
+    @font-face {
+    font-family: 'Aestetico', sans-serif;
+    src: local('Aestetico'), url('../fonts/Aestetico-Bold.otf') format('opentype');
+    font-weight: 700;
+    
+}
+
+body {
+    font-family: 'Aestetico';
+}

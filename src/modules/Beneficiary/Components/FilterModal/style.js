@@ -10,6 +10,12 @@ export const Container = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 3px 6px #00000033;
     border-radius: 4px;
+    z-index: 10;
+
+    #span{
+        height: 23px;
+        width: 20px;
+    }
 `;
 
 export const TitleModal = styled.h2`
@@ -35,8 +41,28 @@ export const Label = styled.label`
     margin-left: 5px;
 `;
 
-export const SelectBox = styled.div``;
+export const SelectBox = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+`;
 
-export const SelectInput = styled.input``;
+export const DateBox = styled.label`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 14px;
+    font: 400 14px 'Aestetico', sans-serif;
+    color: #5A5A5A;
+`;
+
+export const DateText = styled.p `
+    width: 30px;
+`;
+
+export const DateInput = styled.input`
+    width: 86%;
+    margin-left: 8px;
+`;
 
 

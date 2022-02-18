@@ -87,7 +87,7 @@ export const Step = styled.h3`
 export const Line = styled.div`
     width: 130px;
     height: 2px;
-    background: #EFEFEF;
+    background: ${props => props.selected? '#AAAAAA' : '#EFEFEF'};
 `;
 
 export const CancelButton = styled.button`
@@ -96,7 +96,7 @@ export const CancelButton = styled.button`
     margin-right: 16px;
     background: transparent;
     font: 500 14px 'Aestetico', sans-serif;
-    color: #828282;
+    color: #001E64;
     cursor: pointer;
 `;
 

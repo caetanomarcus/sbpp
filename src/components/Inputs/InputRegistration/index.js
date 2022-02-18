@@ -1,7 +1,10 @@
 import React from 'react';
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import { setNationality } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
+import {setAllAdress , setAllAdressOptional} from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
+import { cpfMask } from './cpfMask';
+
+
 
 
 export const Input = ({
@@ -19,14 +22,88 @@ export const Input = ({
 	noPadding,
 	isDetailed,
 	action,
+	id,
+	adressState
+
 }) => {
 
 	const dispatch = useDispatch();
 
-	const handleChange = (e, action) => {
+
+	const handleChange = (e, setFunction) => {
 		e.preventDefault();
-		console.log(e)
-		dispatch(action(e.target.value));
+
+		if((id === 'cep' || id === 'cep2') ) {
+			dispatch(setFunction(cpfMask(e.target.value)))
+
+			return
+		}
+			
+		
+		dispatch(setFunction(e.target.value));
+	}
+
+	const handleFocus = () => {
+		if(id === 'cep') {
+
+		}
+	}
+
+	const handleBlur = () => {
+
+			if((id === 'cep') && value !== ''){
+				fetch(`https://viacep.com.br/ws/${value}/json/`)
+				.then(res => res.json())
+				.then(data => {
+					console.log(data)
+					const newData ={
+					cep: value,
+					address: data.logradouro,
+					number: adressState.number,
+					complement: adressState.complement,
+					district: data.bairro,
+					city: data.localidade,
+					uf: data.uf,
+					hasMailAddress: adressState.hasMailAddress,
+					}
+	
+					dispatch(setAllAdress(newData))
+				}
+				)
+				.catch( err => {
+					console.log(err)
+				})
+			
+			}
+
+			if((id === 'cep2') && value !== ''){
+				fetch(`https://viacep.com.br/ws/${value}/json/`)
+				.then(res => res.json())
+				.then(data => {
+					console.log(data)
+					const newData ={
+					cep: value,
+					address: data.logradouro,
+					number: adressState.number,
+					complement: adressState.complement,
+					district: data.bairro,
+					city: data.localidade,
+					uf: data.uf,
+					hasMailAddress: adressState.hasMailAddress,
+					}
+	
+					dispatch(setAllAdressOptional(newData))
+				}
+				)
+				.catch( err => {
+					console.log(err)
+				})
+			
+			}
+
+
+		
+		
 	}
 
 	return (
@@ -38,11 +115,11 @@ export const Input = ({
 				value={value}
 				isDisabled={isDisabled}
 				disabled={disabled}
-				isDisabled={isDisabled}
 				onChange={(e) => handleChange(e, action)}
 				noPadding={noPadding}
 				row={row}
 				placeholder={placeholder}
+				onBlur={handleBlur}
 			/>
 			{isDetailed && (
 				<S.AddressDetails>
@@ -61,23 +138,29 @@ export const Select = ({
 	handleClickSelect,
 	options = [],
 	source,
-	isOpened,
 	action,
 	toogle,
 	state,
 	optional,
-	disabled
+	disabled,
+	noLabel,
+	initialModal,
+	typeState
 }) => {
 
 	const dispatch = useDispatch();
 
 	const handleClick = (e, option) => {
 		e.preventDefault();
+		if (typeState === 'localState') {
+			action(option);
+			toogle(!state);
+			return
+		}
 		dispatch(action(option))
 		toogle(!state)
 	}
 
-	console.log(options)
 
 	const calcHeight = options.length > 3 ? (options.length * 32) + .5: 'fit-content'
 
@@ -86,18 +169,19 @@ export const Select = ({
 			<S.Label 
 			width={width}
 			optional={optional} 
+			noLabel={noLabel}
 			> {label}
 				<S.Select onClick={handleClickSelect} disabled={disabled} >
 					{value}
 					<S.Arrow
 						src={source}
-						isOpened={isOpened}
+						isOpened={state}
 						alt='seta'
 					/>
 				</S.Select>
 
-				{isOpened && (
-					<S.Options height={calcHeight} >
+				{state && (
+					<S.Options height={calcHeight} initialModal={initialModal} width={width} >
 						{options.map((option, index) => {
 							return (
 								<S.Button

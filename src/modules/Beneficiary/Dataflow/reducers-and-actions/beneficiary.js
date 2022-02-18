@@ -7,6 +7,13 @@ const beneficiaryState = {
 	isMounthAndYear: true,
 	selectedClient: {},
 	step: 'beneficiary',
+	modalOpen: false,
+	modalType: '',
+	filter: {
+		mounth: 'Jan',
+		year: '2020',
+		filterType: 'mounth/year',
+	},
 	beneficiaryData: {
 		registration: '',
 		cpfOrCnpj: '',
@@ -40,8 +47,10 @@ const beneficiaryState = {
 			number: '',
 			complement: '',
 			district: '',
-			county: '',
+			city:'',
 			uf: '',
+			hasMailAddress: false,
+			correspondenceType: '',
 		},
 		addressOptional: {
 			cep: '',
@@ -50,7 +59,7 @@ const beneficiaryState = {
 			complement: '',
 			referencePoint: '',
 			district: '',
-			county: '',
+			city: '',
 			uf: '',
 		},
 		contact: {
@@ -70,21 +79,54 @@ const beneficiaryState = {
 			powerOfAttorney: '',
 			powerOfAttorneyCPF: '',
 		},
-		paymentData: {
-			paymentMethod: '',
-			start: '',
-			end: ''
-		},
 		benefitData: {
-			plan: '',
 			product: '',
 			susep: '',
 			proposalNumber: '',
-			benefitType: '',
 			proposalData: '',
 			salesStructure: '',
 			taxationType: '',
-
+			has13thMonth: false,
+		},
+		paymentData: {
+			bookingValue: '',
+			durationTime: '',
+			paymentStartDate: '',
+			paymentEndDate: '',
+			benefitTipe: '',
+		},
+		agreementData: {
+			hasAdvance: false,
+			advanceValue: '',
+		},
+		conditionsData: {
+			IRPF: {
+			hasIRPFIsention: false,
+			isLifeTime: false,
+			deadline: '',
+			reason: '',
+			cid: '',
+			description: '',
+			},
+			paymentSuspension: {
+				hasPaymentSuspension: false,
+				reason: '',
+				cid: '',
+				description: '',
+			}
+		},
+		courtPensionData: {
+			hasCourtPension: false,
+			previdencyRegistration: '',
+			pensionistRegistration: '',
+			pensionistName: '',
+			pensionType: '',
+			incomeType: '',
+			modality: '',
+			judicialOffice: '',
+			discountFactor: '',
+			pensionStart: '',
+			pensionEnd: '',
 
 
 		}
@@ -104,11 +146,26 @@ const beneficiarySlice = createSlice({
 		setFilterType: (state) => {
 			state.isMounthAndYear = !state.isMounthAndYear
 		},
+		setFilterMounth: (state, action) => {
+			state.filter.mounth = action.payload
+		},
+		setFilterYear: (state, action) => {
+			state.filter.year = action.payload
+		},
 		setSelectedClient: (state, action) => {
 			state.selectedClient = action.payload
 		},
 		setStep: (state, action) => {
 			state.step = action.payload
+		},
+		setModalOpen: (state) => {
+			state.modalOpen = true
+		},
+		setModalClose: (state) => {
+			state.modalOpen = false
+		},
+		setModalType: (state, action) => {
+			state.modalType = action.payload
 		},
 		// beneficiary
 		setRegistration: (state, action) => {
@@ -123,6 +180,9 @@ const beneficiarySlice = createSlice({
 		},
 		setEmail: (state, action) => {
 			state.beneficiaryData.personalData.email = action.payload
+		},
+		setHasSocialName: (state, action) => {
+			state.beneficiaryData.personalData.hasSocialName = action.payload
 		},
 		setSocialName: (state, action) => {
 			state.beneficiaryData.personalData.socialName = action.payload
@@ -141,6 +201,9 @@ const beneficiarySlice = createSlice({
 		},
 		setNationality: (state, action) => {
 			state.beneficiaryData.personalData.nationality = action.payload
+		},
+		setHasDeathInformation: (state, action) => {
+			state.beneficiaryData.personalData.hasDeathInformation = action.payload
 		},
 		setDeathDate: (state, action) => {
 			state.beneficiaryData.personalData.deathDate = action.payload
@@ -168,6 +231,9 @@ const beneficiarySlice = createSlice({
 			state.beneficiaryData.document.issueDate = action.payload
 		},
 		//setAddressDefault	
+		setAllAdress:(state, action) => {
+			state.beneficiaryData.addressDefault = action.payload
+		},
 		setCepDefault: (state, action) => {
 			state.beneficiaryData.addressDefault.cep = action.payload
 		},
@@ -189,7 +255,16 @@ const beneficiarySlice = createSlice({
 		setUfDefault: (state, action) => {
 			state.beneficiaryData.addressDefault.Uf = action.payload
 		},
-		//setAddressOptional	
+		setHasMailAdress: (state, action) => {
+			state.beneficiaryData.addressDefault.hasMailAddress = action.payload
+		},
+		setAdressType: (state, action) => {
+			state.beneficiaryData.addressDefault.correspondenceType = action.payload
+		},
+		//setAddressOptional
+		setAllAdressOptional:(state, action) => {
+			state.beneficiaryData.addressOptional = action.payload
+		},
 		setCepOptional: (state, action) => {
 			state.beneficiaryData.addressOptional.cep = action.payload
 		},
@@ -247,19 +322,103 @@ const beneficiarySlice = createSlice({
 		setPowerOfAttorney: (state, action) => {
 			state.beneficiaryData.bankData.powerOfAttorney = action.payload
 		},
-		setPowerOfAttorneyCpf: (state, action) => {
-			state.beneficiaryData.bankData.powerOfAttorneyCpf = action.payload
-		},
-		//payment data
+		//Benefit data
 		setPaymentMethod: (state, action) => {
 			state.beneficiaryData.bankData.paymentMethod = action.payload
 		},
-		setStart: (state, action) => {
-			state.beneficiaryData.paymentData.start = action.payload
+		setSalesStructure: (state, action) => {
+			state.beneficiaryData.benefitData.salesStructure = action.payload
 		},
-		setEnd: (state, action) => {
-			state.beneficiaryData.paymentData.end = action.payload
+		setHas13thMonth: (state, action) => {
+			state.beneficiaryData.benefitData.has13thMonth = action.payload
 		},
+		//payment data
+		setDurationTime: (state, action) => {
+			state.beneficiaryData.paymentData.durationTime = action.payload
+		},
+		setPaymentStartDate: (state, action) => {
+			state.beneficiaryData.paymentData.paymentStartDate = action.payload
+		},
+		setPaymentEndDate: (state, action) => {
+			state.beneficiaryData.paymentData.paymentEndDate = action.payload
+		},
+		//agreement data
+		setHasAdvance: (state, action) => {
+			state.beneficiaryData.agreementData.hasAdvance = action.payload
+		},
+		setAdvanceValue: (state, action) => {
+			state.beneficiaryData.agreementData.advanceValue = action.payload
+		},
+		//conditions data
+
+		//IRPF
+		setHasIRPFIsention: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.hasIRPFIsention = action.payload
+		},
+		setIsLifeTime: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.isLifeTime = action.payload
+		},
+		setDeadline: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.deadline = action.payload
+		},
+		setReason: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.reason = action.payload
+		},
+		setCid: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.cid = action.payload
+		},
+		setDescription: (state, action) => {
+			state.beneficiaryData.conditionsData.IRPF.description = action.payload
+		},
+
+		//payment Suspension
+		setHasPaymentSuspension: (state, action) => {
+			state.beneficiaryData.conditionsData.paymentSuspension.hasPaymentSuspension = action.payload
+		},
+		setPaymentSuspensionReason: (state, action) => {
+			state.beneficiaryData.conditionsData.paymentSuspension.reason = action.payload
+		},
+		setPaymentSuspensionCid: (state, action) => {
+			state.beneficiaryData.conditionsData.paymentSuspension.cid = action.payload
+		},
+		setPaymentSuspensionDescription: (state, action) => {
+			state.beneficiaryData.conditionsData.paymentSuspension.description = action.payload
+		},
+		// court pensio data
+		setHasCourtPension: (state, action) => {
+			state.beneficiaryData.courtPensionData.hasCourtPension = action.payload
+		},
+		setPrevidencyRegistration: (state, action) => {
+			state.beneficiaryData.courtPensionData.previdencyRegistration = action.payload
+		},
+		setPensionistRegistration: (state, action) => {
+			state.beneficiaryData.courtPensionData.pensionistRegistration = action.payload
+		},
+		setPensionistName: (state, action) => {
+			state.beneficiaryData.courtPensionData.pensionistName = action.payload
+		},
+		setPensionType: (state, action) => {
+			state.beneficiaryData.courtPensionData.pensionType = action.payload
+		},
+		setIncomeType: (state, action) => {
+			state.beneficiaryData.courtPensionData.incomeType = action.payload
+		},
+		setModality: (state, action) => {
+			state.beneficiaryData.courtPensionData.modality = action.payload
+		},
+		setJudicialOffice: (state, action) => {
+			state.beneficiaryData.courtPensionData.judicialOffice = action.payload
+		},
+		setDiscountFactor: (state, action) => {
+			state.beneficiaryData.courtPensionData.discountFactor = action.payload
+		},
+		setPensionStart: (state, action) => {
+			state.beneficiaryData.courtPensionData.pensionStart = action.payload
+		},
+		setPensionEnd: (state, action) => {
+			state.beneficiaryData.courtPensionData.pensionEnd = action.payload
+		},
+
 		// Universal actions
 		setResetStates: () => {
 			return beneficiaryState
@@ -272,10 +431,16 @@ const beneficiarySlice = createSlice({
 export const { 
 	setResetStates,
 	setScreen, 
-	setFilterOpened, 
+	setFilterOpened,
+	setFilterMounth,
+	setFilterYear,
+	setFilterType,
 	setSelectedClient, 
 	setStep, 
 	setAccountType,
+	setModalOpen,
+	setModalClose,
+	setModalType,
 	//beneficiary
 	setRegistration,
 	setCpfOrCnpj,
@@ -288,16 +453,19 @@ export const {
 	setGender,
 	setNaturalness,
 	setNationality,
+	setHasDeathInformation,
 	setDeathDate,
 	setDeathInfoDate,
 	setFiliation1,
 	setFiliation2,
+	setHasSocialName,
 	//
 	setRg,
 	setIssuer,
 	setUfRg,
 	setIssueDate,
 	//
+	setAllAdress,
 	setCepDefault,
 	setAddressDefault,
 	setNumberDefault,
@@ -305,7 +473,10 @@ export const {
 	setDistrictDefault,
 	setCountyDefault,
 	setUfDefault,
+	setHasMailAdress,
+	setAdressType,
 	//
+	setAllAdressOptional,
 	setCepOptional,
 	setAddressOptional,
 	setNumberOptional,
@@ -327,8 +498,40 @@ export const {
 	setHasPowerOfAttorney,
 	setPowerOfAttorney,
 	setPowerOfAttorneyCpf,
-	setStart,
-	setEnd,
+	//
+	setSalesStructure,
+	setHas13thMonth,
+	//
+	setDurationTime,
+	setPaymentStartDate,
+	setPaymentEndDate,
+	//
+	setHasAdvance,
+	setAdvanceValue,
+	//
+	setHasIRPFIsention,
+	setIsLifeTime,
+	setDeadline,
+	setReason,
+	setCid,
+	setDescription,
+	//
+	setHasPaymentSuspension,
+	setPaymentSuspensionReason,
+	setPaymentSuspensionCid,
+	setPaymentSuspensionDescription,
+	//
+	setHasCourtPension,
+	setPrevidencyRegistration,
+	setPensionistRegistration,
+	setPensionistName,
+	setPensionType,
+	setIncomeType,
+	setModality,
+	setJudicialOffice,
+	setDiscountFactor,
+	setPensionStart,
+	setPensionEnd,
  } = beneficiarySlice.actions;
 
 const beneficiaryReducer = beneficiarySlice.reducer;

@@ -33,7 +33,6 @@ const ForgetPassword = ({ setScreen}) => {
     const handleSendMail = () => {
         // try {} catch {}
         if(validateEmail(email)){
-            console.log('enviou')
             setSent(true)
         }
     }

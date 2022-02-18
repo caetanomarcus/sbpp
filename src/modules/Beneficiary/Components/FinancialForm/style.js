@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
+
 export const Fieldset = styled.fieldset`
     margin-top: 32px;
     border: 1px solid #EFEFEF;
@@ -13,7 +20,8 @@ export const Legend = styled.legend`
 
 export const Row = styled.div`
     padding: 0 0 20px 10px;
-    display: flex;
+    display: ${props => props.disabled? 'none': 'flex'};
+    align-items: center;
 `;
 
 export const Label = styled.label`
@@ -23,6 +31,8 @@ export const Label = styled.label`
     display: flex;
     align-items: center;
     margin-right: 45px;
+    margin-left: 10px;
+    margin-top: 15px;
 `;
 
 export const RadioInput = styled.input`
