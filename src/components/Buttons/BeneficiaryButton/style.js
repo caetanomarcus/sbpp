@@ -11,7 +11,7 @@ export const RegisterBtn = styled.button`
     border-radius: 4px;
     margin-top: 7px;
     outline: none;
-    font: 500 12px 'Aestetico, sans-serif';
+    font: 500 12px 'Aestetico', sans-serif;
     color: #FFFFFF;
     cursor: pointer;
     

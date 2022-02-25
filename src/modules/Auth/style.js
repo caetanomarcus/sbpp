@@ -25,7 +25,7 @@ export const Wrapper = styled.section `
 
 export const LoginContainer = styled.div `
     width: 360px;
-    height: 448px;
+    height: 252px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

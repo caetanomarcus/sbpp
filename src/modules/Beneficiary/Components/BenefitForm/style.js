@@ -29,7 +29,7 @@ export const Container = styled.div `
 
 export const Fieldset = styled.fieldset`
     border: 1px solid #EFEFEF;
-    padding: 20px 0px 20px 10px;
+    padding: 20px 0px 0px 10px;
     margin-bottom: 20px;
 `;
 

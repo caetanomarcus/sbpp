@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Fieldset = styled.fieldset`
     margin-top: 32px;
     border: 1px solid #EFEFEF;
-    padding: 20px 0px 20px 10px;
+    padding: 20px 0px 0 10px;
 `;
 
 export const Legend = styled.legend`

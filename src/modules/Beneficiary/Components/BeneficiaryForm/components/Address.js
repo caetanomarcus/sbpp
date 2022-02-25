@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setHasMailAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
+import { setHasMailAdress, setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // Style
 import * as S from '../style'
@@ -165,13 +165,13 @@ export const Address = ({
          <S.Row>
          <S.Label row  disabled={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email')} >
                Adicionar endereço diferente para correspondência?
-            <S.RadioInput marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasMailAddress} onChange={() => dispatch(setHasMailAdress(!addressDefault.hasMailAddress))} />
+            <S.RadioInput marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasDifferentAddress} onChange={() => dispatch(setHasDifferentAdress(!addressDefault.hasDifferentAddress))} />
                 
          </S.Label>
          </S.Row>
          
          {/* Endereco de correspondência */}
-         <S.Row disabled={!addressDefault.hasMailAddress} >
+         <S.Row disabled={!addressDefault.hasDifferentAddress} >
             <Input
                type="text"
                width="12%"
@@ -180,7 +180,7 @@ export const Address = ({
                // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.cep}
                action={setCepOptional}
-               id='cep2'
+               id='cep'
                adressState={addressOptional}
             />
 

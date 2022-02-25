@@ -93,6 +93,7 @@ export const PersonalData = ({
                widthInput="70%"
                value={personalData.birthDate}
                action={setBirthDate}
+               id='date'
             />
             <S.Label width="22%">Sexo
                <S.DivRadio>

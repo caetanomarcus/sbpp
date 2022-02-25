@@ -24,13 +24,7 @@ const LoginScreen = () => {
                     <S.Logo src={logoSbpp} />
                     <S.Line />
                 </S.Header>
-                {screen === 'login' ? (
-                    <Login setScreen={setScreen} />
-                ):(
-                    <ForgetPassword setScreen={setScreen} />
-                )
-                }
-                {/* <ChangePassword /> */}
+                <Login />
                 <S.loginFooter>
                     <S.Logo src={logoSula} width='138px' />
                 </S.loginFooter>

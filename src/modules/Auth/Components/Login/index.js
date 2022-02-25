@@ -60,62 +60,14 @@ const Login = ({ setScreen }) => {
 
 	}
 
-	const handleClickDisplay = (ev, type) => {
-		ev.preventDefault();
-		ev.stopPropagation();
-
-		switch (type) {
-			case 'password':
-				setTypePassoword('text');
-				break;
-			case 'text':
-				setTypePassoword('password');
-				break;
-			default:
-				return
-		}
-
-		setHide(!isHide);
-	}
-
 	return (
 		<S.Container id='form' onSubmit={handleLogin} >
-			<Input
-				label='Login'
-				type='text'
-				value={login}
-				error={error}
-				handleFocus={handleFocus}
-				haveAutoFocus={true}
-				marginBottom='23px'
-				handleChange={(ev) => handleInputChange(ev, dispatch, setLogin)}
-			/>
-			<Input
-				id='password'
-				label='Senha'
-				type={typePassword}
-				handleChange={(ev) => handleInputChange(ev, dispatch, setPassword)}
-				value={password}
-				error={error}
-				handleFocus={handleFocus}
-				handleClick={handleClickDisplay}
-				isHide={isHide}
-			/>
 			<Button
 				buttonName='Entrar'
-				background={canSend ? '#001E64' : "#828282"}
-				handleClick={handleLogin}
+				background='#001E64'
+				handleClick={() => navigate('/beneficiary')}
 				marginTop='32px'
 			/>
-			{error && (
-				<S.ErroBox>
-					<S.TrianguleErroBox />
-					<S.ErrorMsg>Login ou senha incorreta. Favor inserir novamente!</S.ErrorMsg>
-				</S.ErroBox>
-			)}
-			<S.ButtonWrapper>
-				<S.ForgotPassword onClick={handleClick} >Esqueci minha senha</S.ForgotPassword>
-			</S.ButtonWrapper>
 		</S.Container>
 	)
 }

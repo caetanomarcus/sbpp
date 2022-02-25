@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import {setAllAdress , setAllAdressOptional} from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
-import { cpfMask } from './cpfMask';
+import { cepMask, rgMask, cpfMask, dateMask, phoneMask, agencyMask, accountMask, cidMask } from './masks';
 
 
 
@@ -23,7 +23,8 @@ export const Input = ({
 	isDetailed,
 	action,
 	id,
-	adressState
+	adressState,
+	maxLength,
 
 }) => {
 
@@ -33,14 +34,38 @@ export const Input = ({
 	const handleChange = (e, setFunction) => {
 		e.preventDefault();
 
-		if((id === 'cep' || id === 'cep2') ) {
-			dispatch(setFunction(cpfMask(e.target.value)))
+		console.log(id)
 
-			return
+		switch(id) {
+			case 'cep':
+				dispatch(setFunction(cepMask(e.target.value)))
+				return
+			case 'rg':
+				dispatch(setFunction(rgMask(e.target.value)))
+				return
+			case 'cpf':
+				dispatch(setFunction(cpfMask(e.target.value)))
+				return
+			case 'date':
+				dispatch(setFunction(dateMask(e.target.value)))
+				return
+			case 'phone':
+				dispatch(setFunction(phoneMask(e.target.value)))
+				return
+			case 'agency':
+				dispatch(setFunction(agencyMask(e.target.value)))
+				return
+			case 'account':
+				dispatch(setFunction(accountMask(e.target.value)))
+				return
+			case 'cid':
+				dispatch(setFunction(cidMask(e.target.value)))
+				return
+			default:
+				dispatch(setFunction(e.target.value))
+				return
 		}
 			
-		
-		dispatch(setFunction(e.target.value));
 	}
 
 	const handleFocus = () => {
@@ -120,6 +145,7 @@ export const Input = ({
 				row={row}
 				placeholder={placeholder}
 				onBlur={handleBlur}
+				maxLength={maxLength}
 			/>
 			{isDetailed && (
 				<S.AddressDetails>

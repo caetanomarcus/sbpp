@@ -30,7 +30,8 @@ export const Form = styled.form`
 export const Fieldset = styled.fieldset`
     margin-bottom: 20px;
     border: 1px solid #EFEFEF;
-    padding: 20px 20px 20px 10px;
+    padding: 20px 20px 0 10px;
+    
 `;
 
 export const Legend = styled.legend`

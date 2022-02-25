@@ -13,6 +13,26 @@ export const Container = styled.div`
     border-radius: 4px;
     padding: 24px;
     overflow: auto;
+
+     /* width */
+     ::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 4px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #AAAAAA;
+        border-radius: 4px;
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 `;
 
 export const Row = styled.div`
@@ -27,6 +47,17 @@ export const Row = styled.div`
 export const TextBox = styled.div`
     margin-left: ${props => props.marginLeft};
     margin-bottom: ${props => props.marginBottom};
+    height: 48px;
+
+    ${props => props.flex && `
+        display: flex;
+        align-items: center;
+
+        p{
+            margin: 0;
+            margin-left: 10px;
+        }
+    `}
 `;
 
 export const Title = styled.h3`
@@ -47,4 +78,10 @@ export const Line = styled.div`
     margin-top: 24px;
     margin-bottom: 24px;
 
+`;
+
+export const Checkbox = styled.input`
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
 `;

@@ -80,7 +80,6 @@ const BenefitForm = () => {
 						width='100%'
 						label="Processo Susep"
 						value="15414.901749/2014-95"
-
 					/>
 				</S.Row>
 
@@ -94,13 +93,6 @@ const BenefitForm = () => {
 						isDisabled
 						noPadding
 					/>
-					{/* <Input 
-                    type='text'
-                    width='55%'
-                    label="Tipo de Benefício (Cobertura)"
-                    value="Vitalício"
-                    
-                /> */}
 					<Input
 						type='text'
 
@@ -116,6 +108,7 @@ const BenefitForm = () => {
 						placeholder='0000000'
 						value={benefitData.salesStructure}
 						action={setSalesStructure}
+						maxLength={7}
 
 					/>
 					<Input
@@ -158,20 +151,25 @@ const BenefitForm = () => {
 								value={paymentData.durationTime}
 								maxLength={3}
 								onChange={(e) => dispatch(setDurationTime(e.target.value))}
+								maxLength={3}
 							/> meses
 						</S.Row>
 					</S.Label>
 					<Input
-						type='date'
+						type='text'
 						label="Início de Pagamento"
 						value={paymentData.paymentStartDate}
 						action={setPaymentStartDate}
+						placeholder="DD/MM/AAAA"
+						id='date'
 					/>
 					<Input
-						type='date'
+						type='text'
 						label="Fim de Pagamento"
 						value={paymentData.paymentEndDate}
 						action={setPaymentEndDate}
+						placeholder="DD/MM/AAAA"
+						id='date'
 
 					/>
 				</S.Row>
@@ -188,42 +186,42 @@ const BenefitForm = () => {
 					<S.PriceTableBody>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight >
-								<S.Input type='radio' name='incomeType' value='Renda mensal Temporária' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal Temporária' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal Temporária
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight>
-								<S.Input type='radio' name='incomeType' value='Renda mensal por Prazo Certo' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal por Prazo Certo' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal por Prazo Certo
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight>
-								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal Vitalícia
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight>
-								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia Reversível ao Beneficiário' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia Reversível ao Beneficiário' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal Vitalícia Reversível ao Beneficiário
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight>
-								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia Reversível ao Cônjugue e Menores' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia Reversível ao Cônjugue e Menores' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal Vitalícia Reversível ao Cônjugue e Menores
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight>
-								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia com Prazo Mínimo Garantido' />
+								<S.Input type='radio' name='incomeType' value='Renda mensal Vitalícia com Prazo Mínimo Garantido' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
 								Renda mensal Vitalícia com Prazo Mínimo Garantido
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
@@ -322,7 +320,9 @@ const BenefitForm = () => {
 								value={conditionsData.IRPF.deadline}
 								action={setDeadline}
 								width='20%'
-								type='date'
+								type='text'
+								id='date'
+								placeholder="DD/MM/AAAA"
 							/>
 						</S.Row>
 						<S.Row>
@@ -345,6 +345,9 @@ const BenefitForm = () => {
 								label="CID"
 								value={conditionsData.IRPF.cid}
 								action={setCid}
+								placeholder='0.000-0.000'
+								id='cid'
+								maxLength={11}
 							/>
 							<S.Label noLabel  >Descrição
 								<S.Row paddingLeft='0'>
@@ -384,6 +387,9 @@ const BenefitForm = () => {
 								label="CID"
 								value={conditionsData.paymentSuspension.cid}
 								action={setPaymentSuspensionCid}
+								placeholder='0.000-0.000'
+								id='cid'
+								maxLength={11}
 							/>
 							<S.Label noLabel  >Descrição
 								<S.Row paddingLeft='0'>
@@ -491,14 +497,18 @@ const BenefitForm = () => {
 								label='Início'
 								value={courtPensionData.pensionStart}
 								action={setPensionStart}
-								type='date'
+								type='text'
+								id='date'
+								placeholder="DD/MM/AAAA"
 							/>
 							<Input
 								width='12%'
 								label='Fim'
 								value={courtPensionData.pensionEnd}
 								action={setPensionEnd}
-								type='date'
+								type='text'
+								id='date'
+								placeholder="DD/MM/AAAA"
 							/>
 						</S.Row>
 						</>

@@ -26,6 +26,7 @@ export const Contact = () => {
                label="Telefone 1"
                value={contact.phone1}
                action={setPhone1}
+               id='phone'
             />
             <Input
                type="text"
@@ -33,6 +34,7 @@ export const Contact = () => {
                label="Telefone 2 (opcional)"
                value={contact.phone2}
                action={setPhone2}
+               id='phone'
             />
          </S.Row>
       </S.Fieldset>

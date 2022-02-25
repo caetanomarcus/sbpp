@@ -39,6 +39,7 @@ export const Document = ({
                label="RG"
                value={document.rg}
                action={setRg}
+               id='rg'
             />
             <Input
                type="text"
@@ -68,6 +69,7 @@ export const Document = ({
                widthInput="70%"
                value={document.issueDate}
                action={setIssueDate}
+               id='date'
             />
          </S.Row>
       </S.Fieldset>

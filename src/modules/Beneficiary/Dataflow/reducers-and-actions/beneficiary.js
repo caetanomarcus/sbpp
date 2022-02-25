@@ -51,6 +51,7 @@ const beneficiaryState = {
 			uf: '',
 			hasMailAddress: false,
 			correspondenceType: '',
+			hasDifferentAddress: false,
 		},
 		addressOptional: {
 			cep: '',
@@ -76,7 +77,7 @@ const beneficiaryState = {
 			agency: '',
 			agencyDigit: '',
 			hasPowerOfAttorney: false,
-			powerOfAttorney: '',
+			powerOfAttorneyName: '',
 			powerOfAttorneyCPF: '',
 		},
 		benefitData: {
@@ -93,7 +94,8 @@ const beneficiaryState = {
 			durationTime: '',
 			paymentStartDate: '',
 			paymentEndDate: '',
-			benefitTipe: '',
+			benefitType: '',
+			incomeType: '',
 		},
 		agreementData: {
 			hasAdvance: false,
@@ -253,13 +255,16 @@ const beneficiarySlice = createSlice({
 			state.beneficiaryData.addressDefault.county = action.payload
 		},
 		setUfDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.Uf = action.payload
+			state.beneficiaryData.addressDefault.uf = action.payload
 		},
 		setHasMailAdress: (state, action) => {
 			state.beneficiaryData.addressDefault.hasMailAddress = action.payload
 		},
 		setAdressType: (state, action) => {
 			state.beneficiaryData.addressDefault.correspondenceType = action.payload
+		},
+		setHasDifferentAdress: (state, action) => {
+			state.beneficiaryData.addressDefault.hasDifferentAddress = action.payload
 		},
 		//setAddressOptional
 		setAllAdressOptional:(state, action) => {
@@ -294,7 +299,7 @@ const beneficiarySlice = createSlice({
 			state.beneficiaryData.contact.phone1 = action.payload
 		},
 		setPhone2: (state, action) => {
-			state.beneficiaryData.phone.phone2 = action.payload
+			state.beneficiaryData.contact.phone2 = action.payload
 		},
 		//bancary data
 		setAccountType: (state, action) => {
@@ -305,7 +310,7 @@ const beneficiarySlice = createSlice({
 		},
 	
 		setAgency: (state, action) => {
-			state.beneficiaryData.bankData.agency = action.payload
+			state.beneficiaryData.bankData.agencyNumber = action.payload
 		},
 		setAgencyDigit: (state, action) => {
 			state.beneficiaryData.bankData.agencyDigit = action.payload
@@ -319,8 +324,11 @@ const beneficiarySlice = createSlice({
 		setHasPowerOfAttorney: (state, action) => {
 			state.beneficiaryData.bankData.hasPowerOfAttorney = action.payload
 		},
-		setPowerOfAttorney: (state, action) => {
-			state.beneficiaryData.bankData.powerOfAttorney = action.payload
+		setPowerOfAttorneyName: (state, action) => {
+			state.beneficiaryData.bankData.powerOfAttorneyName = action.payload
+		},
+		setPowerOfAttorneyCpf: (state, action) => {
+			state.beneficiaryData.bankData.powerOfAttorneyCPF = action.payload
 		},
 		//Benefit data
 		setPaymentMethod: (state, action) => {
@@ -341,6 +349,9 @@ const beneficiarySlice = createSlice({
 		},
 		setPaymentEndDate: (state, action) => {
 			state.beneficiaryData.paymentData.paymentEndDate = action.payload
+		},
+		setIncomeType: (state, action) => {
+			state.beneficiaryData.paymentData.incomeType = action.payload
 		},
 		//agreement data
 		setHasAdvance: (state, action) => {
@@ -400,7 +411,7 @@ const beneficiarySlice = createSlice({
 		setPensionType: (state, action) => {
 			state.beneficiaryData.courtPensionData.pensionType = action.payload
 		},
-		setIncomeType: (state, action) => {
+		setPensioIncomeType: (state, action) => {
 			state.beneficiaryData.courtPensionData.incomeType = action.payload
 		},
 		setModality: (state, action) => {
@@ -475,6 +486,7 @@ export const {
 	setUfDefault,
 	setHasMailAdress,
 	setAdressType,
+	setHasDifferentAdress,
 	//
 	setAllAdressOptional,
 	setCepOptional,
@@ -496,7 +508,7 @@ export const {
 	setAccountNumber,
 	setAccountDigit,
 	setHasPowerOfAttorney,
-	setPowerOfAttorney,
+	setPowerOfAttorneyName,
 	setPowerOfAttorneyCpf,
 	//
 	setSalesStructure,
@@ -505,6 +517,7 @@ export const {
 	setDurationTime,
 	setPaymentStartDate,
 	setPaymentEndDate,
+	setIncomeType,
 	//
 	setHasAdvance,
 	setAdvanceValue,
@@ -526,7 +539,7 @@ export const {
 	setPensionistRegistration,
 	setPensionistName,
 	setPensionType,
-	setIncomeType,
+	setPensioIncomeType	,
 	setModality,
 	setJudicialOffice,
 	setDiscountFactor,
