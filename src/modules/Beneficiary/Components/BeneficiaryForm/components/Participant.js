@@ -21,10 +21,10 @@ export const Participant = ({
 
 
 	return (
-      <S.Fieldset>
+      <S.Fieldset id='participant'>
          <S.Legend>Participante</S.Legend>
 
-         <S.Row>
+         <S.Row last>
             <Input
                type="text"
                width="20%"

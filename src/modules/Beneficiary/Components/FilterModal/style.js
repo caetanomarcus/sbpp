@@ -19,7 +19,8 @@ export const Container = styled.div`
 `;
 
 export const TitleModal = styled.h2`
-    font:  600 14px 'Aestetico, sans-serif';
+    font-size: 14px;
+    font-weight: 600;
     color: #001E64;
     margin-bottom: 15px;
 `;
@@ -30,13 +31,15 @@ export const RadioBox = styled.div`
 `;
 
 export const RadioInput = styled.input `
-    font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     color: #001E64;
     accent-color: #828282;
 `;
 
 export const Label = styled.label`
-    font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     color: #001E64;
     margin-left: 5px;
 `;
@@ -52,7 +55,8 @@ export const DateBox = styled.label`
     justify-content: flex-start;
     align-items: center;
     margin-top: 14px;
-    font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     color: #5A5A5A;
 `;
 

@@ -59,12 +59,24 @@ export const Logo = styled.img `
 
 export const Line = styled.div`
     width: 280px;
-    border: 2px solid #FF8C00;
+    border: 1px solid #FF8C00;
     margin-top: 20px;
 
     @media (max-width: 480px) {
         width: 95%;
         
+    }
+`;
+
+export const ButtonContainer = styled.div`
+    position: relative;
+    margin: 0 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+   
+    @media (max-width: 480px) {
+        margin: 24px;
     }
 `;
 

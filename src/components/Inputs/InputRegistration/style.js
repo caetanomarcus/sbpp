@@ -5,13 +5,14 @@ export const Label = styled.label`
     display: flex;
     flex-direction: ${props => props.row? 'row': 'column'};
     color: ${props => props.optional? 'gray': '#001E64'};
-    font-weight: ${props => props.optional? '400': '600'};
+    font-weight: ${props => props.optional? '400': '500'};
     align-items: ${props => props.row? 'center': ''};
     font-size: 14px;
     font-family: "Aestetico", sans-serif;
     margin-right: ${props => props.noLabel ? '0': '20px'};
     position: relative;
     opacity: ${props => props.optional? '0.6': ''};
+    margin-bottom: ${props => props.marginBottom};
 
 `;
 
@@ -19,7 +20,7 @@ export const Input = styled.input`
     width: ${props => props.widthInput? props.widthInput: '100%' };
     height: ${props => props.heightInput? props.heightInput: '32px' };
     background: transparent;
-    border: ${props => props.isDisabled? 'none' : '1px solid #D1D1D1'};
+    border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
     border-radius: 3px; 
     outline: none;
     color: #323232;
@@ -27,6 +28,12 @@ export const Input = styled.input`
     font-family: "Aestetico", sans-serif;
     padding: ${props => props.noPadding? '0' : '0 10px'};
     margin: ${props => props.row? '0 0 0 10px' : '10px 0 0 0'};
+
+    :focus {
+        border-color: #001E64;
+        background-color: #001E640B;
+        box-shadow: inset 0px 1px 3px #00000029, 0px 0.5px 6px #00000008;
+    }
 `;
 
 export const Select = styled.button`
@@ -34,14 +41,15 @@ export const Select = styled.button`
     height: 32px;
     background: transparent;
     outline: none;
-    border: 1px solid #D1D1D1;
+    border: 1px solid ;
+    border-color: ${props => props.outline? '#001E64': '#D1D1D1'};
     border-radius: 3px;
     font-weight: ${props => props.optional? '400': '600'};
     margin-top: 10px;
     padding: 0 10px;
     color: #323232;
     text-align: left;
-    position: relative;   
+    position: relative;  
 `
 
 export const Arrow = styled.img`
@@ -99,6 +107,11 @@ export const Button = styled.button`
     text-align: left;
     padding: 0 10px;
     cursor: pointer;
+
+    :hover {
+        background: #F0F0F0;
+        box-shadow: inset 0px 1px 3px #00000029, 0px 0.5px 6px #00000008;
+    }
 `
 
 export const AddressDetails = styled.p`
@@ -107,3 +120,13 @@ export const AddressDetails = styled.p`
     color: #5a5a5a;
     margin-top: 5px;
 `
+
+export const Cross = styled.img`
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: 16px;
+    top: 75%;
+    transform: translateY(-75%);
+    cursor: pointer;
+`;

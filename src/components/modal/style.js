@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: #AAAAAA8A;
     /* mix-blend-mode: multiply; */
     display: flex;
@@ -10,6 +10,7 @@ export const Container = styled.div`
     align-items: center;
     position: absolute;
     z-index: 7;
+    font-family: "Aestetico", sans-serif;
 
 `;
 
@@ -27,12 +28,14 @@ export const Box = styled.div`
 
 export const Title = styled.h3`
     text-align: center;
-    font: 600 15px 'Aestetico', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     color: #333333;
 `;
 
 export const SubTile = styled.p`
-    font: 400 13px/ 'Aestetico', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
     color: #333333;
 `;
 
@@ -51,7 +54,8 @@ export const Button = styled.button`
     border-radius: 4px;
     background: ${props => props.yes? '#001E64': 'transparent'};
     color: ${props => props.yes? '#FFFFFF': '#001E64'};
-    font: 600 15px 'Aestetico', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     cursor: pointer;
     outline: none;
 `

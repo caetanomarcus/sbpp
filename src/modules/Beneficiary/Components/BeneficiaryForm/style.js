@@ -28,21 +28,37 @@ export const Form = styled.form`
 `;
 
 export const Fieldset = styled.fieldset`
-    margin-bottom: 20px;
-    border: 1px solid #EFEFEF;
+    margin-bottom: 40px;
+    border: none;
+    border-right: 1px solid #EFEFEF;
     padding: 20px 20px 0 10px;
+    position: relative ;
+    font-size: 14px;
+
+    :before{
+        content: "";
+        width: 1px;
+        height: 100%;
+        border-right: 1px solid #EFEFEF;
+        position: absolute ;
+        left: 0 ;
+        top: 0 ;
+        
+    }
     
 `;
 
 export const Legend = styled.legend`
     border: none;
     color: #5a5a5a;
+    margin-bottom: 16px;
 `;
 
 export const Row = styled.div`
     width: 100%;
-    padding: 0 0 32px 10px;
+    padding: 0 0 0 10px;
     display: ${props => props.disabled ? "none" : "flex"};
+    margin-bottom: ${props => props.last ? "8px" : "32px"};
 `;
 
 export const Label = styled.label`
@@ -50,14 +66,16 @@ export const Label = styled.label`
     display: ${props => props.disabled ? "none" : "flex"};
     flex-direction: ${props => props.row? 'row': 'column'};
     color: #001E64;
-    font-weight: ${props => props.optional? '400': '600'};
+    font-size: 14px;
+    font-weight: ${props => props.optional? '400': '500'};
     /* justify-content: ${props => props.row? 'flex-start': 'initial'}; */
     margin-left: ${props => props.marginLeft};
 
 `;
 
 export const LabelRadio = styled.label`
-    font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     display: flex;
     align-items: center;
     margin-right: 10px;

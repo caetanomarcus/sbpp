@@ -1,38 +1,40 @@
 @font-face {
-    font-family: 'Aestetico', sans-serif;
-    src: url('../fonts/Aestetico-Light.otf') format('opentype');
+    font-family: 'Aestetico';
+    src: url('../fonts/Aestetico-Light.woff2') format('woff2');
     font-weight: 300;
+    font-display: swap;
+    font-style: normal;
     
 }
 
     @font-face {
-    font-family: 'Aestetico', sans-serif;
-    src: url('../fonts/Aestetico-Regular.otf') format('opentype');
+    font-family: 'Aestetico';
+    src: url('../fonts/Aestetico-Regular.woff2') format('woff2');
     font-weight: 400;
-    
+    font-display: swap;
+    font-style: normal;
 }
 
     @font-face {
-    font-family: 'Aestetico', sans-serif;
-    src: url('../fonts/Aestetico-Medium.otf') format('opentype');
+    font-family: 'Aestetico';
+    src: url('../fonts/Aestetico-Medium.woff2') format('woff2');
     font-weight: 500;
-    
+    font-display: swap;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Aestetico', sans-serif;
-    src: url('../fonts/Aestetico-SemiBold.otf') format('opentype');
+    font-family: 'Aestetico';
+    src: url( '../fonts/Aestetico-SemiBold.woff2') format('woff2');
     font-weight: 600;
-    
+    font-display: swap;
+    font-style: normal;
 }
 
     @font-face {
-    font-family: 'Aestetico', sans-serif;
-    src: url('../fonts/Aestetico-Bold.otf') format('opentype');
-    font-weight: 700;
-    
-}
-
-body {
     font-family: 'Aestetico';
+    src: url('../fonts/Aestetico-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
 }

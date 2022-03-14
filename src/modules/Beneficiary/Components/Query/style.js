@@ -286,7 +286,7 @@ export const Clients = styled.button`
 `;
 
 export const ClientTexts = styled.p`
-    font: 13px 'Aestetico, sans-serif';
+    font-size: 13px;
     color: #333333;
     font-weight: ${props => props.weight || 300};
     width: ${props => props.width};

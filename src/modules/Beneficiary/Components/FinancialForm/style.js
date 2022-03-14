@@ -25,14 +25,15 @@ export const Row = styled.div`
 `;
 
 export const Label = styled.label`
-    font: 14px 'Aestetico', sans-serif;
-    font-weight: ${props => props.checkbox? 600: 400};
+    font-size: 14px;
+    font-weight: ${props => props.checkbox? 500: 400};
     color: ${props => props.checkbox? '#001E64': props.isDisabled? '#32323255': '#323232'};
     display: flex;
     align-items: center;
     margin-right: 45px;
     margin-left: 10px;
     margin-top: 15px;
+    margin-bottom: ${props => props.noRadio? '16px': '0'};
 `;
 
 export const RadioInput = styled.input`

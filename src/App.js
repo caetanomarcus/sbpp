@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import PrivateRoute from './components/PrivateRoute'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Beneficiary from './modules/Beneficiary';
 import LoginScreen from "./modules/Auth";
-
+import './assets/css/fonts.css';
 
 
 function App() {
@@ -11,10 +11,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<LoginScreen />} />
-      <Route path='/beneficiary' 
-      element={ <PrivateRoute> 
-        <Beneficiary />
-      </PrivateRoute> } />
+      <Route path='/beneficiary' element={ <Beneficiary />} />
     </Routes>
     </BrowserRouter>
   );

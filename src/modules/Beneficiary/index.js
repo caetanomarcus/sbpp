@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import * as S from './style'
 
@@ -21,21 +21,14 @@ const Beneficiary = () => {
     const query = 'beneficiarios/consulta';
 
     const isMobile = window.innerWidth <= 480
-  
+
 
     const renderScreen = (screen) => {
         switch (screen) {
-            case initial: 
-            return <InitialScreen />
-
-            case pending:
-                return <Pending />
-
+            case initial:
+                return <InitialScreen />
             case registration:
                 return <Registration />
-            
-            case query:
-                return <Query />              
             default:
                 return null
         }
@@ -43,9 +36,9 @@ const Beneficiary = () => {
 
     return (
         <S.Container>
-             <AsideMenu />
+            <AsideMenu />
             {isModalOpen && <Modal />}
-           {renderScreen(screen)}
+            {renderScreen(screen)}
         </S.Container>
     )
 }

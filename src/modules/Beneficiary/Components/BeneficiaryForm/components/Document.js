@@ -32,7 +32,7 @@ export const Document = ({
 	return (
       <S.Fieldset>
          <S.Legend>Documento</S.Legend>
-         <S.Row>
+         <S.Row last>
             <Input
                type="text"
                width="20%"

@@ -147,7 +147,7 @@ const FinancialForm = () => {
 
                 />
             </S.Row>
-            <S.Label checkbox  >
+            <S.Label checkbox noRadio >
                 Possui Procuração Judicial?
                 <S.RadioInput checkbox type='checkbox' name='account' value={bankData.hasPowerOfAttorney} onChange={() => dispatch(setHasPowerOfAttorney(!bankData.hasPowerOfAttorney))} />
 

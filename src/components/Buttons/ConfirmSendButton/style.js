@@ -7,7 +7,9 @@ export const Buttons = styled.button`
     background: ${props => props.background};
     margin-top: ${props => props.marginTop};
     border-radius: 24px;
-    font: normal normal 700 16px 'Aestetico', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Aestetico', sans-serif;
     color: ${props => props.sent? '#001E64': "#FFFFFF"};
     cursor: pointer;
 

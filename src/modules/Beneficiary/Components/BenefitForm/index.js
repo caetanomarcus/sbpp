@@ -61,7 +61,7 @@ const BenefitForm = () => {
 
 	return (
 		<S.Container>
-			<S.Fieldset>
+			<S.Fieldset id='benefit'>
 				<S.Legend>Benefício</S.Legend>
 
 				<S.Row width='45%' >
@@ -83,7 +83,7 @@ const BenefitForm = () => {
 					/>
 				</S.Row>
 
-				<S.Row>
+				<S.Row last>
 					<Input
 						type='text'
 
@@ -130,7 +130,7 @@ const BenefitForm = () => {
 					</S.Label>
 				</S.Row>
 			</S.Fieldset>
-			<S.Fieldset>
+			<S.Fieldset id='payment' >
 				<S.Legend>Pagamento</S.Legend>
 				<S.Row>
 					<Input
@@ -151,7 +151,6 @@ const BenefitForm = () => {
 								value={paymentData.durationTime}
 								maxLength={3}
 								onChange={(e) => dispatch(setDurationTime(e.target.value))}
-								maxLength={3}
 							/> meses
 						</S.Row>
 					</S.Label>
@@ -229,7 +228,7 @@ const BenefitForm = () => {
 					</S.PriceTableBody>
 				</S.PriceTableBox>
 			</S.Fieldset>
-			<S.Fieldset>
+			<S.Fieldset  id='contract'>
 				<S.Legend>Convênio</S.Legend>
 				<S.Row>
 					<Input
@@ -272,7 +271,7 @@ const BenefitForm = () => {
 						noPadding
 					/>
 				</S.Row>
-				<S.Row>
+				<S.Row last={!agreementData.hasAdvance}>
 					<S.Label row>
 						Possui adiantamento?
 						<S.Input
@@ -283,7 +282,7 @@ const BenefitForm = () => {
 					</S.Label>
 				</S.Row>
 				{agreementData.hasAdvance && (
-					<S.Row>
+					<S.Row last>
 						<Select
 							width='20%'
 							label='Adiantamento (%)'
@@ -298,7 +297,7 @@ const BenefitForm = () => {
 					</S.Row>
 				)}
 			</S.Fieldset>
-			<S.Fieldset>
+			<S.Fieldset  id='conditions'>
 				<S.Legend>Condições</S.Legend>
 				<S.Row>
 					<S.Label row>
@@ -350,7 +349,7 @@ const BenefitForm = () => {
 								maxLength={11}
 							/>
 							<S.Label noLabel  >Descrição
-								<S.Row paddingLeft='0'>
+								<S.Row paddingLeft='0' last>
 									<S.TextArea type='textArea'
 										height='60px'
 										onChange={(e) => dispatch(setDescription(e.target.value))}
@@ -363,7 +362,7 @@ const BenefitForm = () => {
 						</S.Row>
 					</>
 				)}
-				<S.Row>
+				<S.Row last={!conditionsData.paymentSuspension.hasPaymentSuspension}>
 					<S.Label row>
 						Incluir Suspensão de Pagamento?
 						<S.Input type='checkbox' isCheckbox onChange={() => dispatch(setHasPaymentSuspension(!conditionsData.paymentSuspension.hasPaymentSuspension))} marginLeft='10px' />
@@ -373,14 +372,14 @@ const BenefitForm = () => {
 					<>
 						<S.Row>
 							<S.Label > Motivo
-								<S.Row paddingLeft='0'>
+								<S.Row paddingLeft='0' paddingTop='16px'>
 								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Óbito' name='paymentSuspensionReason'  /> Óbito
 								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Doença' name='paymentSuspensionReason' marginLeft='16px' /> Doença
 								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Ausência de Prova de Vida' name='paymentSuspensionReason' marginLeft='16px' /> Óbito
 								</S.Row>
 							</S.Label>
 						</S.Row>
-						<S.Row alignItems='flex-start' row>
+						<S.Row alignItems='flex-start' row last>
 							<Input
 								type='text'
 								width='10%'
@@ -406,10 +405,10 @@ const BenefitForm = () => {
 					</>
 				)}
 			</S.Fieldset>
-			<S.Fieldset>
+			<S.Fieldset id='judicial'>
 				<S.Legend>Pensão Judicial</S.Legend>
-				<S.Row>
-				<S.Label noLabel row>
+				<S.Row last={!courtPensionData.hasCourtPension}>
+				<S.Label noLabel row >
 						Adicionar dados de Pensão Judicial?
 						<S.Input
 							type="checkbox"
@@ -491,7 +490,7 @@ const BenefitForm = () => {
 								action={setDiscountFactor}
 							/>
 						</S.Row>
-						<S.Row>
+						<S.Row last>
 							<Input
 								width='12%'
 								label='Início'

@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware, } from "@reduxjs/toolkit";
-import authReducer from "../modules/Auth/Dataflow/reducers-and-actions/auth";
 import beneficiaryReducer from "../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary";
 
 const middleware= [
@@ -8,7 +7,6 @@ const middleware= [
 
 const store = configureStore({
     reducer: {
-        auth: authReducer,
         beneficiary: beneficiaryReducer
     },
     middleware: middleware

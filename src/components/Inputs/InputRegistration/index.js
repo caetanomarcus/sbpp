@@ -3,8 +3,7 @@ import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import {setAllAdress , setAllAdressOptional} from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
 import { cepMask, rgMask, cpfMask, dateMask, phoneMask, agencyMask, accountMask, cidMask } from './masks';
-
-
+import cross from '../../../assets/icons/cross.svg';
 
 
 export const Input = ({
@@ -25,6 +24,8 @@ export const Input = ({
 	id,
 	adressState,
 	maxLength,
+	marginBottom,
+	cleanButton
 
 }) => {
 
@@ -132,7 +133,7 @@ export const Input = ({
 	}
 
 	return (
-		<S.Label width={width} row={row} optional={optional}> {label}
+		<S.Label width={width} row={row} optional={optional} marginBottom={marginBottom}> {label}
 			<S.Input
 				type={type}
 				widthInput={widthInput}
@@ -146,11 +147,15 @@ export const Input = ({
 				placeholder={placeholder}
 				onBlur={handleBlur}
 				maxLength={maxLength}
+				
 			/>
 			{isDetailed && (
 				<S.AddressDetails>
 					Campo controlado pelo CEP
 				</S.AddressDetails>
+			)}
+			{(cleanButton && value) && (
+				<S.Cross src={cross} alt="cross" onClick={() => dispatch(action(''))}/>
 			)}
 		</S.Label>
 	)
@@ -197,7 +202,7 @@ export const Select = ({
 			optional={optional} 
 			noLabel={noLabel}
 			> {label}
-				<S.Select onClick={handleClickSelect} disabled={disabled} >
+				<S.Select onClick={handleClickSelect} disabled={disabled} outline={state} >
 					{value}
 					<S.Arrow
 						src={source}

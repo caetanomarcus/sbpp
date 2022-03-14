@@ -1,21 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 
 //Components
-import Login from './Components/Login';
-import ForgetPassword from './Components/ForgetPassword';
-import ChangePassword from './Components/ChangePassword';
+
+import Button from './../../components/Buttons/ConfirmSendButton';
 
 //Styles 
 import * as S from './style';
 
 //Images 
 import logoSbpp from '../../assets/images/sbpp-logo.png';
-import logoSula  from '../../assets/images/sulamerica-logo.png';
+import logoSula from '../../assets/images/sulamerica-logo.png';
 
 
 
 const LoginScreen = () => {
-    const [screen, setScreen] = useState('login');
+
+    const navigate = useNavigate();
 
     return (
         <S.Wrapper>
@@ -24,7 +25,14 @@ const LoginScreen = () => {
                     <S.Logo src={logoSbpp} />
                     <S.Line />
                 </S.Header>
-                <Login />
+                <S.ButtonContainer id='form' >
+                    <Button
+                        buttonName='Entrar'
+                        background='#001E64'
+                        handleClick={() => navigate('/beneficiary')}
+                        marginTop='32px'
+                    />
+                </S.ButtonContainer>
                 <S.loginFooter>
                     <S.Logo src={logoSula} width='138px' />
                 </S.loginFooter>

@@ -14,7 +14,9 @@ export const Container = styled.div `
 export const Label = styled.label `
     margin-bottom: 8px;
     text-align: left;
-    font: 700 16px 'Aestetico', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Aestetico', sans-serif;
     color: #001E64;
 
     @media (max-width: 480px) {
@@ -32,7 +34,10 @@ export const LoginInput = styled.input `
     border-radius: 4px;
     box-shadow: ${props => props.error? '0px 0px 6px #D2D2D2': 'none'};
     box-sizing: border-box;
-    font: 400 16px 'Aestetico', sans-serif;
+
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Aestetico', sans-serif;
     color: #323232;
     outline: none;
 

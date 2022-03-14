@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import arrow from '../../../../assets/icons/arrow.svg'
+// import orange from '../../../../assets/images/orange-footer.png'
+
 
 export const Container = styled.section`
     width: 100%;
     height: 100%;
+    max-height: 100vh;
     background: #EFEFEF;
-    padding: 18px;
-    padding-top: 26px;
+    padding-top: 16px;
+    /* max-width: 1366px; */
+    margin: 0 auto;
+    border-radius: 0 0 4px 4px;
+    
 `;
 
 export const Header = styled.div`
@@ -14,6 +20,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 16px;
 `;
 
 export const MsgBox = styled.div`
@@ -22,13 +29,13 @@ export const MsgBox = styled.div`
 `;
 
 export const WelcomeMsg = styled.h2 `
-    font: 700 22px 'Aestetico', sans-serif;
-    color: #828282;
+    font: 700 18px 'Aestetico', sans-serif;
+    color: #001E64;
 `;
 
 export const User = styled.p`
-    font: 400 22px 'Aestetico', sans-serif;
-    color: #828282;
+    font: 400 18px 'Aestetico', sans-serif;
+    color: #001E64;
     margin-left: 4px;
 `;
 
@@ -70,10 +77,21 @@ export const MainContainer = styled.div`
     margin-top: 23px;
 `;
 
-export const LeftTitle = styled.h2`
-    font:700 16px 'Aestetico', sans-serif;
+export const LeftTitle = styled.p`
+    font: 500 16px 'Aestetico', sans-serif;
     color: #FF5000;
 `;  
+
+export const SeeList = styled.p`
+    font:400 15px 'Aestetico', sans-serif;
+    color: #FF5000;
+    position: absolute;
+    right: 16px;
+    bottom: 50%;
+    transform: translateY(50%);
+`;
+
+
 
 export const ResultsAndPagination = styled.div`
     width: 100%;
@@ -83,6 +101,12 @@ export const ResultsAndPagination = styled.div`
     align-items: center;
     border-bottom: 2px solid #82828233;
     margin-bottom: 16.5px;
+
+    p{
+        color: #5A5A5A;
+        font-size: 12px;
+        font-weight: 400;
+    }
     
 `;
 
@@ -153,7 +177,7 @@ export const PaginationButton = styled.button`
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: ${props => props.left ? 'translate(-45%, -50%)' : 'translate(-50%, -50%)'};
+        transform: ${props => props.left ? 'translate(-45%, -50%)' : 'translate(-60%, -50%)'};
         width: 8px;
         height: 8px;
         background: url(${arrow});
@@ -165,13 +189,17 @@ export const PaginationButton = styled.button`
 
 export const ClientBox = styled.div`
     display: flex;
+    width: 100% ;
+    height:80% ;
     flex-direction: column;
     align-items: center;
+    border-bottom: 1px solid #D2D2D2;
+
 `;
 
 export const MenssageBox = styled.div`
     width: 100%;
-    height: 350px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,7 +224,7 @@ export const ClientBoxHead = styled.div`
 `;
 
 export const Titles = styled.h2`
-    font: 700 13px 'Aestetico, sans-serif';
+    font: 700 13px 'Aestetico', sans-serif;
     color: #323232;
     text-transform: uppercase;
     text-align: ${props => props.align || 'left'};
@@ -214,14 +242,16 @@ export const Clients = styled.button`
     border-radius: 4px;
     padding-left: 48px;
     padding-right: 42.2px;
+    font-family: 'Aestetico', sans-serif;
+    cursor: ${props => props.isPending? 'pointer': 'default'};
 
-    /* :hover {
+    :hover {
         background: ${props => props.isSelected? '#FF8C004A': '#D2D2D2'};
-    } */
+    }
 `;
 
 export const ClientTexts = styled.p`
-    font: 13px 'Aestetico, sans-serif';
+    font: 13px 400 'Aestetico, sans-serif';
     color: #333333;
     font-weight: ${props => props.weight || 300};
     width: ${props => props.width};
@@ -238,39 +268,187 @@ export const StatusBox = styled.div`
 export const Status = styled.div `
     width: 8px;
     height: 8px;
-    background: #AAAAAA;
+    background: ${props => props.color};
     border-radius: 50%;
 `;
 
 export const Line = styled.div`
     width: 100%;
     height: 0;
-    border: 1px solid #D1D1D1;
 `;
 
 export const ClassificationContainer = styled.div`
     width: 100%;
-    height: 25%;
+    height: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 16px;
+    margin-bottom: 16px;
 `;
 
-export const Classification = styled.div`
-    width: 256px;
-    height: 134px;
+export const ClassificationLine = styled.div`
+    width: 100%;
+    height: 1px;
+    border: 2px solid;
+    border-color: ${props => props.isSelected? '#FF5000': 'transparent'};
+    position: absolute;
+    bottom: 0;
+    right:0 ;
+
+`;
+
+export const Classification = styled.button`
+    width: 24.2%;
+    height: 82px;
     background: #FFFFFF;
     box-shadow: 0px 1px 2px #0000001A;
+    border: none;
     border-radius: 4px;
     padding: 10px 16px;
     position: relative;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+ 
+
+    ${props => !props.isSelected && `
+        :hover ${ClassificationLine} {
+        border-color: #AAAAAA;
+    }
+    `};
 `;
 
 export const Number = styled.p`
-    font: 700 53px 'Aestetico', sans-serif;
+    font: 700 30px 'Aestetico', sans-serif;
     color: #FF5000;
-    text-align: center;
-    margin-top: 33px;
+    text-align: left;
+    /* margin-top: 33px; */
+    margin-bottom: 2px;
    
+`;
+
+export const BigStatusBox = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+export const BigStatus = styled.div`
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: ${props => props.color};
+    margin-right: 7px;
+    
+`;
+
+export const MiddleContainer = styled.div`
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 1100px) {
+        flex-direction: column;
+    }
+`;
+
+export const SearchContainer = styled.div`
+    width: 470px;
+    padding: 16px;
+    position: relative;
+    
+    :after {
+        content: '';
+        width: 1px;
+        height: 95%;
+        border-right: 1px solid #D1D1D1;
+        position: absolute;
+        right: 10px;
+        top:2.5%;
+
+    }
+
+    @media(max-width: 1100px) {
+        display: flex ;
+        width: 100% ;
+        
+    }
+`;
+
+export const FiltersButtonsBox = styled.div`
+    width: 100%;
+
+`;
+
+export const Label = styled.p`
+    font: 500 13px 'Aestetico', sans-serif;
+    color: #001E64;
+    margin-bottom: 8px;
+`;
+
+export const ButtonsBox = styled.div`
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const Button = styled.button`
+    padding:  3px 8px;
+    height: 22px;
+    border: 1px solid #D2D2D2;
+    border-radius: 4px;
+    font: 400 12px 'Aestetico', sans-serif;
+    color: #828282;
+    cursor: pointer;
+
+    ${props => props.isSelected && `
+        border-color: #001E64;
+        background-color: #001E6426;
+        color: #001E64;
+    `}
+
+    ${props => !props.isSelected && `
+        :hover {
+            border-color:#001E64;
+            color: #001E64;
+        }
+    `}
+`;
+
+export const SearchBox = styled.div`
+    width: fit-content;
+    margin: 0 auto;
+`;
+
+export const SearchButton = styled.button`
+    width: 106px;
+    height: 30px;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    background: #5A5A5A;
+    border-radius: 19px;
+    border: none;
+    background-color: #5A5A5A;
+    font: 600 14px 'Aestetico', sans-serif;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 35px;
+
+
+    img {
+        width: 13px;
+        height: 13px;
+    }
+
+`;
+
+export const ResultContainer = styled.div`
+    width: 100%;
+    padding: 16px;
+    display:flex ;
+    flex-direction: column;
+    align-items: center;
+
 `;

@@ -23,7 +23,47 @@ const Registration = () => {
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
-	const pending = 'beneficiarios/pendentes';
+
+	const beneficiaryList = [{
+		name: 'Dados do Beneficiário',
+		value: 'participant'
+	},
+	{
+		name: 'Dados',
+		value: 'data'
+	},
+	{
+		name: 'Endereço Residencial',
+		value: 'address'
+	},
+	{
+		name: 'Contato',
+		value: 'contact'
+	},
+	]
+
+
+	const benefitList = [{
+		name: 'Benefício',
+		value: 'benefit'
+	},
+	{
+		name: 'Pagamento',
+		value: 'payment'
+	},
+	{
+		name: 'Convênio',
+		value: 'contract'
+	},
+	{
+		name: 'Condições',
+		value: 'conditions'
+	},
+	{
+		name: 'Pensão Judicial',
+		value: 'judicial'
+	}
+	]
 
 	const handleClickNext = () => {
 		switch (step) {
@@ -62,38 +102,83 @@ const Registration = () => {
 	const handleClickCancel = () => {
 		dispatch(setModalOpen());
 		dispatch(setModalType('cancel'));
+
+	}
+
+	const handleClickSideList = (value) => {
+		const element = document.getElementById(value);
+		element.scrollIntoView();
+	}
+
+	const renderSideList = () => {
+		if (step === beneficiary) {
+			return beneficiaryList.map(item => (
+				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
+					<S.SideListItemText  >{item.name}</S.SideListItemText>
+				</S.SideListItem>
+			))
+		} else if (step === benefit) {
+			return benefitList.map(item => (
+				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
+					<S.SideListItemText>{item.name}</S.SideListItemText>
+				</S.SideListItem>
+			))
+		}
+
 	}
 
 	return (
 		<S.Container>
 			<S.Content>
 				<S.Header>
-					<S.IconAndTitle>
+					{/* <S.IconAndTitle>
 						<S.PersonIcon />
 						<S.HeaderTitle>Cadastro</S.HeaderTitle>
-					</S.IconAndTitle>
+					</S.IconAndTitle> */}
 					{step !== finalStep && (
 						<S.RegistrationFluxBox>
-						<S.Circle steps={step === beneficiary} >
-							<S.Step steps={step === beneficiary}  >BENEFICIÁRIO</S.Step>
-						</S.Circle>
-						<S.Line selected={(step === financial) || step === benefit}  />
-						<S.Circle steps={step === financial}  >
-							<S.Step steps={step === financial}  >FINANCEIRO</S.Step>
-						</S.Circle>
-						<S.Line  selected={step=== benefit} />
-						<S.Circle steps={step === benefit} >
-							<S.Step steps={step === benefit} >BENEFÍCIO</S.Step>
-						</S.Circle>
-					</S.RegistrationFluxBox>
+							<S.Circle steps={step === beneficiary} >
+								<S.Step steps={step === beneficiary}  >BENEFICIÁRIO</S.Step>
+							</S.Circle>
+							<S.Line selected={(step === financial) || step === benefit} />
+							<S.Circle steps={step === financial}  >
+								<S.Step steps={step === financial}  >FINANCEIRO</S.Step>
+							</S.Circle>
+							<S.Line selected={step === benefit} />
+							<S.Circle steps={step === benefit} >
+								<S.Step steps={step === benefit} >BENEFÍCIO</S.Step>
+							</S.Circle>
+						</S.RegistrationFluxBox>
 					)}
-					<S.CancelButton onClick={handleClickCancel} >Cancelar</S.CancelButton>
+					{/* <S.CancelButton onClick={handleClickCancel} >Cancelar</S.CancelButton> */}
 				</S.Header>
-				{(step === beneficiary) && <BeneficiaryForm />}
-				{(step === financial) && <FinancialForm />}
-				{(step === benefit) && <BenefitForm />}
-				{(step === finalStep) && <FinalStep />}
-				<S.Footer>
+				<S.MiddleBox>
+					<S.FormStepBox>
+						{renderSideList()}
+						{step !== beneficiary && (<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
+					</S.FormStepBox>
+					<S.FormBox>
+					{(step === beneficiary) && <BeneficiaryForm />}
+					{(step === financial) && <FinancialForm />}
+					{(step === benefit) && <BenefitForm />}
+					{(step === finalStep) && <FinalStep />}
+					</S.FormBox>
+					
+					<div>
+					<S.NextButtonBox>
+						<S.ButtonContainer>
+						<Button
+							text={step === finalStep ? 'Finalizar' : 'Próximo'}
+							alt={step === finalStep ? 'Finalizar' : 'Próximo'}
+							source={right}
+							handleClick={handleClickNext}
+							width='142px'
+						/>
+						</S.ButtonContainer>
+					</S.NextButtonBox>
+					</div>
+				</S.MiddleBox>
+				{/* <S.Footer>
 					{step !== beneficiary && (<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
 					<Button
 						text={step === finalStep ? 'Finalizar' : 'Próximo'}
@@ -102,7 +187,7 @@ const Registration = () => {
 						width='101px'
 						handleClick={handleClickNext}
 					/>
-				</S.Footer>
+				</S.Footer> */}
 			</S.Content>
 		</S.Container>
 	)

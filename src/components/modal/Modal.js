@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./style";
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import { setModalClose, setModalType, setResetStates } from "../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary";
+import { setModalClose, setModalType, setResetStates, setScreen, setSelectedClient } from "../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary";
 
 const typeLeave ={
     title: 'Tem certeza que deseja sair?',
@@ -26,6 +26,8 @@ const Modal = () => {
     const modalType = useSelector(state => state.beneficiary.modalType);
     const isModalOpen = useSelector(state => state.beneficiary.modalOpen);
 
+    const initial = 'inicio';
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -37,6 +39,8 @@ const Modal = () => {
     const handleClickLeave = () => {
         dispatch(setModalClose());
         dispatch(setModalType(''));
+        dispatch(setScreen(initial));
+        dispatch(setSelectedClient({}));
         navigate('/')
     }
 

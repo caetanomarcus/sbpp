@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Text = styled.p`
-    font: 400 16px 'Aestetico', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
     color: #5A5A5A;
     text-align: center;
 `;
@@ -61,12 +62,14 @@ export const TextBox = styled.div`
 `;
 
 export const Title = styled.h3`
-    font: 600 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
     color: #001E64;
 `;
 
 export const Value = styled.p`
-    font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     color: #323232;
     margin-top: 16px;
 `;

@@ -17,7 +17,7 @@ export const Contact = () => {
    const contact = useSelector(state => state.beneficiary.beneficiaryData.contact);
 
 	return (
-      <S.Fieldset>
+      <S.Fieldset id='contact' >
          <S.Legend>Contato</S.Legend>
          <S.Row>
             <Input

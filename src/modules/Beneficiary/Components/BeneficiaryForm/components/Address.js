@@ -53,7 +53,7 @@ export const Address = ({
 
 
 	return (
-      <S.Fieldset>
+      <S.Fieldset id="address">
          <S.Legend>Endereço </S.Legend>
 
          {/* Endereco normal */}
@@ -134,7 +134,7 @@ export const Address = ({
             />
          </S.Row>
 
-         <S.Row>
+         <S.Row last={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email') }>
           <S.Label row width="100%">
           Deseja receber correspondência por : 
                <S.DivRadio width='50%' marginLeft >
@@ -162,7 +162,7 @@ export const Address = ({
                </S.DivRadio>
             </S.Label>
          </S.Row>
-         <S.Row>
+         <S.Row last={!addressDefault.hasDifferentAddress}>
          <S.Label row  disabled={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email')} >
                Adicionar endereço diferente para correspondência?
             <S.RadioInput marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasDifferentAddress} onChange={() => dispatch(setHasDifferentAdress(!addressDefault.hasDifferentAddress))} />
@@ -197,7 +197,7 @@ export const Address = ({
             </Input>
          </S.Row>
          
-         <S.Row disabled={!addressDefault.hasMailAddress}>
+         <S.Row disabled={!addressDefault.hasDifferentAddress}>
             <Input
                type="text"
                width="12%"
@@ -229,7 +229,7 @@ export const Address = ({
             />
          </S.Row>
 
-         <S.Row disabled={!addressDefault.hasMailAddress}>
+         <S.Row disabled={!addressDefault.hasDifferentAddress} last>
             <Input
                type="text"
                width="49%"

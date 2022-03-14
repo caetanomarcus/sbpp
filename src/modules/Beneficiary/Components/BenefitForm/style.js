@@ -28,26 +28,44 @@ export const Container = styled.div `
 `;
 
 export const Fieldset = styled.fieldset`
-    border: 1px solid #EFEFEF;
-    padding: 20px 0px 0px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    border: none;
+    border-right: 1px solid #EFEFEF;
+    padding: 20px 20px 0 10px;
+    position: relative ;
+    font-size: 14px;
+
+    :before{
+        content: "";
+        width: 1px;
+        height: 100%;
+        border-right: 1px solid #EFEFEF;
+        position: absolute ;
+        left: 0 ;
+        top: 0 ;
+        
+    }
 `;
 
 export const Legend = styled.legend`
     border: none;
     color: #5a5a5a;
+    margin-bottom: 16px;
 `;
 
 export const Row = styled.div`
-    padding: 12px 0 20px 10px;
+    padding: 0 0 0 10px;
     padding-left: ${props => props.paddingLeft};
+    padding-top: ${props => props.paddingTop};
     display: flex;
     width: ${props => props.width};
     align-items: ${props => props.alignItems};
+    margin-bottom: ${props => props.last ? "8px" : "32px"};
 `;
 
 export const Label = styled.label`
-    font: 600 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
     color: #001E64;
     display:flex;
     flex-direction: ${props => props.row? 'row': 'column'};
@@ -55,7 +73,7 @@ export const Label = styled.label`
     align-items: ${props => props.row? 'center': 'flex-start'};
     justify-content: flex-start;
     margin-bottom: ${props => props.marginBottom};
-    font-weight: ${props => props.smallWeight ? '400': '600'};
+    font-weight: ${props => props.smallWeight ? '400': '500'};
     width: ${props => props.width};
 
 `;
@@ -78,7 +96,8 @@ export const Input = styled.input`
     `};
 
     ::placeholder {
-        font: 400 14px 'Aestetico', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
         color: #828282;
     }
 `;
@@ -94,13 +113,16 @@ export const TextBox = styled.div`
 `;
 
 export const Title = styled.h3`
-     font: 600 14px 'Aestetico', sans-serif;
+     font-size: 14px;
+    font-weight: 500;
     color: #001E64;
 `;
 
 export const Parentesis = styled.p`
-     font: 400 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
     color: #001E64;
+    margin-left: 5px;
 `;
 
 export const PriceTableHead = styled.div`
@@ -116,7 +138,8 @@ export const PriceTableHead = styled.div`
 `;
 
 export const HeadText = styled.p`
-    font: 600 14px 'Aestetico', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
     color: #FFFFFF;
     width: ${props => props.width};
 `;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const beneficiaryState = {
-	screen: 'beneficiarios/pendentes',
+	screen: 'inicio',
 	filterOpened: false,
 	isMounthAndYear: true,
 	selectedClient: {},
@@ -13,6 +13,13 @@ const beneficiaryState = {
 		mounth: 'Jan',
 		year: '2020',
 		filterType: 'mounth/year',
+	},
+	searchFilter: {
+		type: 0,
+		registration: '',
+		cpfOrCnpj: '',
+		name: '',
+		propostNumber: '',
 	},
 	beneficiaryData: {
 		registration: '',
@@ -153,6 +160,21 @@ const beneficiarySlice = createSlice({
 		},
 		setFilterYear: (state, action) => {
 			state.filter.year = action.payload
+		},
+		setSearchFilterType: (state, action) => {
+			state.searchFilter.type = action.payload
+		},
+		setSearchFilterRegistration: (state, action) => {
+			state.searchFilter.registration = action.payload
+		},
+		setSearchFilterCPFOrCNPJ: (state, action) => {
+			state.searchFilter.cpfOrCnpj = action.payload
+		},
+		setSearchFilterName: (state, action) => {
+			state.searchFilter.name = action.payload
+		},
+		setSearchFilterPropostNumber: (state, action) => {
+			state.searchFilter.propostNumber = action.payload
 		},
 		setSelectedClient: (state, action) => {
 			state.selectedClient = action.payload
@@ -446,6 +468,11 @@ export const {
 	setFilterMounth,
 	setFilterYear,
 	setFilterType,
+	setSearchFilterType,
+	setSearchFilterRegistration,
+	setSearchFilterName,
+	setSearchFilterCPFOrCNPJ,
+	setSearchFilterPropostNumber,
 	setSelectedClient, 
 	setStep, 
 	setAccountType,

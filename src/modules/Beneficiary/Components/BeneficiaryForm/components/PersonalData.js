@@ -46,7 +46,7 @@ export const PersonalData = ({
    const dispatch = useDispatch();
 
 	return (
-      <S.Fieldset>
+      <S.Fieldset id="data">
          <S.Legend>Dados </S.Legend>
          <S.Row>
             <Input
@@ -77,7 +77,6 @@ export const PersonalData = ({
                type="text"
                width="60%"
                label="Nome social"
-               optional
                value={personalData.socialName}
                action={setSocialName}
                optional={!personalData.hasSocialName}
@@ -197,7 +196,7 @@ export const PersonalData = ({
             />
          </S.Row>
 
-         <S.Row >
+         <S.Row last >
             <Input
                type="text"
                width="50%"
