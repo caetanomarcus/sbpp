@@ -23,7 +23,7 @@ import grayArrow from '../../../../assets/icons/gray-arrow.svg'
 import searchIcon from '../../../../assets/icons/search.svg'
 import right from '../../../../assets/icons/right.png';
 
-const pages = [0, 1, 2, 3, 4, 5]
+const pages = [0, 1, 2, 3, 4, 5, 6]
 
 // const classifications = [
 //     {
@@ -58,7 +58,7 @@ const InitialScreen = () => {
     const [searching, setSearching] = useState(false);
 
     const { registration, cpfOrCnpj, name, propostNumber, type } = searchFilter;
-    
+
 
 
     const registrationScreen = 'beneficiarios/pendentes/cadastro'
@@ -66,7 +66,7 @@ const InitialScreen = () => {
     const handleClickClassification = (position) => {
         setAtualPage(1);
         setPage(pages);
-       dispatch(setSelectedClient({}));
+        dispatch(setSelectedClient({}));
 
         if (position === type) {
             dispatch(setSearchFilterType(0));
@@ -98,7 +98,7 @@ const InitialScreen = () => {
     const closedPaymentClients = clients.filter(client => client.status === 4);
 
 
-    const _clients = type === 1 ? pendencyClients : type === 2 ? awaitingPaymentClients : type === 3 ? activePaymentClients : type ===4? closedPaymentClients: clients;
+    const _clients = type === 1 ? pendencyClients : type === 2 ? awaitingPaymentClients : type === 3 ? activePaymentClients : type === 4 ? closedPaymentClients : clients;
 
 
     const filteredClients = _clients.filter(client => {
@@ -108,7 +108,7 @@ const InitialScreen = () => {
         const _name = client.name.toLowerCase();
         const __name = name.toLowerCase();
 
-        if (registration && cpfOrCnpj  && __name  && propostNumber ) {
+        if (registration && cpfOrCnpj && __name && propostNumber) {
             return client.registration.includes(registration) && client.cpfOrCnpj.includes(cpfOrCnpj) && _name.includes(__name) && client.propostNumber.includes(propostNumber);
         }
 
@@ -124,7 +124,7 @@ const InitialScreen = () => {
             return client.registration.includes(registration) && _name.includes(__name);
         }
 
-        if(registration && propostNumber) {
+        if (registration && propostNumber) {
             return client.registration.includes(registration) && client.propostNumber.includes(propostNumber);
         }
 
@@ -161,7 +161,7 @@ const InitialScreen = () => {
 
     });
 
-    const totalOfPages = filteredClients?.length % 6 === 0 ? Math.floor(filteredClients?.length / 6) : Math.floor(filteredClients?.length / 6) + 1;
+    const totalOfPages = filteredClients?.length % 7 === 0 ? Math.floor(filteredClients?.length / 7) : Math.floor(filteredClients?.length / 7) + 1;
 
 
     const isSearching = registration !== '' || cpfOrCnpj !== ''
@@ -169,13 +169,13 @@ const InitialScreen = () => {
     const handlePagination = (direction) => {
 
         if ((direction === 'next' && ((page[page.length - 1]) < filteredClients?.length - 1))) {
-            setPage(page.map(item => item + 6))
+            setPage(page.map(item => item + 7))
 
             setAtualPage(atualPage + 1)
         }
 
         if ((direction === 'prev') && (page[0] !== 0)) {
-            setPage(page.map(item => item - 6))
+            setPage(page.map(item => item - 7))
 
             setAtualPage(atualPage - 1)
         }
@@ -183,7 +183,7 @@ const InitialScreen = () => {
     }
 
     const handleClickClient = (client) => {
-        if(client.status === 1) {
+        if (client.status === 1) {
             dispatch(setSelectedClient(client))
         }
     };
@@ -208,7 +208,7 @@ const InitialScreen = () => {
     }
 
     useEffect(() => {
-        if(atualPage > totalOfPages) {
+        if (atualPage > totalOfPages) {
             setAtualPage(1);
             setPage(pages);
         }
@@ -275,6 +275,7 @@ const InitialScreen = () => {
                         value={searchFilter.registration}
                         action={setSearchFilterRegistration}
                         cleanButton
+                        placeholder='Digite aqui para pesquisar...'
                     />
                     <Input
                         label='CPF/CNPJ'
@@ -282,6 +283,7 @@ const InitialScreen = () => {
                         value={searchFilter.cpfOrCnpj}
                         action={setSearchFilterCPFOrCNPJ}
                         cleanButton
+                        placeholder='Digite aqui para pesquisar...'
                     />
                     <Input
                         label='Nome'
@@ -289,6 +291,7 @@ const InitialScreen = () => {
                         value={searchFilter.name}
                         action={setSearchFilterName}
                         cleanButton
+                        placeholder='Digite aqui para pesquisar...'
                     />
                     <Input
                         label='Número Proposta'
@@ -296,6 +299,7 @@ const InitialScreen = () => {
                         value={searchFilter.propostNumber}
                         action={setSearchFilterPropostNumber}
                         cleanButton
+                        placeholder='Digite aqui para pesquisar...'
                     />
                     <S.FiltersButtonsBox>
                         <S.Label>Filtros</S.Label>
@@ -307,17 +311,16 @@ const InitialScreen = () => {
                         </S.ButtonsBox>
                     </S.FiltersButtonsBox>
                     <S.SearchBox>
-                        <S.SearchButton>
-                            <img src={searchIcon} alt='search' />
-                            Pesquisar
-                        </S.SearchButton>
+                        <S.ClearButton>
+                            Limpar todos os campos
+                        </S.ClearButton>
                     </S.SearchBox>
                 </S.SearchContainer>
                 <S.ResultContainer>
                     <S.ResultsAndPagination>
                         <p>( {filteredClients?.length} Resultados )</p>
                         <S.Pagination>
-                            <S.PaginationCounter> {atualPage} de {totalOfPages !== 0? totalOfPages: 1}</S.PaginationCounter>
+                            <S.PaginationCounter> {atualPage} de {totalOfPages !== 0 ? totalOfPages : 1}</S.PaginationCounter>
                             <S.PaginationButton left onClick={() => handlePagination('prev')} >
                             </S.PaginationButton>
                             <S.PaginationButton onClick={() => handlePagination('next')} >
@@ -345,7 +348,7 @@ const InitialScreen = () => {
                                     <S.ClientTexts width='22%'>{client.cpfOrCnpj}</S.ClientTexts>
                                     <S.ClientTexts width='17%'>{client.registration}</S.ClientTexts>
                                     <S.ClientTexts width='23%'>{client.propostNumber}</S.ClientTexts>
-                                    <S.StatusBox><S.Status color={setStatusColor(client.status)}/></S.StatusBox>
+                                    <S.StatusBox><S.Status color={setStatusColor(client.status)} /></S.StatusBox>
                                 </S.Clients>
                             }
 
@@ -358,12 +361,14 @@ const InitialScreen = () => {
                         <S.Line />
                     </S.ClientBox>
                     {selectedClient.name && (selectedClient.status === 1) && (
-                        <Button 
-                        handleClick={handleRegistration} 
-                        text='Seguir para o cadastro' 
-                        alt='icone para a direita' 
-                        source={right}
-                        width='177px' />
+                       <S.ButtonBox>
+                            <Button
+                            handleClick={handleRegistration}
+                            text='Seguir para o cadastro'
+                            alt='icone para a direita'
+                            source={right}
+                            width='177px' />
+                       </S.ButtonBox>
                     )}
                 </S.ResultContainer>
             </S.MiddleContainer>

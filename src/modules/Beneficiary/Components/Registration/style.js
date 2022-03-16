@@ -4,11 +4,12 @@ import registration from '../../../../assets/icons/registration.svg'
 
 export const Container = styled.section`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #EFEFEF;
-    padding: 0;
-    padding-top: 16px;
+    padding: 16px 0;
+    padding-bottom: 0;
     /* overflow: hidden; */
+    border-radius: 4px;
 `;
 
 export const Content = styled.div`
@@ -31,7 +32,8 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 4px;
+    margin-bottom: 0px;
 `;
 
 export const IconAndTitle = styled.div`
@@ -74,23 +76,49 @@ export const RegistrationFluxBox = styled.div`
 
 export const Circle = styled.div `
     position: relative;
-    width: 6px;
-    height: 6px;
-    background: ${props => props.steps? '#FF5000' : '#AAAAAA'};
+    width: 41px;
+    height: 41px;
+    background: ${props => props.steps? '#FF5000' : 'transparent'};
     border-radius: 50%;
+    margin-left: 20px;
+    margin-right: 10px;
+
+    :after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 80%;
+        background: url(${props => props.background});
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+`;
+
+export const StepBox = styled.div`
+    /* margin-left: 10px; */
+`;
+
+export const StepNumber = styled.p`
+    color: #5A5A5A;
+    font-size: 10px;
+    font-weight: 400;
 `;
 
 export const Step = styled.h3`
-    position: absolute;
-    bottom: -18px;
-    right: -30px;
+    /* position: absolute;
+    top: 50%;
+    left: 50px; */
     font-weight: 700;
     font-size: 10px;
     color: ${props => props.steps? '#FF5000': '#828282'};
 `;
 
 export const Line = styled.div`
-    width: 130px;
+    width: 72px;
     height: 2px;
     background: ${props => props.selected? '#AAAAAA' : '#EFEFEF'};
 `;
@@ -102,27 +130,32 @@ export const MiddleBox = styled.div`
 `;
 
 export const FormStepBox = styled.div`
-    width: 18%;
+    width: 14%;
     height: 100%;
     display:flex ;
     flex-direction: column;
-    justify-content: space-between ;
-    padding-top: 36px;
+    justify-content: flex-start ;
+    padding-top: 4px;
+`;
+
+export const UperBox = styled.div`
+    display: flex ;
+    flex-direction: column;
 `;
 
 export const FormBox = styled.div`
-    width: 64% ;
+    width: 72% ;
 `;
 
 export const NextButtonBox = styled.div`
-     width: 18%;
+     width: 14%;
      
 `;
 
 export const ButtonContainer = styled.div`
-    /* position: absolute;
+    position: absolute;
      bottom: 0;
-     right: 40px; */
+     right: 20px;
 `;
 
 export const SideListItem = styled.button`

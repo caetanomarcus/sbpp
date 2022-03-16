@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    height: 70%;
+    height: 72vh;
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 32px;
 `;
 
 export const Fieldset = styled.fieldset`

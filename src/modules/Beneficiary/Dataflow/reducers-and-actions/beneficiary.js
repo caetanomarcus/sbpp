@@ -35,7 +35,7 @@ const beneficiaryState = {
 			sex: '',
 			gender: '',
 			naturalness: '',
-			nationality: '',
+			nationality: 'Brasil',
 			hasDeathInformation: false,
 			deathDate: '',
 			deathInfoDate: '',

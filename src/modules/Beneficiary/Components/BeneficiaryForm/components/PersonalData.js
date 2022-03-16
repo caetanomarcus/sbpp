@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 // Style
@@ -39,11 +39,14 @@ export const PersonalData = ({
    setOpenNaturalness,
    openNationality,
    setOpenNationality,
+   dataActions,
 }) => {
 
 	//Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
    const dispatch = useDispatch();
+
+   const paises = countries.map(country => country.nome_pais);
 
 	return (
       <S.Fieldset id="data">
@@ -93,11 +96,13 @@ export const PersonalData = ({
                value={personalData.birthDate}
                action={setBirthDate}
                id='date'
+               marginRight='0'
             />
             <S.Label width="22%">Sexo
                <S.DivRadio>
-                  <S.LabelRadio>
-                     <S.RadioInput 
+                  <S.LabelRadio marginRight='0' >
+                     <S.RadioInput
+                        noMargin 
                         type='radio' 
                         name='sexo' 
                         value='Feminino'
@@ -121,7 +126,7 @@ export const PersonalData = ({
             </S.Label>
 
             <Select
-               width="20%"
+               width="16%"
                label="Gênero (opcional)"
                value={personalData.gender}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenGender, openGender ) }
@@ -136,30 +141,31 @@ export const PersonalData = ({
          </S.Row>
 
          <S.Row>
-            <Select
-               width="40%"
-               label="Naturalidade"
-               value={personalData.naturalness}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenNaturalness, openNaturalness ) }
-               options={countries}
-               toogle={setOpenNaturalness}
-               state={openNaturalness}
-               source={grayArrow}
-               action={setNaturalness}
-               isOpened={openNaturalness}
-            />
 
-            <Select
+         <Select
                width="40%"
                label="Nacionalidade"
                value={personalData.nationality}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenNationality, openNationality ) }
-               options={countries}
+               options={paises}
                toogle={setOpenNationality}
                state={openNationality}
                source={grayArrow}
                action={setNationality}
                isOpened={openNationality}
+            />
+
+            <Select
+               width="40%"
+               label="Naturalidade"
+               value={personalData.naturalness}
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenNaturalness, openNaturalness ) }
+               options={paises}
+               toogle={setOpenNaturalness}
+               state={openNaturalness}
+               source={grayArrow}
+               action={setNaturalness}
+               isOpened={openNaturalness}
             />
          </S.Row>
 

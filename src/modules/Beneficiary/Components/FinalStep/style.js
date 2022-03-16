@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Wrapper= styled.div`
+    height: 78.5vh ;
+    width: 100% ;
+`;
+
 export const Text = styled.p`
     font-size: 16px;
     font-weight: 400;

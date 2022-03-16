@@ -9,7 +9,7 @@ export const Label = styled.label`
     align-items: ${props => props.row? 'center': ''};
     font-size: 14px;
     font-family: "Aestetico", sans-serif;
-    margin-right: ${props => props.noLabel ? '0': '20px'};
+    margin-right: ${props => props.marginRight? props.marginRight: '20px'};
     position: relative;
     opacity: ${props => props.optional? '0.6': ''};
     margin-bottom: ${props => props.marginBottom};
@@ -34,6 +34,17 @@ export const Input = styled.input`
         background-color: #001E640B;
         box-shadow: inset 0px 1px 3px #00000029, 0px 0.5px 6px #00000008;
     }
+
+    ::placeholder {
+        color: #AAAAAA;
+    }
+`;
+
+export const SearchInput = styled.input`
+    width: 90%;
+    height: 100% ;
+    border: none;
+    outline: none;
 `;
 
 export const Select = styled.button`

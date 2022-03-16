@@ -27,7 +27,6 @@ export const cepMask = value => {
   }
 
   export const phoneMask = value => {
-    console.log(value.length)
     if(value.length >= 14) {
       return value
         .replace(/\D/g, '') // substitui qualquer caracter que nao seja numero por nada

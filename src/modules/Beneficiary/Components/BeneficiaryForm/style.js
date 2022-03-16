@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Form = styled.form`
     width: 100%;
-    height: 75vh;
+    height: 72vh;
     border: none;
-    margin-top: 36px;
+    /* margin-top: 36px; */
     overflow: auto;
+   
     /* width */
     ::-webkit-scrollbar {
         width: 8px;
@@ -78,7 +79,7 @@ export const LabelRadio = styled.label`
     font-weight: 400;
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin-right: ${props => props.marginRight? props.marginRight:'10px'};
 `;
 
 export const DivRadio = styled.div`

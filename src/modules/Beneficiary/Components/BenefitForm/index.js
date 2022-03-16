@@ -228,7 +228,7 @@ const BenefitForm = () => {
 					</S.PriceTableBody>
 				</S.PriceTableBox>
 			</S.Fieldset>
-			<S.Fieldset  id='contract'>
+			<S.Fieldset id='contract'>
 				<S.Legend>Convênio</S.Legend>
 				<S.Row>
 					<Input
@@ -297,7 +297,7 @@ const BenefitForm = () => {
 					</S.Row>
 				)}
 			</S.Fieldset>
-			<S.Fieldset  id='conditions'>
+			<S.Fieldset id='conditions'>
 				<S.Legend>Condições</S.Legend>
 				<S.Row>
 					<S.Label row>
@@ -373,9 +373,9 @@ const BenefitForm = () => {
 						<S.Row>
 							<S.Label > Motivo
 								<S.Row paddingLeft='0' paddingTop='16px'>
-								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Óbito' name='paymentSuspensionReason'  /> Óbito
-								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Doença' name='paymentSuspensionReason' marginLeft='16px' /> Doença
-								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Ausência de Prova de Vida' name='paymentSuspensionReason' marginLeft='16px' /> Óbito
+									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Óbito' name='paymentSuspensionReason' /> Óbito
+									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Doença' name='paymentSuspensionReason' marginLeft='16px' /> Doença
+									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Ausência de Prova de Vida' name='paymentSuspensionReason' marginLeft='16px' /> Ausência de Prova de Vida
 								</S.Row>
 							</S.Label>
 						</S.Row>
@@ -408,7 +408,7 @@ const BenefitForm = () => {
 			<S.Fieldset id='judicial'>
 				<S.Legend>Pensão Judicial</S.Legend>
 				<S.Row last={!courtPensionData.hasCourtPension}>
-				<S.Label noLabel row >
+					<S.Label noLabel row >
 						Adicionar dados de Pensão Judicial?
 						<S.Input
 							type="checkbox"
@@ -418,17 +418,17 @@ const BenefitForm = () => {
 					</S.Label>
 				</S.Row>
 				{courtPensionData.hasCourtPension && (
-						<>
+					<>
 						<S.Row>
-							<Input 
+							<Input
 								label='Matrícula Previdenciária'
 								value={courtPensionData.previdencyRegistration}
 								action={setPrevidencyRegistration}
 							/>
 							<Input
-							label='Matrícula do Pensionista'
-							value={courtPensionData.pensionistRegistration}
-							action={setPensionistRegistration}
+								label='Matrícula do Pensionista'
+								value={courtPensionData.pensionistRegistration}
+								action={setPensionistRegistration}
 							/>
 						</S.Row>
 						<S.Row >
@@ -441,7 +441,7 @@ const BenefitForm = () => {
 						</S.Row>
 						<S.Row>
 							<Select
-							width='20%'
+								width='20%'
 								label='Tipo de Pensão'
 								value={courtPensionData.pensionType}
 								handleClickSelect={(e) => handleOpenSelect(e, setOpenPensionType, openPensionType)}
@@ -450,17 +450,17 @@ const BenefitForm = () => {
 								action={setPensionType}
 								state={openPensionType}
 								options={['Morte', 'Doença', 'Teste']}
-								/>
+							/>
 							<Select
 								width='15%'
-							label='Tipo de Renda'
-							value={courtPensionData.incomeType}
-							handleClickSelect={(e) => handleOpenSelect(e, setOpenIncomeType, openIncomeType)}
-							source={arrow}
-							toogle={setOpenIncomeType}
-							action={setIncomeType}
-							state={openIncomeType}
-							options={['Renda Fixa', 'Renda Variável']}
+								label='Tipo de Renda'
+								value={courtPensionData.incomeType}
+								handleClickSelect={(e) => handleOpenSelect(e, setOpenIncomeType, openIncomeType)}
+								source={arrow}
+								toogle={setOpenIncomeType}
+								action={setIncomeType}
+								state={openIncomeType}
+								options={['Renda Fixa', 'Renda Variável']}
 							/>
 						</S.Row>
 						<S.Row>
@@ -474,7 +474,7 @@ const BenefitForm = () => {
 								action={setModality}
 								state={openModality}
 								options={['Por Valor', 'Por Percentual']}
-								/>
+							/>
 						</S.Row>
 						<S.Row>
 							<Input
@@ -510,8 +510,8 @@ const BenefitForm = () => {
 								placeholder="DD/MM/AAAA"
 							/>
 						</S.Row>
-						</>
-					)}
+					</>
+				)}
 			</S.Fieldset>
 		</S.Container>
 	)

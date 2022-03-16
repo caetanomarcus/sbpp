@@ -12,6 +12,13 @@ import BenefitForm from "../BenefitForm";
 //Images
 import right from '../../../../assets/icons/right.png';
 import FinalStep from "../FinalStep";
+import beneficiaryIcon from '../../../../assets/icons/beneficiary-icon.png';
+import financialIcon from '../../../../assets/icons/financial-icon.png';
+import benefitIcon from '../../../../assets/icons/benefit-icon.png';
+import beneficiaryIconOrange from '../../../../assets/icons/beneficiary-icon-orange.png';
+import financialIconOrange from '../../../../assets/icons/financial-icon-orange.png';
+import benefitIconGray from '../../../../assets/icons/benefit-icon-gray.png';
+import financialIconGray from '../../../../assets/icons/financial-icon-gray.png';
 
 const Registration = () => {
 
@@ -127,6 +134,24 @@ const Registration = () => {
 
 	}
 
+	const renderStepNumber = (step) => {
+		switch (step) {
+			case beneficiary:
+				return '1'
+			case financial:
+				return '2'
+			case benefit:
+				return '3'
+			default:
+				return null
+		}
+	}
+	const isBeneficiary = step === beneficiary;
+	const isFinancial = step === financial;
+	const isBenefit = step === benefit;
+	const isFinalStep = step === finalStep;
+
+
 	return (
 		<S.Container>
 			<S.Content>
@@ -137,24 +162,35 @@ const Registration = () => {
 					</S.IconAndTitle> */}
 					{step !== finalStep && (
 						<S.RegistrationFluxBox>
-							<S.Circle steps={step === beneficiary} >
-								<S.Step steps={step === beneficiary}  >BENEFICIÁRIO</S.Step>
+							<S.Circle background={isBeneficiary? beneficiaryIcon: beneficiaryIconOrange} steps={isBeneficiary} isPastStep={ isFinancial || isBenefit} >
 							</S.Circle>
-							<S.Line selected={(step === financial) || step === benefit} />
-							<S.Circle steps={step === financial}  >
-								<S.Step steps={step === financial}  >FINANCEIRO</S.Step>
+							{ (step === beneficiary) && <S.StepBox>
+									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+									<S.Step id='benecifiaryStep' steps={isBeneficiary}  >BENEFICIÁRIO</S.Step>
+								</S.StepBox>}
+							<S.Line  />
+							<S.Circle  background={ isFinancial? financialIcon: isBeneficiary? financialIconGray: financialIconOrange} steps={isFinancial}  >
 							</S.Circle>
-							<S.Line selected={step === benefit} />
-							<S.Circle steps={step === benefit} >
-								<S.Step steps={step === benefit} >BENEFÍCIO</S.Step>
+								{ (isFinancial || isBenefit) && <S.StepBox>
+									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+									<S.Step id='financialStep' steps={isFinancial}  >FINANCEIRO</S.Step>
+									</S.StepBox>}
+							<S.Line  />
+							<S.Circle  background={isBenefit? benefitIcon: benefitIconGray} steps={isBenefit} >
 							</S.Circle>
+								{isBenefit && <S.StepBox>
+									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+									<S.Step steps={isBenefit} >BENEFÍCIO</S.Step>
+								</S.StepBox> }
 						</S.RegistrationFluxBox>
 					)}
 					{/* <S.CancelButton onClick={handleClickCancel} >Cancelar</S.CancelButton> */}
 				</S.Header>
 				<S.MiddleBox>
 					<S.FormStepBox>
-						{renderSideList()}
+						<S.UperBox>
+							{renderSideList()}
+						</S.UperBox>
 						{step !== beneficiary && (<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
 					</S.FormStepBox>
 					<S.FormBox>

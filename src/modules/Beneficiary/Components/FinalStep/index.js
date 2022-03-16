@@ -18,7 +18,7 @@ const FinalStep = () => {
     const dispatch = useDispatch();
 
     return (
-        <>
+        <S.Wrapper>
             <S.Text>Cadastro realizado com sucesso!</S.Text>
             <S.Container>
                 <S.Row noMargin >
@@ -198,7 +198,7 @@ const FinalStep = () => {
                     </S.TextBox>
                     </S.Row>
             </S.Container>
-        </>
+        </S.Wrapper>
     )
 }
 

@@ -71,7 +71,7 @@ const FinancialForm = () => {
                     isOpened={openPayment}
                 />
                 <S.Label>
-                    <S.RadioInput checked type='radio' name='account' />
+                    <S.RadioInput checked type='radio' name='account' readOnly />
                     Nacional
                 </S.Label>
                 <S.Label isDisabled>
@@ -81,7 +81,7 @@ const FinancialForm = () => {
             </S.Row>
             <S.Row>
                 <Select
-                    width="15%"
+                    width="35%"
                     label="Tipo de Conta"
                     value={bankData.accountType}
                     handleClickSelect={(e) => handleOpenSelect(e, setOpenAccount, openAccount)}
@@ -93,7 +93,7 @@ const FinancialForm = () => {
                     isOpened={openAccount}
                 />
                 <Select
-                    width="30%"
+                    width="65%"
                     label="Banco"
                     value={bankData.bank.name}
                     handleClickSelect={(e) => handleOpenSelect(e, setOpenBanks, openBanks)}
@@ -166,7 +166,7 @@ const FinancialForm = () => {
                 />
                 <Input
                     type='text'
-                    width='20%'
+                    width='55%'
                     label='CPF'
                     optional={!bankData.hasPowerOfAttorney}
                     disabled={!bankData.hasPowerOfAttorney}

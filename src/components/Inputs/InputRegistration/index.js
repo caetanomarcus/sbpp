@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import {setAllAdress , setAllAdressOptional} from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
@@ -25,6 +25,7 @@ export const Input = ({
 	adressState,
 	maxLength,
 	marginBottom,
+	marginRight,
 	cleanButton
 
 }) => {
@@ -34,8 +35,6 @@ export const Input = ({
 
 	const handleChange = (e, setFunction) => {
 		e.preventDefault();
-
-		console.log(id)
 
 		switch(id) {
 			case 'cep':
@@ -81,7 +80,6 @@ export const Input = ({
 				fetch(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
-					console.log(data)
 					const newData ={
 					cep: value,
 					address: data.logradouro,
@@ -106,7 +104,6 @@ export const Input = ({
 				fetch(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
-					console.log(data)
 					const newData ={
 					cep: value,
 					address: data.logradouro,
@@ -126,14 +123,11 @@ export const Input = ({
 				})
 			
 			}
-
-
-		
 		
 	}
 
 	return (
-		<S.Label width={width} row={row} optional={optional} marginBottom={marginBottom}> {label}
+		<S.Label width={width} row={row} optional={optional} marginBottom={marginBottom} marginRight={marginRight} > {label}
 			<S.Input
 				type={type}
 				widthInput={widthInput}
@@ -179,7 +173,29 @@ export const Select = ({
 	typeState
 }) => {
 
+	const [opcoes, setOpcoes] = useState(options)
+
 	const dispatch = useDispatch();
+
+	function removerSpecials(texto) {
+        // eliminando acentuação
+    texto = texto.replace(/[ÀÁÂÃÄÅ]/,"A");
+    texto = texto.replace(/[àáâãäå]/,"a");
+    texto = texto.replace(/[ÈÉÊË]/,"E");
+	texto = texto.replace(/[èéêë]/,"e");
+    texto = texto.replace(/[Ç]/,"C");
+    texto = texto.replace(/[ç]/,"c");
+	texto = texto.replace(/[ÌÍÎÏ]/,"I");
+	texto = texto.replace(/[ìíîï]/,"i");
+	texto = texto.replace(/[ÒÓÔÕÖ]/,"O");
+	texto = texto.replace(/[òóôõö]/,"o");
+	texto = texto.replace(/[ÙÚÛÜ]/,"U");
+	texto = texto.replace(/[ùúûü]/,"u");
+	texto = texto.replace(/[ÿ]/,"y");
+	texto = texto.replace(/[Ñ]/,"N");
+	texto = texto.replace(/[ñ]/,"n");
+    return texto.replace(/[^a-z0-9]/gi,''); 
+}
 
 	const handleClick = (e, option) => {
 		e.preventDefault();
@@ -189,11 +205,23 @@ export const Select = ({
 			return
 		}
 		dispatch(action(option))
+		setOpcoes(options)
 		toogle(!state)
 	}
 
+	const handleChange = (e, setFunction) => {
+		if(options.length > 10){
+			e.preventDefault();
+		dispatch(setFunction(e.target.value))
+		if(e.target.value !== '') {
+			const newOptions = options.filter(option => removerSpecials(option).toLowerCase().includes(removerSpecials(e.target.value).toLowerCase()))
+			setOpcoes(newOptions)
+		}
+		}
+	}
 
 	const calcHeight = options.length > 3 ? (options.length * 32) + .5: 'fit-content'
+
 
 	return (
 		<>
@@ -203,7 +231,14 @@ export const Select = ({
 			noLabel={noLabel}
 			> {label}
 				<S.Select onClick={handleClickSelect} disabled={disabled} outline={state} >
-					{value}
+					{/* {value} */}
+				<S.SearchInput 
+				value={value}
+				onChange={(e) => handleChange(e, action)} 
+				readOnly={(options.length < 10) || !state}
+				// onBlur={handleBlur}
+				// onFocus={handleFocus}
+				/>
 					<S.Arrow
 						src={source}
 						isOpened={state}
@@ -213,7 +248,7 @@ export const Select = ({
 
 				{state && (
 					<S.Options height={calcHeight} initialModal={initialModal} width={width} >
-						{options.map((option, index) => {
+						{opcoes.map((option, index) => {
 							return (
 								<S.Button
 									key={index}

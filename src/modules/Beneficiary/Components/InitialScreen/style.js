@@ -100,7 +100,7 @@ export const ResultsAndPagination = styled.div`
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #82828233;
-    margin-bottom: 16.5px;
+    margin-bottom: 10px;
 
     p{
         color: #5A5A5A;
@@ -152,7 +152,7 @@ export const PaginationCounter = styled.p`
 `;
 
 export const Pagination = styled.div`
-    width: 15%;
+    width: 10%;
     height: 30px;
     display: flex;
     justify-content: space-between;
@@ -194,7 +194,16 @@ export const ClientBox = styled.div`
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid #D2D2D2;
+    margin-bottom: 6px;
 
+`;
+
+export const ButtonBox = styled.div`
+    display: flex;
+    height:100% ;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const MenssageBox = styled.div`
@@ -421,18 +430,18 @@ export const SearchBox = styled.div`
     margin: 0 auto;
 `;
 
-export const SearchButton = styled.button`
-    width: 106px;
-    height: 30px;
+export const ClearButton = styled.button`
+    /* width: 106px;
+    height: 30px; */
     display: flex;
     justify-content:space-evenly;
     align-items: center;
     background: #5A5A5A;
     border-radius: 19px;
     border: none;
-    background-color: #5A5A5A;
-    font: 600 14px 'Aestetico', sans-serif;
-    color: #FFFFFF;
+    background-color: transparent;
+    font: 400 10px 'Aestetico', sans-serif;
+    color: #828282;
     cursor: pointer;
     margin-top: 35px;
 
@@ -447,6 +456,8 @@ export const SearchButton = styled.button`
 export const ResultContainer = styled.div`
     width: 100%;
     padding: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display:flex ;
     flex-direction: column;
     align-items: center;
