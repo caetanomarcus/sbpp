@@ -16,7 +16,6 @@ export const Input = ({
 	row,
 	optional,
 	disabled,
-	isDisabled,
 	placeholder,
 	noPadding,
 	isDetailed,
@@ -109,7 +108,6 @@ export const Input = ({
 				widthInput={widthInput}
 				HeightInput={HeightInput}
 				value={value}
-				isDisabled={isDisabled}
 				disabled={disabled}
 				onChange={(e) => handleChange(e, action)}
 				noPadding={noPadding}

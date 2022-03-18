@@ -69,7 +69,6 @@ const BenefitForm = () => {
 						label="Produto"
 						value="201 - Tradicional Individual"
 						disabled
-						isDisabled
 						noPadding
 					/>
 
@@ -88,7 +87,6 @@ const BenefitForm = () => {
 						label="Número da Proposta"
 						value="1829203818301182"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<Input
@@ -97,7 +95,6 @@ const BenefitForm = () => {
 						label="Data da proposta"
 						value="01/03/2022"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<Input
@@ -115,7 +112,6 @@ const BenefitForm = () => {
 						label="Tipo de Tributação"
 						value="Progressivo"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<S.Label noLabel row>
@@ -136,7 +132,6 @@ const BenefitForm = () => {
 						label="Valor de Reserva"
 						value="R$5.000,00"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<S.Label>
@@ -237,7 +232,6 @@ const BenefitForm = () => {
 						label="Código Convênio"
 						value="1996"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<Input
@@ -246,7 +240,6 @@ const BenefitForm = () => {
 						label="Nome da Empresa"
 						value="Sul América Companhia Nacional de Seguros"
 						disabled
-						isDisabled
 						noPadding
 					/>
 
@@ -258,7 +251,6 @@ const BenefitForm = () => {
 						label="Código Filial"
 						value="001"
 						disabled
-						isDisabled
 						noPadding
 					/>
 					<Input
@@ -267,7 +259,6 @@ const BenefitForm = () => {
 						label="Nome da Empresa"
 						value="Sul América Companhia Nacional de Seguros"
 						disabled
-						isDisabled
 						noPadding
 					/>
 				</S.Row>

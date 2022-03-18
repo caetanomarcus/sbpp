@@ -25,7 +25,6 @@ export const Participant = ({
                label="Matrícula"
                value={client.registration}
                disabled
-               isDisabled
                noPadding
                action={setRegistration}
             />
@@ -36,7 +35,6 @@ export const Participant = ({
                label="CPF/CNPJ"
                value={client.cpfOrCnpj}
                disabled
-               isDisabled
                noPadding
                action={setCpfOrCnpj}
             />
