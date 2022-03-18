@@ -35,6 +35,9 @@ import {
 
 import arrow from "../../../../assets/icons/gray-arrow.svg";
 
+//utils
+import { handleOpenSelect } from "../../utils";
+
 
 const BenefitForm = () => {
 
@@ -51,11 +54,6 @@ const BenefitForm = () => {
 	const agreementData = useSelector(state => state.beneficiary.beneficiaryData.agreementData);
 	const conditionsData = useSelector(state => state.beneficiary.beneficiaryData.conditionsData);
 	const courtPensionData = useSelector(state => state.beneficiary.beneficiaryData.courtPensionData);
-
-	const handleOpenSelect = (e, setFunction, state) => {
-		e.preventDefault();
-		setFunction(!state);
-	}
 
 	const dispatch = useDispatch();
 
@@ -161,6 +159,7 @@ const BenefitForm = () => {
 						action={setPaymentStartDate}
 						placeholder="DD/MM/AAAA"
 						id='date'
+						mask='99/99/9999'
 					/>
 					<Input
 						type='text'
@@ -169,6 +168,7 @@ const BenefitForm = () => {
 						action={setPaymentEndDate}
 						placeholder="DD/MM/AAAA"
 						id='date'
+						mask='99/99/9999'
 
 					/>
 				</S.Row>
@@ -322,6 +322,7 @@ const BenefitForm = () => {
 								type='text'
 								id='date'
 								placeholder="DD/MM/AAAA"
+								mask="99/99/9999"
 							/>
 						</S.Row>
 						<S.Row>
@@ -346,7 +347,7 @@ const BenefitForm = () => {
 								action={setCid}
 								placeholder='0.000-0.000'
 								id='cid'
-								maxLength={11}
+								mask="9.999-9.999"
 							/>
 							<S.Label noLabel  >Descrição
 								<S.Row paddingLeft='0' last>
@@ -388,7 +389,7 @@ const BenefitForm = () => {
 								action={setPaymentSuspensionCid}
 								placeholder='0.000-0.000'
 								id='cid'
-								maxLength={11}
+								mask="9.999-9.999"
 							/>
 							<S.Label noLabel  >Descrição
 								<S.Row paddingLeft='0'>
@@ -499,6 +500,7 @@ const BenefitForm = () => {
 								type='text'
 								id='date'
 								placeholder="DD/MM/AAAA"
+								mask='99/99/9999'
 							/>
 							<Input
 								width='12%'
@@ -508,6 +510,7 @@ const BenefitForm = () => {
 								type='text'
 								id='date'
 								placeholder="DD/MM/AAAA"
+								mask='99/99/9999'
 							/>
 						</S.Row>
 					</>

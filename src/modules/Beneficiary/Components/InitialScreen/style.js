@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import arrow from '../../../../assets/icons/arrow.svg'
+import arrow from '../../../../assets/icons/arrow-right.svg'
+import arrowLeft from '../../../../assets/icons/arrow-left.svg'
 // import orange from '../../../../assets/images/orange-footer.png'
 
 
@@ -170,17 +171,16 @@ export const PaginationButton = styled.button`
     cursor: pointer;
     color: #5A5A5A;
     font: 400 12px 'Aestetico', sans-serif;
-    transform: rotate(${props => props.left ? '-90deg' : '90deg'});
 
     :after {
         content: '';
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: ${props => props.left ? 'translate(-45%, -50%)' : 'translate(-60%, -50%)'};
-        width: 8px;
-        height: 8px;
-        background: url(${arrow});
+        transform: translate(-50%, -50%);
+        width: 7px;
+        height: 12px;
+        background: url(${props => props.left? arrowLeft :arrow});
         background-size: cover;
         background-position: center;
     }

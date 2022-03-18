@@ -25,8 +25,8 @@ const beneficiaryState = {
 		registration: '',
 		cpfOrCnpj: '',
 		personalData: {
-			registration:'',
-			identification: '',
+			// registration:'',
+			// identification: '',
 			name: '',
 			email: '',
 			hasSocialName: false,
@@ -35,6 +35,8 @@ const beneficiaryState = {
 			sex: '',
 			gender: '',
 			naturalness: '',
+			uf: '',
+			ufList: [],
 			nationality: 'Brasil',
 			hasDeathInformation: false,
 			deathDate: '',
@@ -219,6 +221,12 @@ const beneficiarySlice = createSlice({
 		},
 		setGender: (state, action) => {
 			state.beneficiaryData.personalData.gender = action.payload
+		},
+		setPersonalDataUf: (state, action) => {
+			state.beneficiaryData.personalData.uf = action.payload
+		},
+		setUfList: (state, action) => {
+			state.beneficiaryData.personalData.ufList = action.payload
 		},
 		setNaturalness: (state, action) => {
 			state.beneficiaryData.personalData.naturalness = action.payload
@@ -491,6 +499,8 @@ export const {
 	setGender,
 	setNaturalness,
 	setNationality,
+	setPersonalDataUf,
+	setUfList,
 	setHasDeathInformation,
 	setDeathDate,
 	setDeathInfoDate,

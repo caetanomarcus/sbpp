@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import InputMask from 'react-input-mask';
 
-export const Label = styled.label`
+export const Label = styled.div`
     width: ${props => props.width};
     display: flex;
     flex-direction: ${props => props.row? 'row': 'column'};
@@ -13,14 +14,17 @@ export const Label = styled.label`
     position: relative;
     opacity: ${props => props.optional? '0.6': ''};
     margin-bottom: ${props => props.marginBottom};
+    margin-top: ${props => props.noLabel? '19px': '0'};
+    opacity: ${props => props.disabled? '0.6': ''};
 
 `;
 
-export const Input = styled.input`
+export const Input = styled(InputMask)`
     width: ${props => props.widthInput? props.widthInput: '100%' };
     height: ${props => props.heightInput? props.heightInput: '32px' };
     background: transparent;
     border: ${props => props.disabled? 'none' : '1px solid #D1D1D1'};
+    border-left: ${props => props.borderLeft};
     border-radius: 3px; 
     outline: none;
     color: #323232;
@@ -45,9 +49,14 @@ export const SearchInput = styled.input`
     height: 100% ;
     border: none;
     outline: none;
+
+    ::placeholder {
+        color: #AAAAAA;
+    }
+
 `;
 
-export const Select = styled.button`
+export const Select = styled.div`
     width: ${props => props.width };
     height: 32px;
     background: transparent;
@@ -69,6 +78,7 @@ export const Arrow = styled.img`
     position: absolute;
     right: 10px;
     top: 40%;
+    cursor: ${props => props.disabled? 'default': 'pointer'};} ;
 `
 
 export const Options = styled.div`

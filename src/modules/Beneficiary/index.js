@@ -9,6 +9,7 @@ import Query from './Components/Query';
 import Registration from './Components/Registration';
 import Modal from '../../components/modal/Modal';
 
+
 const Beneficiary = () => {
 
     //Redux State

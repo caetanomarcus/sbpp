@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="40" viewBox="0 0 30 40">
+  <defs>
+    <clipPath id="clip-Icone_seta_direita">
+      <rect width="30" height="40"/>
+    </clipPath>
+  </defs>
+  <g id="Icone_seta_direita" clip-path="url(#clip-Icone_seta_direita)">
+    <path id="Path_37305" data-name="Path 37305" d="M17.217,3.257,13.96,0,0,13.96l13.96,13.96,3.257-3.257-10.7-10.7Z" transform="translate(23.608 33.96) rotate(-180)" fill="#ff5000"/>
+  </g>
+</svg>

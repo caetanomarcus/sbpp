@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setHasMailAdress, setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
@@ -8,7 +8,7 @@ import { Input, Select } from '../../../../../components/Inputs/InputRegistratio
 import grayArrow from '../../../../../assets/icons/gray-arrow.svg';
 
 // mocks
-import { ufs } from '../mocks';
+import { ufs as _ufs } from '../mocks';
 
 // actions
 import { 
@@ -32,7 +32,7 @@ import {
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
-import { handleOpenSelect } from '../handles'
+import { handleOpenSelect } from '../../../utils';
 
 export const Address = ({
    openUfDefault,
@@ -49,7 +49,13 @@ export const Address = ({
    const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
    const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressOptional);
 
+   //refs
+   const adress1Ref = useRef();
+   const adress2Ref = useRef();
+
    const dispatch = useDispatch();
+
+   const ufs = _ufs.map(uf => uf.sigla);
 
 
 	return (
@@ -66,6 +72,7 @@ export const Address = ({
                action={setCepDefault}
                id='cep'
                adressState={addressDefault}
+               mask="99999-999"
             />
 
             <Input
@@ -94,7 +101,7 @@ export const Address = ({
                label="Complemento (opcional)"
                value={addressDefault.complement}
                action={setComplementDefault}
-               optional
+               
             />
          </S.Row>
 
@@ -127,23 +134,23 @@ export const Address = ({
                source={grayArrow}
                value={addressDefault.uf}
                action={setUfDefault}
-               // toogle={setOpenUfDefault}
+               toogle={setOpenUfDefault}
                state={openUfDefault}
                // isOpened={openUfDefault}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault ) }
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault, adress1Ref ) }
+               element={adress1Ref}
             />
          </S.Row>
 
          <S.Row last={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email') }>
-          <S.Label row width="100%">
+          <S.Label row width="fit-content">
           Deseja receber correspondência por : 
-               <S.DivRadio width='50%' marginLeft >
+               <S.DivRadio width='fit-content' marginLeft >
                   <S.LabelRadio>
                      <S.RadioInput 
                         type='radio' 
                         name='correspondence' 
                         value='Correios'
-                        action={setAdressType}
                         onChange={(e) => dispatch(setAdressType(e.target.value))}
                      />
                      Correios
@@ -154,7 +161,6 @@ export const Address = ({
                         type='radio' 
                         name='correspondence' 
                         value='Email'
-                        action={setAdressType}
                         onChange={(e) => dispatch(setAdressType(e.target.value))}
                      />
                      Email
@@ -182,6 +188,7 @@ export const Address = ({
                action={setCepOptional}
                id='cep'
                adressState={addressOptional}
+               mask="99999-999"
             />
 
             <Input
@@ -265,7 +272,8 @@ export const Address = ({
                toogle={setOpenUfOptional}
                state={openUfOptional}
                isOpened={openUfOptional}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfOptional, openUfOptional ) }
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfOptional, openUfOptional, adress2Ref ) }
+               element={adress2Ref}
             />
          </S.Row>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Select } from "../../../../components/Inputs/InputRegistration";
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -19,7 +19,11 @@ import {
 } from '../../Dataflow/reducers-and-actions/beneficiary';
 import * as S from './style'
 
+// images
 import grayArrow from '../../../../assets/icons/gray-arrow.svg'
+
+//utils
+import { handleOpenSelect } from '../../utils'
 
 const FinancialForm = () => {
     //Local State
@@ -34,11 +38,11 @@ const FinancialForm = () => {
     const bankData = useSelector(state => state.beneficiary.beneficiaryData.bankData);
     const dispatch = useDispatch();
 
+    //refs
+    const paymentMethodRef = useRef();
+    const bankRef = useRef();
+    const accountTypeRef = useRef();
 
-    const handleOpenSelect = (e, setFunction, state) => {
-        e.preventDefault();
-        setFunction(!state);
-    }
 
     const accountTypes = ['Conta Corrente', 'Poupança'];
 
@@ -62,13 +66,14 @@ const FinancialForm = () => {
                     width="25%"
                     label="Forma de Pagamento"
                     value={bankData.paymentMethod}
-                    handleClickSelect={(e) => handleOpenSelect(e, setOpenPayment, openPayment)}
+                    handleClickSelect={(e) => handleOpenSelect(e, setOpenPayment, openPayment, paymentMethodRef)}
                     options={payments}
                     toogle={setOpenPayment}
                     state={openPayment}
                     source={grayArrow}
                     action={setPaymentMethod}
                     isOpened={openPayment}
+                    element={paymentMethodRef}
                 />
                 <S.Label>
                     <S.RadioInput checked type='radio' name='account' readOnly />
@@ -84,25 +89,27 @@ const FinancialForm = () => {
                     width="35%"
                     label="Tipo de Conta"
                     value={bankData.accountType}
-                    handleClickSelect={(e) => handleOpenSelect(e, setOpenAccount, openAccount)}
+                    handleClickSelect={(e) => handleOpenSelect(e, setOpenAccount, openAccount, accountTypeRef)}
                     options={accountTypes}
                     toogle={setOpenAccount}
                     state={openAccount}
                     source={grayArrow}
                     action={setAccountType}
                     isOpened={openAccount}
+                    element={accountTypeRef}
                 />
                 <Select
                     width="65%"
                     label="Banco"
                     value={bankData.bank.name}
-                    handleClickSelect={(e) => handleOpenSelect(e, setOpenBanks, openBanks)}
+                    handleClickSelect={(e) => handleOpenSelect(e, setOpenBanks, openBanks, bankRef)}
                     options={banks}
                     toogle={setOpenBanks}
                     state={openBanks}
                     source={grayArrow}
                     action={setBank}
                     isOpened={openBanks}
+                    element={bankRef}
                 />
             </S.Row>
             <S.Row>
@@ -114,6 +121,7 @@ const FinancialForm = () => {
                     action={setAgency}
                     id="agency"
                     placeholder='0000-0'
+                    mask='9999-9'
 
                 />
                 <Input
@@ -134,6 +142,7 @@ const FinancialForm = () => {
                     action={setAccountNumber}
                     id="account"
                     placeholder='00000-0'
+                    mask='99999-9'
 
                 />
                 <Input

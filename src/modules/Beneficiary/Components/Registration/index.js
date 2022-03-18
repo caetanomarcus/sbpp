@@ -9,9 +9,9 @@ import BeneficiaryForm from "../BeneficiaryForm";
 import FinancialForm from "../FinancialForm";
 import BenefitForm from "../BenefitForm";
 
+import FinalStep from "../FinalStep";
 //Images
 import right from '../../../../assets/icons/right.png';
-import FinalStep from "../FinalStep";
 import beneficiaryIcon from '../../../../assets/icons/beneficiary-icon.png';
 import financialIcon from '../../../../assets/icons/financial-icon.png';
 import benefitIcon from '../../../../assets/icons/benefit-icon.png';
@@ -19,6 +19,7 @@ import beneficiaryIconOrange from '../../../../assets/icons/beneficiary-icon-ora
 import financialIconOrange from '../../../../assets/icons/financial-icon-orange.png';
 import benefitIconGray from '../../../../assets/icons/benefit-icon-gray.png';
 import financialIconGray from '../../../../assets/icons/financial-icon-gray.png';
+
 
 const Registration = () => {
 
@@ -171,7 +172,7 @@ const Registration = () => {
 							<S.Line  />
 							<S.Circle  background={ isFinancial? financialIcon: isBeneficiary? financialIconGray: financialIconOrange} steps={isFinancial}  >
 							</S.Circle>
-								{ (isFinancial || isBenefit) && <S.StepBox>
+								{ (isFinancial ) && <S.StepBox>
 									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
 									<S.Step id='financialStep' steps={isFinancial}  >FINANCEIRO</S.Step>
 									</S.StepBox>}

@@ -26,6 +26,7 @@ export const Logo = styled.img`
 export const SulaLogo = styled.img`
     width: 104px;
     height: 31px;
+    margin-bottom: 4px;
 `;
 
 
@@ -55,9 +56,9 @@ export const LeaveButton = styled.button`
         content: '';
         position: absolute;
         top: 50%;
-        left: 5px;
-        width: 16px;
-        height: 14px;
+        left: 2px;
+        width: 26px;
+        height: 24px;
         background-image: url(${logoLeaveGray});
         background-repeat: no-repeat;
         background-size: contain;

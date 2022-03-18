@@ -27,6 +27,8 @@ export const Contact = () => {
                value={contact.phone1}
                action={setPhone1}
                id='phone'
+               placeholder={'(00) 0000-0000'}
+              
             />
             <Input
                type="text"
@@ -35,6 +37,8 @@ export const Contact = () => {
                value={contact.phone2}
                action={setPhone2}
                id='phone'
+               placeholder={'(00) 0000-0000'}
+              
             />
          </S.Row>
       </S.Fieldset>

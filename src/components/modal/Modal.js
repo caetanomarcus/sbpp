@@ -24,8 +24,7 @@ const typeFinish = {
 
 const Modal = () => {
     const modalType = useSelector(state => state.beneficiary.modalType);
-    const isModalOpen = useSelector(state => state.beneficiary.modalOpen);
-
+    
     const initial = 'inicio';
 
     const dispatch = useDispatch();

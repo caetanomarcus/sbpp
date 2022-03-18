@@ -15,6 +15,7 @@ const Form = () => {
 	const [openGender, setOpenGender] = useState(false);
 	const [openNaturalness, setOpenNaturalness] = useState(false);
 	const [openNationality, setOpenNationality] = useState(false);
+	const [openUfData, setOpenUfData] = useState(false);
 
 	// Documents local status
    const [openUfRG, setOpenUfRG] = useState(false);
@@ -44,6 +45,8 @@ const Form = () => {
 				setOpenNaturalness = {setOpenNaturalness}
 				openNationality = {openNationality}
 				setOpenNationality = {setOpenNationality}
+				openUfData = {openUfData}
+				setOpenUfData = {setOpenUfData}
 			/>
 
 			<Document 

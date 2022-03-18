@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from "react-redux";
 
 // Style
@@ -7,7 +7,7 @@ import { Input, Select } from '../../../../../components/Inputs/InputRegistratio
 import grayArrow from '../../../../../assets/icons/gray-arrow.svg';
 
 // mocks
-import { ufs } from '../mocks';
+import { ufs as _ufs }  from '../mocks';
 
 // actions
 import { 
@@ -18,7 +18,7 @@ import {
 } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // handles
-import { handleOpenSelect } from '../handles'
+import { handleOpenSelect } from '../../../utils'
 
 export const Document = ({
    openUfRG,
@@ -27,6 +27,10 @@ export const Document = ({
 
    //Redux State and dispatch
    const document = useSelector(state => state.beneficiary.beneficiaryData.document);
+
+   const ufs = _ufs.map(uf => uf.sigla);
+
+   const ufRef = useRef();
 
 
 	return (
@@ -40,6 +44,7 @@ export const Document = ({
                value={document.rg}
                action={setRg}
                id='rg'
+               mask="99.999.999-9"
             />
             <Input
                type="text"
@@ -59,7 +64,8 @@ export const Document = ({
                state={openUfRG}
                isOpened={openUfRG}
                isDetailed
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfRG, openUfRG ) }
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenUfRG, openUfRG, ufRef ) }
+               element={ufRef}
                />
             <Input
                type="text"
@@ -70,6 +76,7 @@ export const Document = ({
                value={document.issueDate}
                action={setIssueDate}
                id='date'
+               mask="99/99/9999"
             />
          </S.Row>
       </S.Fieldset>

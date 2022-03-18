@@ -321,9 +321,9 @@ const InitialScreen = () => {
                         <p>( {filteredClients?.length} Resultados )</p>
                         <S.Pagination>
                             <S.PaginationCounter> {atualPage} de {totalOfPages !== 0 ? totalOfPages : 1}</S.PaginationCounter>
-                            <S.PaginationButton left onClick={() => handlePagination('prev')} >
+                            <S.PaginationButton aria-label="lista prévia" left onClick={() => handlePagination('prev')} >
                             </S.PaginationButton>
-                            <S.PaginationButton onClick={() => handlePagination('next')} >
+                            <S.PaginationButton aria-label="próxima lista" onClick={() => handlePagination('next')} >
                             </S.PaginationButton>
                         </S.Pagination>
                     </S.ResultsAndPagination>

@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './style'
-import { useSelector, useDispatch } from "react-redux";
-import {setAllAdress , setAllAdressOptional} from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
+import { useDispatch } from "react-redux";
+import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
 import { cepMask, rgMask, cpfMask, dateMask, phoneMask, agencyMask, accountMask, cidMask } from './masks';
 import cross from '../../../assets/icons/cross.svg';
+import InputMask from 'react-input-mask';
 
 
 export const Input = ({
@@ -26,7 +27,8 @@ export const Input = ({
 	maxLength,
 	marginBottom,
 	marginRight,
-	cleanButton
+	cleanButton,
+	mask
 
 }) => {
 
@@ -36,94 +38,90 @@ export const Input = ({
 	const handleChange = (e, setFunction) => {
 		e.preventDefault();
 
-		switch(id) {
-			case 'cep':
-				dispatch(setFunction(cepMask(e.target.value)))
-				return
-			case 'rg':
-				dispatch(setFunction(rgMask(e.target.value)))
-				return
-			case 'cpf':
-				dispatch(setFunction(cpfMask(e.target.value)))
-				return
-			case 'date':
-				dispatch(setFunction(dateMask(e.target.value)))
-				return
+		switch (id) {
+			// case 'cep':
+			// 	dispatch(setFunction(cepMask(e.target.value)))
+			// 	return
+			// case 'rg':
+			// 	dispatch(setFunction(rgMask(e.target.value)))
+			// 	return
+			// case 'cpf':
+			// 	dispatch(setFunction(cpfMask(e.target.value)))
+			// 	return
+			// case 'date':
+			// 	dispatch(setFunction(dateMask(e.target.value)))
+			// 	return
 			case 'phone':
 				dispatch(setFunction(phoneMask(e.target.value)))
 				return
-			case 'agency':
-				dispatch(setFunction(agencyMask(e.target.value)))
-				return
-			case 'account':
-				dispatch(setFunction(accountMask(e.target.value)))
-				return
-			case 'cid':
-				dispatch(setFunction(cidMask(e.target.value)))
-				return
+			// case 'agency':
+			// 	dispatch(setFunction(agencyMask(e.target.value)))
+			// 	return
+			// case 'account':
+			// 	dispatch(setFunction(accountMask(e.target.value)))
+			// 	return
+			// case 'cid':
+			// 	dispatch(setFunction(cidMask(e.target.value)))
+			// 	return
 			default:
 				dispatch(setFunction(e.target.value))
 				return
 		}
-			
-	}
 
-	const handleFocus = () => {
-		if(id === 'cep') {
+		// dispatch(setFunction(e.target.value))
 
-		}
 	}
 
 	const handleBlur = () => {
 
-			if((id === 'cep') && value !== ''){
-				fetch(`https://viacep.com.br/ws/${value}/json/`)
+		if ((id === 'cep') && value !== '') {
+			fetch(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
-					const newData ={
-					cep: value,
-					address: data.logradouro,
-					number: adressState.number,
-					complement: adressState.complement,
-					district: data.bairro,
-					city: data.localidade,
-					uf: data.uf,
-					hasMailAddress: adressState.hasMailAddress,
+					const newData = {
+						cep: value,
+						address: data.logradouro,
+						number: adressState.number,
+						complement: adressState.complement,
+						district: data.bairro,
+						city: data.localidade,
+						uf: data.uf,
+						hasMailAddress: adressState.hasMailAddress,
 					}
-	
+
 					dispatch(setAllAdress(newData))
 				}
 				)
-				.catch( err => {
+				.catch(err => {
 					console.log(err)
 				})
-			
-			}
 
-			if((id === 'cep2') && value !== ''){
-				fetch(`https://viacep.com.br/ws/${value}/json/`)
+		}
+
+		if ((id === 'cep2') && value !== '') {
+			fetch(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
-					const newData ={
-					cep: value,
-					address: data.logradouro,
-					number: adressState.number,
-					complement: adressState.complement,
-					district: data.bairro,
-					city: data.localidade,
-					uf: data.uf,
-					hasMailAddress: adressState.hasMailAddress,
+					const newData = {
+						cep: value,
+						address: data.logradouro,
+						number: adressState.number,
+						complement: adressState.complement,
+						district: data.bairro,
+						city: data.localidade,
+						uf: data.uf,
+						hasMailAddress: adressState.hasMailAddress,
 					}
-	
+
 					dispatch(setAllAdressOptional(newData))
 				}
 				)
-				.catch( err => {
+				.catch(err => {
 					console.log(err)
 				})
-			
-			}
-		
+
+		}
+
 	}
 
 	return (
@@ -141,7 +139,9 @@ export const Input = ({
 				placeholder={placeholder}
 				onBlur={handleBlur}
 				maxLength={maxLength}
-				
+				mask={mask}
+				maskChar={null}
+
 			/>
 			{isDetailed && (
 				<S.AddressDetails>
@@ -149,7 +149,7 @@ export const Input = ({
 				</S.AddressDetails>
 			)}
 			{(cleanButton && value) && (
-				<S.Cross src={cross} alt="cross" onClick={() => dispatch(action(''))}/>
+				<S.Cross src={cross} alt="cross" onClick={() => dispatch(action(''))} />
 			)}
 		</S.Label>
 	)
@@ -170,32 +170,36 @@ export const Select = ({
 	disabled,
 	noLabel,
 	initialModal,
-	typeState
+	typeState,
+	id,
+	element,
+	placeholder
 }) => {
 
 	const [opcoes, setOpcoes] = useState(options)
 
 	const dispatch = useDispatch();
 
+
 	function removerSpecials(texto) {
-        // eliminando acentuação
-    texto = texto.replace(/[ÀÁÂÃÄÅ]/,"A");
-    texto = texto.replace(/[àáâãäå]/,"a");
-    texto = texto.replace(/[ÈÉÊË]/,"E");
-	texto = texto.replace(/[èéêë]/,"e");
-    texto = texto.replace(/[Ç]/,"C");
-    texto = texto.replace(/[ç]/,"c");
-	texto = texto.replace(/[ÌÍÎÏ]/,"I");
-	texto = texto.replace(/[ìíîï]/,"i");
-	texto = texto.replace(/[ÒÓÔÕÖ]/,"O");
-	texto = texto.replace(/[òóôõö]/,"o");
-	texto = texto.replace(/[ÙÚÛÜ]/,"U");
-	texto = texto.replace(/[ùúûü]/,"u");
-	texto = texto.replace(/[ÿ]/,"y");
-	texto = texto.replace(/[Ñ]/,"N");
-	texto = texto.replace(/[ñ]/,"n");
-    return texto.replace(/[^a-z0-9]/gi,''); 
-}
+		// eliminando acentuação
+		texto = texto.replace(/[ÀÁÂÃÄÅ]/, "A");
+		texto = texto.replace(/[àáâãäå]/, "a");
+		texto = texto.replace(/[ÈÉÊË]/, "E");
+		texto = texto.replace(/[èéêë]/, "e");
+		texto = texto.replace(/[Ç]/, "C");
+		texto = texto.replace(/[ç]/, "c");
+		texto = texto.replace(/[ÌÍÎÏ]/, "I");
+		texto = texto.replace(/[ìíîï]/, "i");
+		texto = texto.replace(/[ÒÓÔÕÖ]/, "O");
+		texto = texto.replace(/[òóôõö]/, "o");
+		texto = texto.replace(/[ÙÚÛÜ]/, "U");
+		texto = texto.replace(/[ùúûü]/, "u");
+		texto = texto.replace(/[ÿ]/, "y");
+		texto = texto.replace(/[Ñ]/, "N");
+		texto = texto.replace(/[ñ]/, "n");
+		return texto.replace(/[^a-z0-9]/gi, '');
+	}
 
 	const handleClick = (e, option) => {
 		e.preventDefault();
@@ -210,39 +214,60 @@ export const Select = ({
 	}
 
 	const handleChange = (e, setFunction) => {
-		if(options.length > 10){
+		
 			e.preventDefault();
-		dispatch(setFunction(e.target.value))
-		if(e.target.value !== '') {
-			const newOptions = options.filter(option => removerSpecials(option).toLowerCase().includes(removerSpecials(e.target.value).toLowerCase()))
-			setOpcoes(newOptions)
-		}
-		}
+			dispatch(setFunction(e.target.value))
+			if (e.target.value) {
+				const newOptions = options.filter(option => removerSpecials(option).toLowerCase().includes(removerSpecials(e.target.value).toLowerCase()))
+				setOpcoes(newOptions)
+			}
+			if(e.target.value === ''){
+				setOpcoes(options)
+			}
+		
 	}
 
-	const calcHeight = options.length > 3 ? (options.length * 32) + .5: 'fit-content'
+	const calcHeight = opcoes.length > 3 ? (opcoes.length * 32) + .5 : 'fit-content'
+
+	useEffect(() => {
+			if(id === 'naturalness') {
+				setOpcoes(options)
+			}
+		
+	}, [options])
+
+	const handleBlur = () => {
+		setTimeout(() => {
+			toogle(!state)
+		}, 200)
+	}
 
 
 	return (
 		<>
-			<S.Label 
-			width={width}
-			optional={optional} 
-			noLabel={noLabel}
+			<S.Label
+				width={width}
+				optional={optional}
+				noLabel={noLabel}
+				disabled={disabled}
+				
 			> {label}
-				<S.Select onClick={handleClickSelect} disabled={disabled} outline={state} >
-					{/* {value} */}
-				<S.SearchInput 
-				value={value}
-				onChange={(e) => handleChange(e, action)} 
-				readOnly={(options.length < 10) || !state}
-				// onBlur={handleBlur}
-				// onFocus={handleFocus}
-				/>
+				<div onBlur={handleBlur}>
+				<S.Select onClick={!disabled && handleClickSelect} disabled={disabled} outline={state} >
+					<S.SearchInput
+						value={value}
+						onChange={(e) => handleChange(e, action)}
+						readOnly={(options.length < 8) }
+						ref={element}
+						placeholder={placeholder}
+						autocomplete="off"
+						disabled={disabled}
+					/>
 					<S.Arrow
 						src={source}
 						isOpened={state}
 						alt='seta'
+						disabled={disabled}
 					/>
 				</S.Select>
 
@@ -261,6 +286,7 @@ export const Select = ({
 
 					</S.Options>
 				)}
+				</div>
 			</S.Label>
 
 		</>

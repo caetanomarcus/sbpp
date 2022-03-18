@@ -164,6 +164,7 @@ export const SideListItem = styled.button`
     border: none;
     background: transparent;
     cursor: pointer;
+    outline:none ;
 `;
 
 export const SideListItemText = styled.p`

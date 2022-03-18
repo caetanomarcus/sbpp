@@ -22,7 +22,7 @@ const LoginScreen = () => {
         <S.Wrapper>
             <S.LoginContainer>
                 <S.Header>
-                    <S.Logo src={logoSbpp} />
+                    <S.Logo src={logoSbpp} alt='logo sbpp' />
                     <S.Line />
                 </S.Header>
                 <S.ButtonContainer id='form' >
@@ -34,7 +34,7 @@ const LoginScreen = () => {
                     />
                 </S.ButtonContainer>
                 <S.loginFooter>
-                    <S.Logo src={logoSula} width='138px' />
+                    <S.Logo src={logoSula} width='138px' alt='logo sulamerica' />
                 </S.loginFooter>
             </S.LoginContainer>
         </S.Wrapper>
