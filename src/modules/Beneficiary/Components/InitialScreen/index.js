@@ -55,7 +55,7 @@ const InitialScreen = () => {
     const [page, setPage] = useState(pages);
     const [atualPage, setAtualPage] = useState(1);
 
-    const { registration, cpfOrCnpj, type } = searchFilter;
+    const { type } = searchFilter;
 
 
 

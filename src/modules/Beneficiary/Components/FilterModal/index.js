@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector} from 'react-redux'
 import { setFilterMounth as setMounth, setFilterYear as setYear} from '../../Dataflow/reducers-and-actions/beneficiary'
 import { Select } from '../../../../components/Inputs/InputRegistration'
 import * as S from './style'

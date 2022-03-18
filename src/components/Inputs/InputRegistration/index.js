@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
 import {phoneMask} from './masks';
 import cross from '../../../assets/icons/cross.svg';
-import InputMask from 'react-input-mask';
 
 
 export const Input = ({

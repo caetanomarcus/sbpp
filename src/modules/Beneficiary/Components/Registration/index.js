@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import { setStep, setModalOpen, setModalType } from '../../Dataflow/reducers-and-actions/beneficiary'
+import { setStep } from '../../Dataflow/reducers-and-actions/beneficiary'
 
 //Components
 import Button from "../../../../components/Buttons/BeneficiaryButton";
