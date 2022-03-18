@@ -1,6 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setHasMailAdress, setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
+import { setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
 
 // Style
 import * as S from '../style'
@@ -13,11 +13,8 @@ import { ufs as _ufs } from '../mocks';
 // actions
 import { 
 	setCepDefault,
-	setAddressDefault,
 	setNumberDefault,
 	setComplementDefault,
-	setDistrictDefault,
-	setCountyDefault,
 	setUfDefault,
    setAdressType,
    // Optional

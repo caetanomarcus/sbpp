@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import { setStep, setResetStates, setModalOpen, setModalType } from '../../Dataflow/reducers-and-actions/beneficiary'
+import { setStep, setModalOpen, setModalType } from '../../Dataflow/reducers-and-actions/beneficiary'
 
 //Components
 import Button from "../../../../components/Buttons/BeneficiaryButton";
@@ -23,7 +23,6 @@ import financialIconGray from '../../../../assets/icons/financial-icon-gray.png'
 
 const Registration = () => {
 
-	const client = useSelector(state => state.beneficiary.selectedClient);
 	const step = useSelector(state => state.beneficiary.step);
 	const dispatch = useDispatch();
 
@@ -104,14 +103,16 @@ const Registration = () => {
 			case finalStep:
 				dispatch(setStep(benefit))
 				break;
+			default:
+				return null
 		}
 	}
 
-	const handleClickCancel = () => {
-		dispatch(setModalOpen());
-		dispatch(setModalType('cancel'));
+	// const handleClickCancel = () => {
+	// 	dispatch(setModalOpen());
+	// 	dispatch(setModalType('cancel'));
 
-	}
+	// }
 
 	const handleClickSideList = (value) => {
 		const element = document.getElementById(value);
@@ -150,8 +151,6 @@ const Registration = () => {
 	const isBeneficiary = step === beneficiary;
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
-	const isFinalStep = step === finalStep;
-
 
 	return (
 		<S.Container>

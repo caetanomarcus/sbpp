@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 // Style
@@ -15,11 +15,6 @@ export const Participant = ({
    client
 }) => {
 
-   //Redux State and dispatch
-   const registration = useSelector(state => state.beneficiary.beneficiaryData.registration);
-   const cpfOrCnpj = useSelector(state => state.beneficiary.beneficiaryData.cpfOrCnpj);
-
-
 	return (
       <S.Fieldset id='participant'>
          <S.Legend>Participante</S.Legend>
@@ -33,7 +28,6 @@ export const Participant = ({
                disabled
                isDisabled
                noPadding
-               // value={registration}
                action={setRegistration}
             />
 
@@ -45,7 +39,6 @@ export const Participant = ({
                disabled
                isDisabled
                noPadding
-                // value={cpfOrCnpj}
                action={setCpfOrCnpj}
             />
          </S.Row>

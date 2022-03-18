@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as S from './style'
-import { setHasDifferentAdress } from "../../Dataflow/reducers-and-actions/beneficiary";
-
 
 const FinalStep = () => {
 
@@ -14,8 +12,6 @@ const FinalStep = () => {
     const adressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressOptional);
     const contact = useSelector(state => state.beneficiary.beneficiaryData.contact);
     const bankData = useSelector(state => state.beneficiary.beneficiaryData.bankData);
-
-    const dispatch = useDispatch();
 
     return (
         <S.Wrapper>

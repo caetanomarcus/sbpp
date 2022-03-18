@@ -63,7 +63,7 @@ export const PersonalData = ({
       dispatch(setName(client.name));
       dispatch(setEmail(client.email || 'sem email'));
 
-   }, [])
+   }, [dispatch, client.name, client.email]);
 
    const ufs = _ufs.map(uf => uf.sigla);
 
@@ -93,7 +93,7 @@ export const PersonalData = ({
          })
          dispatch(setNaturalness(''))
       }
-   }, [personalData.uf])
+   }, [personalData.uf, dispatch])
    return (
       <S.Fieldset id="data">
          <S.Legend>Dados </S.Legend>

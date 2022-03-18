@@ -1,8 +1,7 @@
 import styled from "styled-components";
-
 import logoLeave from '../../../../assets/icons/leave.png';
 import logoLeaveGray from '../../../../assets/icons/leave-gray.png';
-import arrowIcon from '../../../../assets/icons/arrow.svg';
+
 
 export const Container = styled.aside`
     position: relative;

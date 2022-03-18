@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react'
-import PrivateRoute from './components/PrivateRoute'
+import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Beneficiary from './modules/Beneficiary';
 import LoginScreen from "./modules/Auth";

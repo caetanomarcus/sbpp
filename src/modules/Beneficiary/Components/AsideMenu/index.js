@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setScreen } from "../../Dataflow/reducers-and-actions/beneficiary";
 import  { setModalOpen, setModalType} from "../../../Beneficiary/Dataflow/reducers-and-actions/beneficiary";
 import * as S from './style'
 
@@ -14,7 +13,6 @@ const AsideMenu = () => {
 
 
     //Redux State and dispatch
-    const screen = useSelector(state => state.beneficiary.screen);
     const dispatch = useDispatch();
 
    

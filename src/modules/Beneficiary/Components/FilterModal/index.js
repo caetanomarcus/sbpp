@@ -35,7 +35,6 @@ const FilterModal = () => {
     //Redux State and dispatch
     const filter = useSelector(state => state.beneficiary.filter);
     const {mounth, year} = filter;
-    const dispatch = useDispatch();
 
     return (
         <S.Container>

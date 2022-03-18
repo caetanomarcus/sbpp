@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style'
 import { useDispatch } from "react-redux";
 import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
-import { cepMask, rgMask, cpfMask, dateMask, phoneMask, agencyMask, accountMask, cidMask } from './masks';
+import {phoneMask} from './masks';
 import cross from '../../../assets/icons/cross.svg';
 import InputMask from 'react-input-mask';
 
@@ -39,30 +39,9 @@ export const Input = ({
 		e.preventDefault();
 
 		switch (id) {
-			// case 'cep':
-			// 	dispatch(setFunction(cepMask(e.target.value)))
-			// 	return
-			// case 'rg':
-			// 	dispatch(setFunction(rgMask(e.target.value)))
-			// 	return
-			// case 'cpf':
-			// 	dispatch(setFunction(cpfMask(e.target.value)))
-			// 	return
-			// case 'date':
-			// 	dispatch(setFunction(dateMask(e.target.value)))
-			// 	return
 			case 'phone':
 				dispatch(setFunction(phoneMask(e.target.value)))
 				return
-			// case 'agency':
-			// 	dispatch(setFunction(agencyMask(e.target.value)))
-			// 	return
-			// case 'account':
-			// 	dispatch(setFunction(accountMask(e.target.value)))
-			// 	return
-			// case 'cid':
-			// 	dispatch(setFunction(cidMask(e.target.value)))
-			// 	return
 			default:
 				dispatch(setFunction(e.target.value))
 				return
@@ -234,7 +213,7 @@ export const Select = ({
 				setOpcoes(options)
 			}
 		
-	}, [options])
+	}, [options, id])
 
 	const handleBlur = () => {
 		setTimeout(() => {

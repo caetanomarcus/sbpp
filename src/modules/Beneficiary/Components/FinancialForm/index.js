@@ -5,8 +5,6 @@ import {
     setAccountType,
     setBank,
     setPaymentMethod,
-    setBankAccount,
-    setBankAccountDigit,
     setAgency,
     setAgencyDigit,
     setAccountNumber,
@@ -14,8 +12,6 @@ import {
     setHasPowerOfAttorney,
     setPowerOfAttorneyName,
     setPowerOfAttorneyCpf,
-    setStart,
-    setEnd,
 } from '../../Dataflow/reducers-and-actions/beneficiary';
 import * as S from './style'
 
@@ -31,7 +27,6 @@ const FinancialForm = () => {
     const [openBanks, setOpenBanks] = useState(false)
     const [openPayment, setOpenPayment] = useState(false);
     const [banks, setBanks] = useState([]);
-    const [hasProcuration, setProcuration] = useState(false);
 
 
     //Redux State and dispatch

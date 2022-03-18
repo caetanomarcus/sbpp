@@ -12,7 +12,7 @@ import {
     setScreen
 } from "../../Dataflow/reducers-and-actions/beneficiary";
 
-import clients from '../Pending/mock/clients.json';
+import  clients from './mock.json';
 
 import FilterModal from "../FilterModal";
 import { Input } from "../../../../components/Inputs/InputRegistration/";
@@ -20,7 +20,6 @@ import Button from "../../../../components/Buttons/BeneficiaryButton";
 
 import orangeArrow from '../../../../assets/icons/arrow.svg'
 import grayArrow from '../../../../assets/icons/gray-arrow.svg'
-import searchIcon from '../../../../assets/icons/search.svg'
 import right from '../../../../assets/icons/right.png';
 
 const pages = [0, 1, 2, 3, 4, 5, 6]
@@ -55,9 +54,8 @@ const InitialScreen = () => {
     // const [cpfOrCnpj, setCpfOrCnpj] = useState('');
     const [page, setPage] = useState(pages);
     const [atualPage, setAtualPage] = useState(1);
-    const [searching, setSearching] = useState(false);
 
-    const { registration, cpfOrCnpj, name, propostNumber, type } = searchFilter;
+    const { registration, cpfOrCnpj, type } = searchFilter;
 
 
 
@@ -164,8 +162,6 @@ const InitialScreen = () => {
     const totalOfPages = filteredClients?.length % 7 === 0 ? Math.floor(filteredClients?.length / 7) : Math.floor(filteredClients?.length / 7) + 1;
 
 
-    const isSearching = registration !== '' || cpfOrCnpj !== ''
-
     const handlePagination = (direction) => {
 
         if ((direction === 'next' && ((page[page.length - 1]) < filteredClients?.length - 1))) {
@@ -213,7 +209,7 @@ const InitialScreen = () => {
             setPage(pages);
         }
 
-    }, [totalOfPages])
+    }, [totalOfPages, atualPage])
 
 
     return (
@@ -351,6 +347,8 @@ const InitialScreen = () => {
                                     <S.StatusBox><S.Status color={setStatusColor(client.status)} /></S.StatusBox>
                                 </S.Clients>
                             }
+
+                            return null
 
                         })}
                         {!filteredClients?.length && (
