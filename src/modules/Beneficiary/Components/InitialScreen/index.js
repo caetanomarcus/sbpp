@@ -12,7 +12,7 @@ import {
     setScreen
 } from "../../Dataflow/reducers-and-actions/beneficiary";
 
-import  clients from './mock.json';
+import clients from './mock.json';
 
 import FilterModal from "../FilterModal";
 import { Input } from "../../../../components/Inputs/InputRegistration/";
@@ -188,6 +188,13 @@ const InitialScreen = () => {
         dispatch(setScreen(registrationScreen))
     }
 
+    const handleClickClearAllFields = () => {
+        dispatch(setSearchFilterRegistration(''))
+        dispatch(setSearchFilterCPFOrCNPJ(''))
+        dispatch(setSearchFilterName(''))
+        dispatch(setSearchFilterPropostNumber(''))
+   }
+
     const setStatusColor = (status) => {
         switch (status) {
             case 1:
@@ -307,7 +314,7 @@ const InitialScreen = () => {
                         </S.ButtonsBox>
                     </S.FiltersButtonsBox>
                     <S.SearchBox>
-                        <S.ClearButton>
+                        <S.ClearButton onClick={handleClickClearAllFields} >
                             Limpar todos os campos
                         </S.ClearButton>
                     </S.SearchBox>
@@ -359,14 +366,14 @@ const InitialScreen = () => {
                         <S.Line />
                     </S.ClientBox>
                     {selectedClient.name && (selectedClient.status === 1) && (
-                       <S.ButtonBox>
+                        <S.ButtonBox>
                             <Button
-                            handleClick={handleRegistration}
-                            text='Seguir para o cadastro'
-                            alt='icone para a direita'
-                            source={right}
-                            width='177px' />
-                       </S.ButtonBox>
+                                handleClick={handleRegistration}
+                                text='Seguir para o cadastro'
+                                alt='icone para a direita'
+                                source={right}
+                                width='177px' />
+                        </S.ButtonBox>
                     )}
                 </S.ResultContainer>
             </S.MiddleContainer>

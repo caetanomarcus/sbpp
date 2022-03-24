@@ -2,6 +2,7 @@ import styled from "styled-components";
 import arrow from '../../../../assets/icons/arrow-right.svg'
 import arrowLeft from '../../../../assets/icons/arrow-left.svg'
 // import orange from '../../../../assets/images/orange-footer.png'
+import whiteCross from '../../../../assets/icons/white-cross.svg'
 
 
 export const Container = styled.section`
@@ -410,6 +411,7 @@ export const Button = styled.button`
     font: 400 12px 'Aestetico', sans-serif;
     color: #828282;
     cursor: pointer;
+    position: relative ;
 
     ${props => props.isSelected && `
         border-color: #001E64;
@@ -423,6 +425,23 @@ export const Button = styled.button`
             color: #001E64;
         }
     `}
+
+    :after{
+        content: '';
+        display: ${props => props.isSelected? 'block': 'none'};
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #001E64;
+        background-image: url(${whiteCross});
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: absolute ;
+        top: 0;
+        right: 0;
+        transform: translate(35%, -50%);) ;
+    }
 `;
 
 export const SearchBox = styled.div`

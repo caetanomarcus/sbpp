@@ -34,7 +34,7 @@ export const Document = ({
 
 
 	return (
-      <S.Fieldset>
+      <S.Fieldset id='document'>
          <S.Legend>Documento</S.Legend>
          <S.Row last>
             <Input

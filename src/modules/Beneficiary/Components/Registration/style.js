@@ -4,7 +4,7 @@ import registration from '../../../../assets/icons/registration.svg'
 
 export const Container = styled.section`
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 90px);
     background: #EFEFEF;
     padding: 16px 0;
     padding-bottom: 0;
@@ -33,7 +33,6 @@ export const Header = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 4px;
-    margin-bottom: 0px;
 `;
 
 export const IconAndTitle = styled.div`
@@ -125,7 +124,7 @@ export const Line = styled.div`
 
 export const MiddleBox = styled.div`
     display:flex ;
-    height:100% ;
+    height: ${props => props.isFinal? '101.6%' : '100%'};
     position: relative;
 `;
 
@@ -141,15 +140,37 @@ export const FormStepBox = styled.div`
 export const UperBox = styled.div`
     display: flex ;
     flex-direction: column;
+    height: 100% ;
 `;
 
 export const FormBox = styled.div`
-    width: 72% ;
+    width: 72%;
+    /* height: 50% ; */
+    border-bottom: ${props => props.isFinal? 'none' : '#828282 1px solid'};
 `;
 
 export const NextButtonBox = styled.div`
      width: 14%;
      
+`;
+
+export const CleanCloseBox = styled.div`
+    position: absolute ;
+    top: -40px;
+`;
+
+export const CleanButton = styled.button`
+    font-size: 10px;
+    color: #828282;
+    border: none;
+    outline: none;
+    background: transparent ;
+    text-decoration: underline;
+    cursor: pointer;
+`;
+
+export const XIcon = styled.img`
+
 `;
 
 export const ButtonContainer = styled.div`
@@ -165,6 +186,17 @@ export const SideListItem = styled.button`
     background: transparent;
     cursor: pointer;
     outline:none ;
+    display:flex ;
+    align-items: center;
+`;
+
+export const ListCircle = styled.div`
+    width: 8px;
+    height: 8px;
+    background: #D2D2D2;
+    border-radius: 50%;
+    visibility: ${props => props.selected? 'visible' : 'hidden'};
+    margin-right: 4px;
 `;
 
 export const SideListItemText = styled.p`

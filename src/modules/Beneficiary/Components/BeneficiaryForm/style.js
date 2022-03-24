@@ -26,6 +26,10 @@ export const Form = styled.form`
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+    @media (min-width: 1920px) {
+        height: 80vh;
+    }
 `;
 
 export const Fieldset = styled.fieldset`

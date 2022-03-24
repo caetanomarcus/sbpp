@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import { setStep } from '../../Dataflow/reducers-and-actions/beneficiary'
 
 //Components
-import Button from "../../../../components/Buttons/BeneficiaryButton";
+import BackNextButton from "../../../../components/Buttons/BackNextButton";
 import BeneficiaryForm from "../BeneficiaryForm";
 import FinancialForm from "../FinancialForm";
 import BenefitForm from "../BenefitForm";
@@ -20,57 +20,66 @@ import financialIconOrange from '../../../../assets/icons/financial-icon-orange.
 import benefitIconGray from '../../../../assets/icons/benefit-icon-gray.png';
 import financialIconGray from '../../../../assets/icons/financial-icon-gray.png';
 
+const beneficiaryList = [{
+	name: 'Dados do Beneficiário',
+	value: 'participant'
+},
+{
+	name: 'Dados',
+	value: 'data'
+},
+{
+	name: 'Documento',
+	value: 'document'
+},
+{
+	name: 'Endereço Residencial',
+	value: 'address'
+},
+{
+	name: 'Contato',
+	value: 'contact'
+},
+]
+
+
+const benefitList = [{
+	name: 'Benefício',
+	value: 'benefit'
+},
+{
+	name: 'Pagamento',
+	value: 'payment'
+},
+{
+	name: 'Convênio',
+	value: 'contract'
+},
+{
+	name: 'Condições',
+	value: 'conditions'
+},
+{
+	name: 'Pensão Judicial',
+	value: 'judicial'
+}
+]
+
 
 const Registration = () => {
 
+	
 	const step = useSelector(state => state.beneficiary.step);
 	const dispatch = useDispatch();
+	
+	const [atualStep, setAtualStep] = useState( beneficiaryList[0].value);
 
 	const beneficiary = 'beneficiary';
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
 
-	const beneficiaryList = [{
-		name: 'Dados do Beneficiário',
-		value: 'participant'
-	},
-	{
-		name: 'Dados',
-		value: 'data'
-	},
-	{
-		name: 'Endereço Residencial',
-		value: 'address'
-	},
-	{
-		name: 'Contato',
-		value: 'contact'
-	},
-	]
-
-
-	const benefitList = [{
-		name: 'Benefício',
-		value: 'benefit'
-	},
-	{
-		name: 'Pagamento',
-		value: 'payment'
-	},
-	{
-		name: 'Convênio',
-		value: 'contract'
-	},
-	{
-		name: 'Condições',
-		value: 'conditions'
-	},
-	{
-		name: 'Pensão Judicial',
-		value: 'judicial'
-	}
-	]
+	
 
 	const handleClickNext = () => {
 		switch (step) {
@@ -117,18 +126,22 @@ const Registration = () => {
 	const handleClickSideList = (value) => {
 		const element = document.getElementById(value);
 		element.scrollIntoView();
+
+		setAtualStep(value);
 	}
 
 	const renderSideList = () => {
 		if (step === beneficiary) {
 			return beneficiaryList.map(item => (
 				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
+					<S.ListCircle selected={ atualStep === item.value} ></S.ListCircle>
 					<S.SideListItemText  >{item.name}</S.SideListItemText>
 				</S.SideListItem>
 			))
 		} else if (step === benefit) {
 			return benefitList.map(item => (
 				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
+					<S.ListCircle selected={ atualStep === item.value} ></S.ListCircle>
 					<S.SideListItemText>{item.name}</S.SideListItemText>
 				</S.SideListItem>
 			))
@@ -148,19 +161,22 @@ const Registration = () => {
 				return null
 		}
 	}
+
+	const handleClickClean = () => {
+	}
+
 	const isBeneficiary = step === beneficiary;
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
 
+	useEffect(() => {
+		setAtualStep(step === 'beneficiary' ? beneficiaryList[0].value : benefitList[0].value)
+	}, [step] )
+
 	return (
 		<S.Container>
 			<S.Content>
-				<S.Header>
-					{/* <S.IconAndTitle>
-						<S.PersonIcon />
-						<S.HeaderTitle>Cadastro</S.HeaderTitle>
-					</S.IconAndTitle> */}
-					{step !== finalStep && (
+			{step !== finalStep && <S.Header>
 						<S.RegistrationFluxBox>
 							<S.Circle background={isBeneficiary? beneficiaryIcon: beneficiaryIconOrange} steps={isBeneficiary} isPastStep={ isFinancial || isBenefit} >
 							</S.Circle>
@@ -183,27 +199,26 @@ const Registration = () => {
 									<S.Step steps={isBenefit} >BENEFÍCIO</S.Step>
 								</S.StepBox> }
 						</S.RegistrationFluxBox>
-					)}
-					{/* <S.CancelButton onClick={handleClickCancel} >Cancelar</S.CancelButton> */}
-				</S.Header>
-				<S.MiddleBox>
+				</S.Header>}
+				<S.MiddleBox isFinal={step === finalStep} >
 					<S.FormStepBox>
 						<S.UperBox>
 							{renderSideList()}
 						</S.UperBox>
-						{step !== beneficiary && (<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
+						{step !== beneficiary && (<BackNextButton back text='Voltar' handleClick={handleClickBack} />)}
 					</S.FormStepBox>
-					<S.FormBox>
+					<S.FormBox isFinal={step === finalStep} >
 					{(step === beneficiary) && <BeneficiaryForm />}
 					{(step === financial) && <FinancialForm />}
 					{(step === benefit) && <BenefitForm />}
 					{(step === finalStep) && <FinalStep />}
 					</S.FormBox>
-					
-					<div>
 					<S.NextButtonBox>
+						{step !== finalStep && <S.CleanCloseBox>
+							<S.CleanButton onClick={handleClickClean}>Limpar todos os campos</S.CleanButton>
+						</S.CleanCloseBox>}
 						<S.ButtonContainer>
-						<Button
+						<BackNextButton
 							text={step === finalStep ? 'Finalizar' : 'Próximo'}
 							alt={step === finalStep ? 'Finalizar' : 'Próximo'}
 							source={right}
@@ -212,18 +227,7 @@ const Registration = () => {
 						/>
 						</S.ButtonContainer>
 					</S.NextButtonBox>
-					</div>
 				</S.MiddleBox>
-				{/* <S.Footer>
-					{step !== beneficiary && (<S.CancelButton onClick={handleClickBack} >Voltar</S.CancelButton>)}
-					<Button
-						text={step === finalStep ? 'Finalizar' : 'Próximo'}
-						alt={step === finalStep ? 'Finalizar' : 'Próximo'}
-						source={right}
-						width='101px'
-						handleClick={handleClickNext}
-					/>
-				</S.Footer> */}
 			</S.Content>
 		</S.Container>
 	)

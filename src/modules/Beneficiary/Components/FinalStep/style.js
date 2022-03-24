@@ -1,24 +1,29 @@
 import styled from "styled-components";
 
-export const Wrapper= styled.div`
-    height: 78.5vh ;
+export const Wrapper = styled.div`
+    height:80vh;
     width: 100% ;
 `;
 
 export const Text = styled.p`
     font-size: 16px;
     font-weight: 400;
-    color: #5A5A5A;
+    color: #FF5000;
     text-align: center;
+    margin-bottom: 8px;
 `;
 
 export const Container = styled.div`
     width: 100%;
-    height: 450px;
+    height: 74vh;
     border: 1px solid #D2D2D2;
     border-radius: 4px;
     padding: 24px;
     overflow: auto;
+
+    @media (min-width: 1920px) {
+        height: 82vh;
+    }
 
      /* width */
      ::-webkit-scrollbar {
