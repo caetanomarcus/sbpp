@@ -6,11 +6,11 @@ const FinalStep = () => {
 
     //Global State
     const selectedClient  = useSelector(state => state.beneficiary.selectedClient);
-    const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
-    const document = useSelector(state => state.beneficiary.beneficiaryData.document);
-    const adressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
-    const adressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressOptional);
-    const contact = useSelector(state => state.beneficiary.beneficiaryData.contact);
+    const personalData = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.personalData);
+    const document = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.document);
+    const adressDefault = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.addressDefault);
+    const adressOptional = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.addressOptional);
+    const contact = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.contact);
     const bankData = useSelector(state => state.beneficiary.beneficiaryData.bankData);
 
     return (
@@ -134,12 +134,13 @@ const FinalStep = () => {
                         <S.Value>{adressDefault.correspondenceType}</S.Value>
                     </S.TextBox>
                     </S.Row>
-                    <S.Row flex>
+                   
+                    {adressDefault.hasDifferentAddress && (
+                        <>
+                         <S.Row flex>
                         <S.Title>Possui endereço diferente para correspondência</S.Title>
                         <S.Checkbox type='checkbox' checked={adressDefault.hasDifferentAddress} readOnly />
                     </S.Row>
-                    {adressDefault.hasDifferentAddress && (
-                        <>
                              <S.Row>
                          <S.TextBox>
                              <S.Title>CEP</S.Title>
@@ -193,6 +194,51 @@ const FinalStep = () => {
                         <S.Value>{bankData.national? 'Nacional': 'Internacional'}</S.Value>
                     </S.TextBox>
                     </S.Row>
+                    <S.Row>
+                        <S.TextBox>
+                            <S.Title>Tipo de Conta</S.Title>
+                            <S.Value>{bankData.accountType}</S.Value>
+                        </S.TextBox>
+                        <S.TextBox marginLeft='24px'>
+                            <S.Title>Banco</S.Title>
+                            <S.Value>{bankData.bank}</S.Value>
+                        </S.TextBox>
+                    </S.Row>
+                    <S.Row>
+                        <S.TextBox>
+                            <S.Title>Agência</S.Title>
+                            <S.Value>{bankData.agency}</S.Value>
+                        </S.TextBox>
+                        <S.TextBox marginLeft='24px'>
+                            <S.Title>Dígito</S.Title>
+                            <S.Value>{bankData.agencyDigit}</S.Value>
+                        </S.TextBox>
+                        <S.TextBox marginLeft='24px' >
+                            <S.Title>Conta Corrente</S.Title>
+                            <S.Value>{bankData.accountNumber}</S.Value>
+                        </S.TextBox>
+                        <S.TextBox marginLeft='24px'>
+                            <S.Title>Dígito</S.Title>
+                            <S.Value>{bankData.accountDigit}</S.Value>
+                        </S.TextBox>
+                    </S.Row>
+                    <S.Row flex>
+                        <S.Title>Possui Representante Judicial</S.Title>
+                        <S.Checkbox type='checkbox' checked={bankData.hasPowerOfAttorney} readOnly />
+                    </S.Row>
+                    {bankData.hasPowerOfAttorney && (
+                            <S.Row>
+                                <S.TextBox>
+                                    <S.Title>Nome</S.Title>
+                                    <S.Value>{bankData.powerOfAttorneyName}</S.Value>
+                                </S.TextBox>
+                                <S.TextBox marginLeft='24px'>
+                                    <S.Title>CPF</S.Title>
+                                    <S.Value>{bankData.powerOfAttorneyCPF}</S.Value>
+                                </S.TextBox>
+                            </S.Row>
+                    )
+                    }
             </S.Container>
         </S.Wrapper>
     )

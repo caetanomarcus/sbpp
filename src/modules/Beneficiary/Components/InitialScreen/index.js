@@ -10,7 +10,7 @@ import {
     setSearchFilterCPFOrCNPJ,
     setSearchFilterPropostNumber,
     setScreen
-} from "../../Dataflow/reducers-and-actions/beneficiary";
+} from "../../Dataflow/reducers-and-actions";
 
 import clients from './mock.json';
 

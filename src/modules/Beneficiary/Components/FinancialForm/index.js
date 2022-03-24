@@ -12,7 +12,7 @@ import {
     setHasPowerOfAttorney,
     setPowerOfAttorneyName,
     setPowerOfAttorneyCpf,
-} from '../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../Dataflow/reducers-and-actions';
 import * as S from './style'
 
 // images
@@ -153,7 +153,14 @@ const FinancialForm = () => {
             </S.Row>
             <S.Label checkbox noRadio >
                 Possui Procuração Judicial?
-                <S.RadioInput checkbox type='checkbox' name='account' value={bankData.hasPowerOfAttorney} onChange={() => dispatch(setHasPowerOfAttorney(!bankData.hasPowerOfAttorney))} />
+                <S.RadioInput 
+                checkbox 
+                type='checkbox' 
+                name='account' 
+                value={bankData.hasPowerOfAttorney} 
+                onChange={() => dispatch(setHasPowerOfAttorney(!bankData.hasPowerOfAttorney))} 
+                checked={bankData.hasPowerOfAttorney}
+                />
 
             </S.Label>
             <div style={{ 'height': '22px' }} ></div>
@@ -177,6 +184,7 @@ const FinancialForm = () => {
                     value={bankData.powerOfAttorneyCPF}
                     action={setPowerOfAttorneyCpf}
                     id='cpf'
+                    mask='999.999.999-99'
 
                 />
             </S.Row>

@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import beneficiaryStep from './beneficiaryStep';
+import benefitStep from './benefitStep';
+import bankData from './bankData';
 
 
 const beneficiaryState = {
@@ -24,123 +27,9 @@ const beneficiaryState = {
 	beneficiaryData: {
 		registration: '',
 		cpfOrCnpj: '',
-		personalData: {
-			// registration:'',
-			// identification: '',
-			name: '',
-			email: '',
-			hasSocialName: false,
-			socialName: '',
-			birthDate: '',
-			sex: '',
-			gender: '',
-			naturalness: '',
-			uf: '',
-			ufList: [],
-			nationality: 'Brasil',
-			hasDeathInformation: false,
-			deathDate: '',
-			deathInfoDate: '',
-			filiation1: '',
-			filiation2: '',
-		},
-		document: {
-			rg: '',
-			issuer: '',
-			uf: '',
-			issueDate: '',
-		},
-		addressDefault: {
-			cep: '',
-			address: '',
-			number: '',
-			complement: '',
-			district: '',
-			city:'',
-			uf: '',
-			hasMailAddress: false,
-			correspondenceType: '',
-			hasDifferentAddress: false,
-		},
-		addressOptional: {
-			cep: '',
-			address: '',
-			number: '',
-			complement: '',
-			referencePoint: '',
-			district: '',
-			city: '',
-			uf: '',
-		},
-		contact: {
-			phone1: '',
-			phone2: '',
-		},
-		bankData: {
-			national: true,
-			accountType: '',
-			bank: '',
-			paymentMethod: '',
-			accountNumber: '',
-			accountDigit: '',
-			agency: '',
-			agencyDigit: '',
-			hasPowerOfAttorney: false,
-			powerOfAttorneyName: '',
-			powerOfAttorneyCPF: '',
-		},
-		benefitData: {
-			product: '',
-			susep: '',
-			proposalNumber: '',
-			proposalData: '',
-			salesStructure: '',
-			taxationType: '',
-			has13thMonth: false,
-		},
-		paymentData: {
-			bookingValue: '',
-			durationTime: '',
-			paymentStartDate: '',
-			paymentEndDate: '',
-			benefitType: '',
-			incomeType: '',
-		},
-		agreementData: {
-			hasAdvance: false,
-			advanceValue: '',
-		},
-		conditionsData: {
-			IRPF: {
-			hasIRPFIsention: false,
-			isLifeTime: false,
-			deadline: '',
-			reason: '',
-			cid: '',
-			description: '',
-			},
-			paymentSuspension: {
-				hasPaymentSuspension: false,
-				reason: '',
-				cid: '',
-				description: '',
-			}
-		},
-		courtPensionData: {
-			hasCourtPension: false,
-			previdencyRegistration: '',
-			pensionistRegistration: '',
-			pensionistName: '',
-			pensionType: '',
-			incomeType: '',
-			modality: '',
-			judicialOffice: '',
-			discountFactor: '',
-			pensionStart: '',
-			pensionEnd: '',
-
-
-		}
+		beneficiaryStep: beneficiaryStep,
+		bankData: bankData,
+		benefitStep: benefitStep,
 	}
 };
 
@@ -200,136 +89,146 @@ const beneficiarySlice = createSlice({
 		setCpfOrCnpj: (state, action) => {
 			state.beneficiaryData.cpfOrCnpj = action.payload
 		},
+		//Clears
+		setClearAllPersonalData: (state) => {
+			state.beneficiaryData.beneficiaryStep = beneficiaryStep
+		},
+		setClearAllFinancialData: (state) => {
+			state.beneficiaryData.bankData = bankData
+		},
+		setClearAllBenefitData: (state) => {
+			state.beneficiaryData.benefitStep = benefitStep
+		},
 		//setPersonalData
 		setName: (state, action) => {
-			state.beneficiaryData.personalData.name = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.name = action.payload
 		},
 		setEmail: (state, action) => {
-			state.beneficiaryData.personalData.email = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.email = action.payload
 		},
 		setHasSocialName: (state, action) => {
-			state.beneficiaryData.personalData.hasSocialName = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.hasSocialName = action.payload
 		},
 		setSocialName: (state, action) => {
-			state.beneficiaryData.personalData.socialName = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.socialName = action.payload
 		},
 		setBirthDate: (state, action) => {
-			state.beneficiaryData.personalData.birthDate = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.birthDate = action.payload
 		},
 		setSex: (state, action) => {
-			state.beneficiaryData.personalData.sex = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.sex = action.payload
 		},
 		setGender: (state, action) => {
-			state.beneficiaryData.personalData.gender = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.gender = action.payload
 		},
 		setPersonalDataUf: (state, action) => {
-			state.beneficiaryData.personalData.uf = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.uf = action.payload
 		},
 		setUfList: (state, action) => {
-			state.beneficiaryData.personalData.ufList = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.ufList = action.payload
 		},
 		setNaturalness: (state, action) => {
-			state.beneficiaryData.personalData.naturalness = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.naturalness = action.payload
 		},
 		setNationality: (state, action) => {
-			state.beneficiaryData.personalData.nationality = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.nationality = action.payload
 		},
 		setHasDeathInformation: (state, action) => {
-			state.beneficiaryData.personalData.hasDeathInformation = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.hasDeathInformation = action.payload
 		},
 		setDeathDate: (state, action) => {
-			state.beneficiaryData.personalData.deathDate = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.deathDate = action.payload
 		},
 		setDeathInfoDate: (state, action) => {
-			state.beneficiaryData.personalData.deathInfoDate = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.deathInfoDate = action.payload
 		},
 		setFiliation1: (state, action) => {
-			state.beneficiaryData.personalData.filiation1 = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.filiation1 = action.payload
 		},
 		setFiliation2: (state, action) => {
-			state.beneficiaryData.personalData.filiation2 = action.payload
+			state.beneficiaryData.beneficiaryStep.personalData.filiation2 = action.payload
 		},
 		// setDocument
 		setRg: (state, action) => {
-			state.beneficiaryData.document.rg = action.payload
+			state.beneficiaryData.beneficiaryStep.document.rg = action.payload
 		},
 		setIssuer: (state, action) => {
-			state.beneficiaryData.document.issuer = action.payload
+			state.beneficiaryData.beneficiaryStep.document.issuer = action.payload
 		},
 		setUfRg: (state, action) => {
-			state.beneficiaryData.document.ufRG = action.payload
+			state.beneficiaryData.beneficiaryStep.document.ufRG = action.payload
 		},
 		setIssueDate: (state, action) => {
-			state.beneficiaryData.document.issueDate = action.payload
+			state.beneficiaryData.beneficiaryStep.document.issueDate = action.payload
 		},
 		//setAddressDefault	
 		setAllAdress:(state, action) => {
-			state.beneficiaryData.addressDefault = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault = action.payload
 		},
 		setCepDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.cep = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.cep = action.payload
 		},
 		setAddressDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.address = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.address = action.payload
 		},
 		setNumberDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.number = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.number = action.payload
 		},
 		setComplementDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.complement = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.complement = action.payload
 		},
 		setDistrictDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.district = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.district = action.payload
 		},
 		setCountyDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.county = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.county = action.payload
 		},
 		setUfDefault: (state, action) => {
-			state.beneficiaryData.addressDefault.uf = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.uf = action.payload
 		},
 		setHasMailAdress: (state, action) => {
-			state.beneficiaryData.addressDefault.hasMailAddress = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.hasMailAddress = action.payload
 		},
 		setAdressType: (state, action) => {
-			state.beneficiaryData.addressDefault.correspondenceType = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.correspondenceType = action.payload
 		},
 		setHasDifferentAdress: (state, action) => {
-			state.beneficiaryData.addressDefault.hasDifferentAddress = action.payload
+			state.beneficiaryData.beneficiaryStep.addressDefault.hasDifferentAddress = action.payload
 		},
 		//setAddressOptional
 		setAllAdressOptional:(state, action) => {
-			state.beneficiaryData.addressOptional = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional = action.payload
 		},
 		setCepOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.cep = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.cep = action.payload
 		},
 		setAddressOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.address = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.address = action.payload
 		},
 		setNumberOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.number = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.number = action.payload
 		},
 		setComplementOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.complement = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.complement = action.payload
 		},
 		setReferencePointOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.referencePoint = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.referencePoint = action.payload
 		},
 		setDistrictOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.district = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.district = action.payload
 		},
 		setCountyOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.county = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.county = action.payload
 		},
 		setUfOptional: (state, action) => {
-			state.beneficiaryData.addressOptional.uf = action.payload
+			state.beneficiaryData.beneficiaryStep.addressOptional.uf = action.payload
 		},
 		//setContact
 		setPhone1: (state, action) => {
-			state.beneficiaryData.contact.phone1 = action.payload
+			state.beneficiaryData.beneficiaryStep.contact.phone1 = action.payload
 		},
 		setPhone2: (state, action) => {
-			state.beneficiaryData.contact.phone2 = action.payload
+			state.beneficiaryData.beneficiaryStep.contact.phone2 = action.payload
 		},
 		//bancary data
 		setAccountType: (state, action) => {
@@ -365,99 +264,99 @@ const beneficiarySlice = createSlice({
 			state.beneficiaryData.bankData.paymentMethod = action.payload
 		},
 		setSalesStructure: (state, action) => {
-			state.beneficiaryData.benefitData.salesStructure = action.payload
+			state.beneficiaryData.benefitStep.benefitData.salesStructure = action.payload
 		},
 		setHas13thMonth: (state, action) => {
-			state.beneficiaryData.benefitData.has13thMonth = action.payload
+			state.beneficiaryData.benefitStep.benefitData.has13thMonth = action.payload
 		},
 		//payment data
 		setDurationTime: (state, action) => {
-			state.beneficiaryData.paymentData.durationTime = action.payload
+			state.beneficiaryData.benefitStep.paymentData.durationTime = action.payload
 		},
 		setPaymentStartDate: (state, action) => {
-			state.beneficiaryData.paymentData.paymentStartDate = action.payload
+			state.beneficiaryData.benefitStep.paymentData.paymentStartDate = action.payload
 		},
 		setPaymentEndDate: (state, action) => {
-			state.beneficiaryData.paymentData.paymentEndDate = action.payload
+			state.beneficiaryData.benefitStep.paymentData.paymentEndDate = action.payload
 		},
 		setIncomeType: (state, action) => {
-			state.beneficiaryData.paymentData.incomeType = action.payload
+			state.beneficiaryData.benefitStep.paymentData.incomeType = action.payload
 		},
 		//agreement data
 		setHasAdvance: (state, action) => {
-			state.beneficiaryData.agreementData.hasAdvance = action.payload
+			state.beneficiaryData.benefitStep.agreementData.hasAdvance = action.payload
 		},
 		setAdvanceValue: (state, action) => {
-			state.beneficiaryData.agreementData.advanceValue = action.payload
+			state.beneficiaryData.benefitStep.agreementData.advanceValue = action.payload
 		},
 		//conditions data
 
 		//IRPF
 		setHasIRPFIsention: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.hasIRPFIsention = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.hasIRPFIsention = action.payload
 		},
 		setIsLifeTime: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.isLifeTime = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.isLifeTime = action.payload
 		},
 		setDeadline: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.deadline = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.deadline = action.payload
 		},
 		setReason: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.reason = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.reason = action.payload
 		},
 		setCid: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.cid = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.cid = action.payload
 		},
 		setDescription: (state, action) => {
-			state.beneficiaryData.conditionsData.IRPF.description = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.IRPF.description = action.payload
 		},
 
 		//payment Suspension
 		setHasPaymentSuspension: (state, action) => {
-			state.beneficiaryData.conditionsData.paymentSuspension.hasPaymentSuspension = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.paymentSuspension.hasPaymentSuspension = action.payload
 		},
 		setPaymentSuspensionReason: (state, action) => {
-			state.beneficiaryData.conditionsData.paymentSuspension.reason = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.paymentSuspension.reason = action.payload
 		},
 		setPaymentSuspensionCid: (state, action) => {
-			state.beneficiaryData.conditionsData.paymentSuspension.cid = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.paymentSuspension.cid = action.payload
 		},
 		setPaymentSuspensionDescription: (state, action) => {
-			state.beneficiaryData.conditionsData.paymentSuspension.description = action.payload
+			state.beneficiaryData.benefitStep.conditionsData.paymentSuspension.description = action.payload
 		},
 		// court pensio data
 		setHasCourtPension: (state, action) => {
-			state.beneficiaryData.courtPensionData.hasCourtPension = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.hasCourtPension = action.payload
 		},
 		setPrevidencyRegistration: (state, action) => {
-			state.beneficiaryData.courtPensionData.previdencyRegistration = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.previdencyRegistration = action.payload
 		},
 		setPensionistRegistration: (state, action) => {
-			state.beneficiaryData.courtPensionData.pensionistRegistration = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.pensionistRegistration = action.payload
 		},
 		setPensionistName: (state, action) => {
-			state.beneficiaryData.courtPensionData.pensionistName = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.pensionistName = action.payload
 		},
 		setPensionType: (state, action) => {
-			state.beneficiaryData.courtPensionData.pensionType = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.pensionType = action.payload
 		},
 		setPensioIncomeType: (state, action) => {
-			state.beneficiaryData.courtPensionData.incomeType = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.incomeType = action.payload
 		},
 		setModality: (state, action) => {
-			state.beneficiaryData.courtPensionData.modality = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.modality = action.payload
 		},
 		setJudicialOffice: (state, action) => {
-			state.beneficiaryData.courtPensionData.judicialOffice = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.judicialOffice = action.payload
 		},
 		setDiscountFactor: (state, action) => {
-			state.beneficiaryData.courtPensionData.discountFactor = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.discountFactor = action.payload
 		},
 		setPensionStart: (state, action) => {
-			state.beneficiaryData.courtPensionData.pensionStart = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.pensionStart = action.payload
 		},
 		setPensionEnd: (state, action) => {
-			state.beneficiaryData.courtPensionData.pensionEnd = action.payload
+			state.beneficiaryData.benefitStep.courtPensionData.pensionEnd = action.payload
 		},
 
 		// Universal actions
@@ -490,6 +389,10 @@ export const {
 	//beneficiary
 	setRegistration,
 	setCpfOrCnpj,
+	//Clears
+	setClearAllPersonalData,
+	setClearAllFinancialData,
+	setClearAllBenefitData,
 	//
 	setName,
 	setEmail,

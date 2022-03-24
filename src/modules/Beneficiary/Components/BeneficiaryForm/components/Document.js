@@ -15,7 +15,7 @@ import {
 	setIssuer,
 	setUfRg,
 	setIssueDate,
-} from '../../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../../Dataflow/reducers-and-actions';
 
 // handles
 import { handleOpenSelect } from '../../../utils'
@@ -26,7 +26,7 @@ export const Document = ({
 }) => {
 
    //Redux State and dispatch
-   const document = useSelector(state => state.beneficiary.beneficiaryData.document);
+   const document = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.document);
 
    const ufs = _ufs.map(uf => uf.sigla);
 
@@ -50,7 +50,7 @@ export const Document = ({
                type="text"
                width="20%"
                label="Órgão Emissor"
-               value={document.setIssuer}
+               value={document.issuer}
                action={setIssuer}
             />
             <Select

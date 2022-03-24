@@ -27,7 +27,7 @@ import {
    setHasDeathInformation,
    setPersonalDataUf,
    setUfList
-} from '../../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../../Dataflow/reducers-and-actions';
 
 // handles
 import { handleOpenSelect } from '../../../utils'
@@ -48,7 +48,7 @@ export const PersonalData = ({
 
 
    //Redux State and dispatch
-   const personalData = useSelector(state => state.beneficiary.beneficiaryData.personalData);
+   const personalData = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.personalData);
    const dispatch = useDispatch();
 
    //Refs
@@ -118,7 +118,14 @@ export const PersonalData = ({
          <S.Row>
             <S.Label row  >
                Possui Nome Social?
-               <S.RadioInput checkbox type='checkbox' name='socialname' value={personalData.hasSocialName} onChange={() => dispatch(setHasSocialName(!personalData.hasSocialName))} />
+               <S.RadioInput 
+               checkbox 
+               type='checkbox' 
+               name='socialname' 
+               value={personalData.hasSocialName} 
+               onChange={() => dispatch(setHasSocialName(!personalData.hasSocialName))} 
+               checked={personalData.hasSocialName}
+               />
 
             </S.Label>
          </S.Row>
@@ -242,7 +249,14 @@ export const PersonalData = ({
          <S.Row>
             <S.Label row  >
                Possui Informação de Óbito?
-               <S.RadioInput checkbox type='checkbox' name='deathinformation' value={personalData.hasDeathInformation} onChange={() => dispatch(setHasDeathInformation(!personalData.hasDeathInformation))} />
+               <S.RadioInput 
+               checkbox 
+               type='checkbox' 
+               name='deathinformation' 
+               value={personalData.hasDeathInformation} 
+               onChange={() => dispatch(setHasDeathInformation(!personalData.hasDeathInformation))} 
+               checked={personalData.hasDeathInformation}
+               />
 
             </S.Label>
          </S.Row>

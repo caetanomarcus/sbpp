@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch} from 'react-redux';
-import  { setModalOpen, setModalType} from "../../../Beneficiary/Dataflow/reducers-and-actions/beneficiary";
+import  { setModalOpen, setModalType} from "../../Dataflow/reducers-and-actions";
 import * as S from './style'
 
 import logo from '../../../../assets/images/sbpp-logo.png';

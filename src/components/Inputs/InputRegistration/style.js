@@ -17,6 +17,7 @@ export const Label = styled.div`
     margin-top: ${props => props.noLabel? '19px': '0'};
     opacity: ${props => props.disabled? '0.6': ''};
 
+
 `;
 
 export const Input = styled(InputMask)`
@@ -42,6 +43,14 @@ export const Input = styled(InputMask)`
     ::placeholder {
         color: #AAAAAA;
     }
+`;
+
+export const Complement = styled.p`
+    position: absolute ;
+    top: 55%;
+    right: 85px;
+    font-weight: 500;
+    color: #001E64;
 `;
 
 export const SearchInput = styled.input`

@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware, } from "@reduxjs/toolkit";
-import beneficiaryReducer from "../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary";
+import beneficiaryReducer from "../modules/Beneficiary/Dataflow/reducers-and-actions/";
 
 const middleware= [
     ...getDefaultMiddleware(),

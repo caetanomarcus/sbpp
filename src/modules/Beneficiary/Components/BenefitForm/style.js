@@ -65,6 +65,7 @@ export const Row = styled.div`
     width: ${props => props.width};
     align-items: ${props => props.alignItems};
     margin-bottom: ${props => props.last ? "8px" : "32px"};
+    position: relative ;
 `;
 
 export const Label = styled.label`
@@ -182,4 +183,14 @@ export const TextArea = styled.textarea`
     border-radius: 4px;
     padding: 5px 10px;
     outline: none;
+`;
+
+export const TextAreaCounter = styled.p`
+    color: #001E64;
+    font-weight: 400;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    bottom: -18px;
+
 `;

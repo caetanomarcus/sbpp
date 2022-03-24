@@ -1,15 +1,21 @@
 import React, {useState, useEffect} from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import { setStep } from '../../Dataflow/reducers-and-actions/beneficiary'
+import { setStep,
+	setScreen,
+	setSelectedClient,
+	setClearAllPersonalData,
+	setClearAllFinancialData,
+	setClearAllBenefitData } from '../../Dataflow/reducers-and-actions'
 
 //Components
 import BackNextButton from "../../../../components/Buttons/BackNextButton";
 import BeneficiaryForm from "../BeneficiaryForm";
 import FinancialForm from "../FinancialForm";
 import BenefitForm from "../BenefitForm";
-
 import FinalStep from "../FinalStep";
+
+
 //Images
 import right from '../../../../assets/icons/right.png';
 import beneficiaryIcon from '../../../../assets/icons/beneficiary-icon.png';
@@ -19,6 +25,7 @@ import beneficiaryIconOrange from '../../../../assets/icons/beneficiary-icon-ora
 import financialIconOrange from '../../../../assets/icons/financial-icon-orange.png';
 import benefitIconGray from '../../../../assets/icons/benefit-icon-gray.png';
 import financialIconGray from '../../../../assets/icons/financial-icon-gray.png';
+import closeIcon from '../../../../assets/icons/close-icon.svg';
 
 const beneficiaryList = [{
 	name: 'Dados do Beneficiário',
@@ -78,6 +85,8 @@ const Registration = () => {
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
+
+	const initial = 'inicio';
 
 	
 
@@ -163,6 +172,27 @@ const Registration = () => {
 	}
 
 	const handleClickClean = () => {
+		switch (step) {
+			case beneficiary:
+				dispatch(setClearAllPersonalData())
+				break;
+			case financial:
+				dispatch(setClearAllFinancialData())
+				break;
+			case benefit:
+				dispatch(setClearAllBenefitData())
+				break;
+			default:
+				return null
+		}
+	}
+
+	const handleClickClose = () => {
+		dispatch(setClearAllPersonalData());
+		dispatch(setClearAllFinancialData());
+		dispatch(setClearAllBenefitData());
+		dispatch(setSelectedClient({}));
+		dispatch(setScreen(initial));
 	}
 
 	const isBeneficiary = step === beneficiary;
@@ -216,6 +246,9 @@ const Registration = () => {
 					<S.NextButtonBox>
 						{step !== finalStep && <S.CleanCloseBox>
 							<S.CleanButton onClick={handleClickClean}>Limpar todos os campos</S.CleanButton>
+							<S.XButton onClick={handleClickClose}>
+								<S.XIcon src={closeIcon} alt='botão de fechar' />
+							</S.XButton>
 						</S.CleanCloseBox>}
 						<S.ButtonContainer>
 						<BackNextButton

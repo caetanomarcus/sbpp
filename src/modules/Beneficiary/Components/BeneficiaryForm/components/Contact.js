@@ -9,12 +9,12 @@ import { Input } from '../../../../../components/Inputs/InputRegistration';
 import { 
 	setPhone1,
 	setPhone2
-} from '../../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../../Dataflow/reducers-and-actions';
 
 export const Contact = () => {
 
    //Redux State and dispatch
-   const contact = useSelector(state => state.beneficiary.beneficiaryData.contact);
+   const contact = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.contact);
 
 	return (
       <S.Fieldset id='contact' >

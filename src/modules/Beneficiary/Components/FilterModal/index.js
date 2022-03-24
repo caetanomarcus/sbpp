@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector} from 'react-redux'
-import { setFilterMounth as setMounth, setFilterYear as setYear} from '../../Dataflow/reducers-and-actions/beneficiary'
+import { setFilterMounth as setMounth, setFilterYear as setYear} from '../../Dataflow/reducers-and-actions'
 import { Select } from '../../../../components/Inputs/InputRegistration'
 import * as S from './style'
 import grayArrow from '../../../../assets/icons/gray-arrow.svg'

@@ -157,6 +157,7 @@ export const NextButtonBox = styled.div`
 export const CleanCloseBox = styled.div`
     position: absolute ;
     top: -40px;
+    right: 70px ;
 `;
 
 export const CleanButton = styled.button`
@@ -169,9 +170,18 @@ export const CleanButton = styled.button`
     cursor: pointer;
 `;
 
-export const XIcon = styled.img`
-
+export const XButton = styled.button`
+    border: none;
+    outline: none;
+    background: transparent ;
+    position: absolute ;
+    top: 50%;
+    transform:translateY( -25%) ;
+    left: 155px ;
+    cursor: pointer ;
 `;
+
+export const XIcon = styled.img``;
 
 export const ButtonContainer = styled.div`
     position: absolute;

@@ -8,7 +8,7 @@ import { Input } from '../../../../../components/Inputs/InputRegistration';
 import { 
    setRegistration,
 	setCpfOrCnpj,
-} from '../../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../../Dataflow/reducers-and-actions';
 
 export const Participant = ({
    client

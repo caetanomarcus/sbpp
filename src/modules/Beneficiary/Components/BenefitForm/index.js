@@ -31,7 +31,7 @@ import {
 	setDiscountFactor,
 	setPensionStart,
 	setPensionEnd,
-} from "../../Dataflow/reducers-and-actions/beneficiary";
+} from "../../Dataflow/reducers-and-actions";
 
 import arrow from "../../../../assets/icons/gray-arrow.svg";
 
@@ -49,11 +49,11 @@ const BenefitForm = () => {
 	const [openModality, setOpenModality] = useState(false);
 
 	//Global State and Dispatch
-	const benefitData = useSelector(state => state.beneficiary.beneficiaryData.benefitData);
-	const paymentData = useSelector(state => state.beneficiary.beneficiaryData.paymentData);
-	const agreementData = useSelector(state => state.beneficiary.beneficiaryData.agreementData);
-	const conditionsData = useSelector(state => state.beneficiary.beneficiaryData.conditionsData);
-	const courtPensionData = useSelector(state => state.beneficiary.beneficiaryData.courtPensionData);
+	const benefitData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.benefitData);
+	const paymentData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.paymentData);
+	const agreementData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.agreementData);
+	const conditionsData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.conditionsData);
+	const courtPensionData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.courtPensionData);
 
 	const dispatch = useDispatch();
 
@@ -96,6 +96,7 @@ const BenefitForm = () => {
 						value="01/03/2022"
 						disabled
 						noPadding
+						marginRight='0'
 					/>
 					<Input
 						type='text'
@@ -104,22 +105,26 @@ const BenefitForm = () => {
 						value={benefitData.salesStructure}
 						action={setSalesStructure}
 						maxLength={7}
+						width='17%'
+						widthInput='85%'
 
 					/>
 					<Input
 						type='text'
-
 						label="Tipo de Tributação"
 						value="Progressivo"
 						disabled
 						noPadding
+						width='15%'
 					/>
 					<S.Label noLabel row>
 						Possui 13º renda?
 						<S.Input
 							type="checkbox"
 							isCheckbox onChange={() => dispatch(setHas13thMonth(!benefitData.has13thMonth))}
-							marginLeft='10px'
+							marginLeft='4px'
+							width='60px'
+							checked={benefitData.has13thMonth}
 						/>
 					</S.Label>
 				</S.Row>
@@ -134,19 +139,19 @@ const BenefitForm = () => {
 						disabled
 						noPadding
 					/>
-					<S.Label>
-						Tempo de duração
-						<S.Row alignItems='center' paddingLeft='3px' >
-							<S.Input
-								type="text"
-								placeholder="000"
-								width='50px'
-								value={paymentData.durationTime}
-								maxLength={3}
-								onChange={(e) => dispatch(setDurationTime(e.target.value))}
-							/> meses
-						</S.Row>
-					</S.Label>
+
+					<Input
+						type="text"
+						placeholder="000"
+						label='Tempo de duração'
+						value={paymentData.durationTime}
+						action={setDurationTime}
+						maxLength={3}
+						widthInput='30%'
+						complement='meses'
+
+					/>
+
 					<Input
 						type='text'
 						label="Início de Pagamento"
@@ -269,6 +274,7 @@ const BenefitForm = () => {
 							type="checkbox"
 							isCheckbox onChange={() => dispatch(setHasAdvance(!agreementData.hasAdvance))}
 							marginLeft='10px'
+							checked={agreementData.hasAdvance}
 						/>
 					</S.Label>
 				</S.Row>
@@ -293,7 +299,12 @@ const BenefitForm = () => {
 				<S.Row>
 					<S.Label row>
 						Possui isenção de IRPF?
-						<S.Input type='checkbox' isCheckbox onChange={() => dispatch(setHasIRPFIsention(!conditionsData.IRPF.hasIRPFIsention))} marginLeft='10px' />
+						<S.Input type='checkbox' 
+						isCheckbox 
+						onChange={() => dispatch(setHasIRPFIsention(!conditionsData.IRPF.hasIRPFIsention))} 
+						marginLeft='10px' 
+						checked={conditionsData.IRPF.hasIRPFIsention}
+						/>
 					</S.Label>
 				</S.Row>
 				{conditionsData.IRPF.hasIRPFIsention && (
@@ -348,7 +359,9 @@ const BenefitForm = () => {
 										value={conditionsData.IRPF.description}
 										cols='55'
 										rows='4'
+										maxLength={120}
 									/>
+									<S.TextAreaCounter>{conditionsData.IRPF.description.length}/120</S.TextAreaCounter>
 								</S.Row>
 							</S.Label>
 						</S.Row>
@@ -357,7 +370,12 @@ const BenefitForm = () => {
 				<S.Row last={!conditionsData.paymentSuspension.hasPaymentSuspension}>
 					<S.Label row>
 						Incluir Suspensão de Pagamento?
-						<S.Input type='checkbox' isCheckbox onChange={() => dispatch(setHasPaymentSuspension(!conditionsData.paymentSuspension.hasPaymentSuspension))} marginLeft='10px' />
+						<S.Input type='checkbox' 
+						isCheckbox 
+						onChange={() => dispatch(setHasPaymentSuspension(!conditionsData.paymentSuspension.hasPaymentSuspension))} 
+						marginLeft='10px' 
+						checked={conditionsData.paymentSuspension.hasPaymentSuspension}
+						/>
 					</S.Label>
 				</S.Row>
 				{conditionsData.paymentSuspension.hasPaymentSuspension && (
@@ -390,7 +408,9 @@ const BenefitForm = () => {
 										value={conditionsData.paymentSuspension.description}
 										cols='55'
 										rows='4'
+										maxLength={120}
 									/>
+									<S.TextAreaCounter>{conditionsData.paymentSuspension.description.length}/120</S.TextAreaCounter>
 								</S.Row>
 							</S.Label>
 						</S.Row>
@@ -406,6 +426,7 @@ const BenefitForm = () => {
 							type="checkbox"
 							isCheckbox onChange={() => dispatch(setHasCourtPension(!courtPensionData.hasCourtPension))}
 							marginLeft='10px'
+							checked={courtPensionData.hasCourtPension}
 						/>
 					</S.Label>
 				</S.Row>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './style'
 import { useDispatch } from "react-redux";
-import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions/beneficiary';
+import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions';
 import {phoneMask} from './masks';
 import cross from '../../../assets/icons/cross.svg';
 
@@ -26,7 +26,8 @@ export const Input = ({
 	marginBottom,
 	marginRight,
 	cleanButton,
-	mask
+	mask,
+	complement
 
 }) => {
 
@@ -64,6 +65,8 @@ export const Input = ({
 						city: data.localidade,
 						uf: data.uf,
 						hasMailAddress: adressState.hasMailAddress,
+						correspondenceType: adressState.correspondenceType,
+						hasDifferentAddress: adressState.hasDifferentAddress,
 					}
 
 					dispatch(setAllAdress(newData))
@@ -84,10 +87,10 @@ export const Input = ({
 						address: data.logradouro,
 						number: adressState.number,
 						complement: adressState.complement,
+						referencePoint: adressState.referencePoint,
 						district: data.bairro,
 						city: data.localidade,
 						uf: data.uf,
-						hasMailAddress: adressState.hasMailAddress,
 					}
 
 					dispatch(setAllAdressOptional(newData))
@@ -102,7 +105,7 @@ export const Input = ({
 	}
 
 	return (
-		<S.Label width={width} row={row} optional={optional} marginBottom={marginBottom} marginRight={marginRight} > {label}
+		<S.Label width={width} row={row} optional={optional} marginBottom={marginBottom} marginRight={marginRight} complement={complement}> {label}
 			<S.Input
 				type={type}
 				widthInput={widthInput}
@@ -119,6 +122,7 @@ export const Input = ({
 				maskChar={null}
 
 			/>
+			{complement && <S.Complement>{complement}</S.Complement>}
 			{isDetailed && (
 				<S.AddressDetails>
 					Campo controlado pelo CEP

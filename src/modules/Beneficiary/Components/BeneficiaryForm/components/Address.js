@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions/beneficiary';
+import { setHasDifferentAdress } from '../../../Dataflow/reducers-and-actions';
 
 // Style
 import * as S from '../style'
@@ -26,7 +26,7 @@ import {
 	setDistrictOptional,
 	setCountyOptional,
 	setUfOptional,
-} from '../../../Dataflow/reducers-and-actions/beneficiary';
+} from '../../../Dataflow/reducers-and-actions';
 
 // handles
 import { handleOpenSelect } from '../../../utils';
@@ -43,8 +43,8 @@ export const Address = ({
    // const [addressDefault.hasMailAddress, setMailingAdress] = useState(false);
 
    //Redux State and dispatch
-   const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.addressDefault);
-   const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.addressOptional);
+   const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.addressDefault);
+   const addressOptional = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.addressOptional);
 
    //refs
    const adress1Ref = useRef();
@@ -158,7 +158,10 @@ export const Address = ({
                         type='radio' 
                         name='correspondence' 
                         value='Email'
-                        onChange={(e) => dispatch(setAdressType(e.target.value))}
+                        onChange={(e) => {
+                           dispatch(setAdressType(e.target.value))
+                           dispatch(setHasDifferentAdress(false))
+                        }}
                      />
                      Email
                   </S.LabelRadio>
@@ -168,7 +171,7 @@ export const Address = ({
          <S.Row last={!addressDefault.hasDifferentAddress}>
          <S.Label row  disabled={(addressDefault.correspondenceType === '') || (addressDefault.correspondenceType === 'Email')} >
                Adicionar endereço diferente para correspondência?
-            <S.RadioInput marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasDifferentAddress} onChange={() => dispatch(setHasDifferentAdress(!addressDefault.hasDifferentAddress))} />
+            <S.RadioInput  checked={addressDefault.hasDifferentAddress} marginLeft checkbox type='checkbox' name='hasAdress' value={addressDefault.hasDifferentAddress} onChange={() => dispatch(setHasDifferentAdress(!addressDefault.hasDifferentAddress))} />
                 
          </S.Label>
          </S.Row>
@@ -183,7 +186,7 @@ export const Address = ({
                // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.cep}
                action={setCepOptional}
-               id='cep'
+               id='cep2'
                adressState={addressOptional}
                mask="99999-999"
             />
@@ -252,7 +255,7 @@ export const Address = ({
                isDetailed
                // optional={!addressDefault.hasMailAddress}
                // disabled={!addressDefault.hasMailAddress}
-               value={addressOptional.county}
+               value={addressOptional.city}
                action={setCountyOptional}
             />
             
