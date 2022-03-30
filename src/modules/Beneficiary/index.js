@@ -6,6 +6,7 @@ import AsideMenu from './Components/AsideMenu';
 import InitialScreen from './Components/InitialScreen';
 import Registration from './Components/Registration';
 import Modal from '../../components/modal/Modal';
+import PDF from './Components/FinalStep/pdf.component';
 
 
 const Beneficiary = () => {
@@ -16,6 +17,7 @@ const Beneficiary = () => {
 
     const initial = 'inicio';
     const registration = 'beneficiarios/pendentes/cadastro'
+    const pdf = 'pdf'
 
     const renderScreen = (screen) => {
         switch (screen) {
@@ -23,6 +25,8 @@ const Beneficiary = () => {
                 return <InitialScreen />
             case registration:
                 return <Registration />
+            case pdf:
+                return <PDF />
             default:
                 return null
         }

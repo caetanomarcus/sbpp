@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
+import {jsPDF} from 'jspdf';
+
 import { setStep,
-	setScreen,
-	setSelectedClient,
-	setClearAllPersonalData,
-	setClearAllFinancialData,
-	setClearAllBenefitData } from '../../Dataflow/reducers-and-actions'
+	setModalOpen,
+	setModalType,
+ } from '../../Dataflow/reducers-and-actions'
 
 //Components
 import BackNextButton from "../../../../components/Buttons/BackNextButton";
@@ -26,6 +26,8 @@ import financialIconOrange from '../../../../assets/icons/financial-icon-orange.
 import benefitIconGray from '../../../../assets/icons/benefit-icon-gray.png';
 import financialIconGray from '../../../../assets/icons/financial-icon-gray.png';
 import closeIcon from '../../../../assets/icons/close-icon.svg';
+import downloadIcon from '../../../../assets/icons/download-icon.svg';
+import PDF from "../FinalStep/pdf.component";
 
 const beneficiaryList = [{
 	name: 'Dados do Beneficiário',
@@ -88,6 +90,29 @@ const Registration = () => {
 
 	const initial = 'inicio';
 
+	const handleDownloadPdf = () => {
+
+		const part1 = document.getElementById('part1');
+		
+        const doc = new jsPDF({
+			orientation: 'p',
+			format: 'a4',
+			hotfixes: ['printmedia.hotfix.pdf-print-pagecount.js', 'px_scaling'],
+			preventModal: true,
+			unit: 'px',
+			
+		});
+
+        doc.html(part1, {
+            callback: function (doc) {
+				doc.save('test.pdf');
+            },
+			html2canvas: {
+				width: 720,
+			},
+
+        });
+	}
 	
 
 	const handleClickNext = () => {
@@ -132,6 +157,9 @@ const Registration = () => {
 
 	// }
 
+	const teste1 = document.getElementById('part1');
+	console.log(teste1?.offsetHeight, teste1?.offsetWidth)
+
 	const handleClickSideList = (value) => {
 		const element = document.getElementById(value);
 		element.scrollIntoView();
@@ -172,32 +200,31 @@ const Registration = () => {
 	}
 
 	const handleClickClean = () => {
-		switch (step) {
-			case beneficiary:
-				dispatch(setClearAllPersonalData())
-				break;
-			case financial:
-				dispatch(setClearAllFinancialData())
-				break;
-			case benefit:
-				dispatch(setClearAllBenefitData())
-				break;
-			default:
-				return null
-		}
+		dispatch(setModalOpen());
+        dispatch(setModalType('clean'))
 	}
 
 	const handleClickClose = () => {
-		dispatch(setClearAllPersonalData());
-		dispatch(setClearAllFinancialData());
-		dispatch(setClearAllBenefitData());
-		dispatch(setSelectedClient({}));
-		dispatch(setScreen(initial));
+		dispatch(setModalOpen());
+        dispatch(setModalType('cancel'))
 	}
 
 	const isBeneficiary = step === beneficiary;
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
+
+	const enableButton = (step) => {
+		switch (step) {
+			case beneficiary:
+				return true
+			case financial:
+				return true
+			case benefit:
+				return true
+			default:
+				return false
+		}
+	}
 
 	useEffect(() => {
 		setAtualStep(step === 'beneficiary' ? beneficiaryList[0].value : benefitList[0].value)
@@ -244,6 +271,9 @@ const Registration = () => {
 					{(step === finalStep) && <FinalStep />}
 					</S.FormBox>
 					<S.NextButtonBox>
+						{step === finalStep && <S.DownloadButton onClick={handleDownloadPdf} >
+							<img src={downloadIcon} alt='download' />
+							</S.DownloadButton>}
 						{step !== finalStep && <S.CleanCloseBox>
 							<S.CleanButton onClick={handleClickClean}>Limpar todos os campos</S.CleanButton>
 							<S.XButton onClick={handleClickClose}>
@@ -259,6 +289,9 @@ const Registration = () => {
 							width='142px'
 						/>
 						</S.ButtonContainer>
+						{step === finalStep && <S.PdfContainer>
+							<PDF />
+						</S.PdfContainer>}
 					</S.NextButtonBox>
 				</S.MiddleBox>
 			</S.Content>

@@ -1,4 +1,4 @@
-const beneficiaryStep = {
+export const beneficiaryStep = {
     personalData: {
         name: '',
         email: '',
@@ -51,4 +51,6 @@ const beneficiaryStep = {
     }
 }
 
-export default beneficiaryStep
+// export const beneficiaryComplete = {
+
+// }

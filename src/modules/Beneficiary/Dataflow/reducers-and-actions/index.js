@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import beneficiaryStep from './beneficiaryStep';
+import {beneficiaryStep} from './beneficiaryStep';
 import benefitStep from './benefitStep';
 import bankData from './bankData';
 
@@ -99,6 +99,7 @@ const beneficiarySlice = createSlice({
 		setClearAllBenefitData: (state) => {
 			state.beneficiaryData.benefitStep = benefitStep
 		},
+		//
 		//setPersonalData
 		setName: (state, action) => {
 			state.beneficiaryData.beneficiaryStep.personalData.name = action.payload
@@ -363,6 +364,9 @@ const beneficiarySlice = createSlice({
 		setResetStates: () => {
 			return beneficiaryState
 		},
+		// isBenefitialyCreated: (state) => {
+		// 	state.benefitialyCreated
+		// },
 
 	}
 })

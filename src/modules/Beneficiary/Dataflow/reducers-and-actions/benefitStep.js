@@ -15,8 +15,13 @@ const benefitStep = {
         paymentEndDate: '',
         benefitType: '',
         incomeType: '',
+        quotaValue: '',
     },
     agreementData: {
+        agrementCode: '',
+        companyName1: '',
+        branchCode: '',
+        companyName2: '',
         hasAdvance: false,
         advanceValue: '',
     },

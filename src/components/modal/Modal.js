@@ -2,7 +2,14 @@ import React from "react";
 import * as S from "./style";
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import { setModalClose, setModalType, setResetStates, setScreen, setSelectedClient } from "../../modules/Beneficiary/Dataflow/reducers-and-actions";
+import { setModalClose, 
+    setModalType, 
+    setScreen, 
+    setSelectedClient, 
+    setClearAllPersonalData,
+    setClearAllFinancialData,
+    setClearAllBenefitData
+ } from "../../modules/Beneficiary/Dataflow/reducers-and-actions";
 
 const typeLeave ={
     title: 'Tem certeza que deseja sair?',
@@ -24,8 +31,13 @@ const typeFinish = {
 
 const Modal = () => {
     const modalType = useSelector(state => state.beneficiary.modalType);
+    const step = useSelector(state => state.beneficiary.step);
 
     const initial = 'inicio';
+    const beneficiary = 'beneficiary';
+	const financial = 'financial';
+	const benefit = 'benefit';
+	const finalStep = 'finalStep'
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -42,6 +54,34 @@ const Modal = () => {
         dispatch(setSelectedClient({}));
         navigate('/')
     }
+
+    const handleClickCancel = () => {
+        dispatch(setModalClose());
+        dispatch(setModalType(''));
+		dispatch(setClearAllPersonalData());
+		dispatch(setClearAllFinancialData());
+		dispatch(setClearAllBenefitData());
+		dispatch(setSelectedClient({}));
+		dispatch(setScreen(initial));
+	}
+
+    const handleClickClean = () => {
+        dispatch(setModalClose());
+        dispatch(setModalType(''));
+		switch (step) {
+			case beneficiary:
+				dispatch(setClearAllPersonalData())
+				break;
+			case financial:
+				dispatch(setClearAllFinancialData())
+				break;
+			case benefit:
+				dispatch(setClearAllBenefitData())
+				break;
+			default:
+				return null
+		}
+	}
 
 
     const renderModal = () => {
@@ -63,7 +103,7 @@ const Modal = () => {
                     <S.Title>{typeCancel.title}</S.Title>
                     <S.ButtonBox>
                         <S.Button onClick={handleClickClose} > Não</S.Button>
-                        <S.Button yes onClick={() => dispatch(setResetStates())} >Sim</S.Button>
+                        <S.Button yes onClick={handleClickCancel} >Sim</S.Button>
                     </S.ButtonBox>
                     </S.Box>
                     )
@@ -73,7 +113,7 @@ const Modal = () => {
                     <S.Title>{typeClean.title}</S.Title>
                     <S.ButtonBox>
                         <S.Button onClick={handleClickClose} >Não</S.Button>
-                        <S.Button yes >Sim</S.Button>
+                        <S.Button yes onClick={handleClickClean} >Sim</S.Button>
                     </S.ButtonBox>
                     </S.Box>
                     )

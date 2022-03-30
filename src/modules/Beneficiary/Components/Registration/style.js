@@ -61,7 +61,7 @@ export const PersonIcon = styled.button`
     }
 `;
 
-export const HeaderTitle= styled.p `
+export const HeaderTitle = styled.p`
     font-weight: 700;
     font-size: 16px;
     color: #FF5000;
@@ -73,11 +73,11 @@ export const RegistrationFluxBox = styled.div`
     align-items: center;
 `;
 
-export const Circle = styled.div `
+export const Circle = styled.div`
     position: relative;
     width: 41px;
     height: 41px;
-    background: ${props => props.steps? '#FF5000' : 'transparent'};
+    background: ${props => props.steps ? '#FF5000' : 'transparent'};
     border-radius: 50%;
     margin-left: 20px;
     margin-right: 10px;
@@ -113,23 +113,23 @@ export const Step = styled.h3`
     left: 50px; */
     font-weight: 700;
     font-size: 10px;
-    color: ${props => props.steps? '#FF5000': '#828282'};
+    color: ${props => props.steps ? '#FF5000' : '#828282'};
 `;
 
 export const Line = styled.div`
     width: 72px;
     height: 2px;
-    background: ${props => props.selected? '#AAAAAA' : '#EFEFEF'};
+    background: ${props => props.selected ? '#AAAAAA' : '#EFEFEF'};
 `;
 
 export const MiddleBox = styled.div`
     display:flex ;
-    height: ${props => props.isFinal? '101.6%' : '100%'};
+    height: ${props => props.isFinal ? '101.6%' : '100%'};
     position: relative;
 `;
 
 export const FormStepBox = styled.div`
-    width: 14%;
+    width: 12%;
     height: 100%;
     display:flex ;
     flex-direction: column;
@@ -144,20 +144,35 @@ export const UperBox = styled.div`
 `;
 
 export const FormBox = styled.div`
-    width: 72%;
+    width: 76%;
     /* height: 50% ; */
-    border-bottom: ${props => props.isFinal? 'none' : '#828282 1px solid'};
+    border-bottom: ${props => props.isFinal ? 'none' : '#828282 1px solid'};
 `;
 
 export const NextButtonBox = styled.div`
-     width: 14%;
+     width: 12%;
+     z-index: 1;
      
+`;
+
+export const DownloadButton = styled.button`
+    width: 32px;
+    height: 32px;
+    background: #EFEFEF;
+    border: 1px solid #AAAAAA;
+    border-radius: 4px;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer ;
+    margin-left: 130px;
+    
 `;
 
 export const CleanCloseBox = styled.div`
     position: absolute ;
     top: -40px;
-    right: 70px ;
+    right: 50px ;
 `;
 
 export const CleanButton = styled.button`
@@ -186,7 +201,7 @@ export const XIcon = styled.img``;
 export const ButtonContainer = styled.div`
     position: absolute;
      bottom: 0;
-     right: 20px;
+     right: -5px;
 `;
 
 export const SideListItem = styled.button`
@@ -205,7 +220,7 @@ export const ListCircle = styled.div`
     height: 8px;
     background: #D2D2D2;
     border-radius: 50%;
-    visibility: ${props => props.selected? 'visible' : 'hidden'};
+    visibility: ${props => props.selected ? 'visible' : 'hidden'};
     margin-right: 4px;
 `;
 
@@ -235,4 +250,10 @@ export const Footer = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: center;
+`;
+
+export const PdfContainer = styled.iframe`
+    width: 100%;
+    transform: scale(0.0000001);
+    z-index: -1;
 `;

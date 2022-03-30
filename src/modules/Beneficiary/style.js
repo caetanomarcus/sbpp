@@ -18,6 +18,7 @@ export const Container = styled.section `
     background-size: 100% 40%;
     background-repeat: no-repeat;
     background-position: bottom; 
+    /* overflow: hidden ; */
 `;
 
 export const ContentContainer = styled.div`

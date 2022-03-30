@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import * as S from './style'
 
-const FinalStep = () => {
+import logo from '../../../../assets/images/sbpp-logo.png';
+import logoSula from '../../../../assets/images/sulamerica-logo.png';
 
-    //Global State
+const PDF = () => {
+
     const selectedClient = useSelector(state => state.beneficiary.selectedClient);
     const personalData = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.personalData);
     const document = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.document);
@@ -18,12 +20,13 @@ const FinalStep = () => {
     const conditionsData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.conditionsData);
     // const courtPensionData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.courtPensionData);
 
-
-
     return (
-        <S.Wrapper>
-            <S.Text>Cadastro realizado com sucesso!</S.Text>
-            <S.Container >
+        <S.PDFContainer id='part1'>
+            <S.LogosBox>
+                <img src={logo} alt='logo sbpp' />
+                <img src={logoSula} alt='logo sulamerica' />
+            </S.LogosBox>
+            <S.Container noOverflow >
                 <S.Row noMargin >
                     <S.TextBox>
                         <S.Title>Matrícula</S.Title>
@@ -40,7 +43,7 @@ const FinalStep = () => {
                         <S.Title>Nome</S.Title>
                         <S.Value>{selectedClient.name}</S.Value>
                     </S.TextBox>
-                    <S.TextBox marginLeft='500px'>
+                    <S.TextBox marginLeft='200px'>
                         <S.Title>Email</S.Title>
                         <S.Value>{selectedClient.email}</S.Value>
                     </S.TextBox>
@@ -351,13 +354,13 @@ const FinalStep = () => {
                             <S.Title>Possui isenção de IRPF?</S.Title>
                             <S.Checkbox type='checkbox' checked={conditionsData.IRPF.hasIRPFIsention} readOnly />
                         </S.Row>
-                        
+
 
                     </>
                 )}
             </S.Container>
-        </S.Wrapper>
+        </S.PDFContainer>
     )
 }
 
-export default FinalStep;
+export default PDF;
