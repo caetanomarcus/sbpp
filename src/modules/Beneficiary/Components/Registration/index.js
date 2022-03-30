@@ -88,8 +88,6 @@ const Registration = () => {
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
 
-	const initial = 'inicio';
-
 	const handleDownloadPdf = () => {
 
 		const part1 = document.getElementById('part1');
@@ -213,18 +211,18 @@ const Registration = () => {
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
 
-	const enableButton = (step) => {
-		switch (step) {
-			case beneficiary:
-				return true
-			case financial:
-				return true
-			case benefit:
-				return true
-			default:
-				return false
-		}
-	}
+	// const enableButton = (step) => {
+	// 	switch (step) {
+	// 		case beneficiary:
+	// 			return true
+	// 		case financial:
+	// 			return true
+	// 		case benefit:
+	// 			return true
+	// 		default:
+	// 			return false
+	// 	}
+	// }
 
 	useEffect(() => {
 		setAtualStep(step === 'beneficiary' ? beneficiaryList[0].value : benefitList[0].value)

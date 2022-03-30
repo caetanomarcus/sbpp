@@ -37,7 +37,6 @@ const Modal = () => {
     const beneficiary = 'beneficiary';
 	const financial = 'financial';
 	const benefit = 'benefit';
-	const finalStep = 'finalStep'
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
