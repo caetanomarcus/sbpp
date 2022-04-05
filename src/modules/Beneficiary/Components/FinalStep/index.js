@@ -347,10 +347,45 @@ const FinalStep = () => {
                 <S.Line />
                 {conditionsData.IRPF.hasIRPFIsention && (
                     <>
-                        <S.Row flex>
+                        <S.Row >
                             <S.Title>Possui isenção de IRPF?</S.Title>
                             <S.Checkbox type='checkbox' checked={conditionsData.IRPF.hasIRPFIsention} readOnly />
                         </S.Row>
+                        <S.Row noMargin>
+                            <S.TextBox flex>
+                                <S.Title>É vitalício?</S.Title>
+                                <S.Value>{conditionsData.IRPF.isLifeTime}</S.Value>
+                            </S.TextBox>
+                        </S.Row>
+                        {conditionsData.IRPF.isLifeTime === 'Não' && (
+                            <>
+                            <S.Row>
+                                <S.TextBox>
+                                    <S.Title>Prazo de isenção de IRPF</S.Title>
+                                    <S.Value>{conditionsData.IRPF.deadline}</S.Value>
+                                </S.TextBox>
+
+                            </S.Row>
+                                <S.Row noMargin>
+                                <S.TextBox flex>
+                                    <S.Title>Motivo</S.Title>
+                                    <S.Value>{conditionsData.IRPF.reason}</S.Value>
+                                </S.TextBox>
+                            </S.Row>
+                             {conditionsData.IRPF.reason === 'Doença' && (
+                                <S.Row>
+                                <S.TextBox>
+                                    <S.Title>CID</S.Title>
+                                    <S.Value>{conditionsData.IRPF.cid}</S.Value>
+                                </S.TextBox>
+                                <S.TextBox marginLeft='24px'>
+                                    <S.Title>Descrição</S.Title>
+                                    <S.Value>{conditionsData.IRPF.description}</S.Value>
+                                </S.TextBox>
+                            </S.Row>
+                           )}
+                            </>
+                        )}
                         
 
                     </>

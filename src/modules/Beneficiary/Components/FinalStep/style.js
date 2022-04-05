@@ -50,7 +50,7 @@ export const Row = styled.div`
     display: flex;
     align-items: center;
     justify-content: ${props => props.row ? props.justify : 'flex-start'};
-    margin-bottom: ${props => props.NoMargin ? '0px' : '36px'};
+    margin-bottom: ${props => props.noMargin ? '24px' : '36px'};
     position: relative;
 
 `;

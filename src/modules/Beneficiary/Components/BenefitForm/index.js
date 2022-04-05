@@ -301,7 +301,10 @@ const BenefitForm = () => {
 						Possui isenção de IRPF?
 						<S.Input type='checkbox' 
 						isCheckbox 
-						onChange={() => dispatch(setHasIRPFIsention(!conditionsData.IRPF.hasIRPFIsention))} 
+						onChange={() => {
+							dispatch(setHasIRPFIsention(!conditionsData.IRPF.hasIRPFIsention))
+							dispatch(setIsLifeTime(''))
+						}} 
 						marginLeft='10px' 
 						checked={conditionsData.IRPF.hasIRPFIsention}
 						/>
@@ -311,11 +314,29 @@ const BenefitForm = () => {
 					<>
 						<S.Row>
 							<S.Label row> É vitalício?
-								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setIsLifeTime(true))} value={true} name='isLifeTime' marginLeft='8px' /> Sim
-								<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setIsLifeTime(false))} value={false} name='isLifeTime' marginLeft='16px' /> Não
+								<S.Input 
+								type='radio' 
+								isCheckbox 
+								onChange={(e) => dispatch(setIsLifeTime('Sim'))} 
+								value={true} 
+								name='isLifeTime'
+								 marginLeft='8px' 
+								 checked={conditionsData.IRPF.isLifeTime === 'Sim'}
+								 /> Sim
+								<S.Input 
+								type='radio' 
+								isCheckbox 
+								onChange={(e) => dispatch(setIsLifeTime('Não'))} 
+								value={false} 
+								name='isLifeTime' 
+								marginLeft='16px'
+								checked={conditionsData.IRPF.isLifeTime === 'Não'}
+								/> Não
 							</S.Label>
 						</S.Row>
-						<S.Row>
+						{(conditionsData.IRPF.isLifeTime === 'Não') && (
+							<>
+								<S.Row>
 							<Input
 								label='Prazo de isenção de IRPF'
 								value={conditionsData.IRPF.deadline}
@@ -337,10 +358,11 @@ const BenefitForm = () => {
 								toogle={setOpenReason}
 								state={openReason}
 								action={setReason}
-								options={['Aposentado', 'Falecido', 'Desemprego', 'Outros']}
+								options={['Aposentado', 'Falecido', 'Desempregado', 'Doença', 'Outros']}
 							/>
 						</S.Row>
-						<S.Row alignItems='flex-start' row>
+						{conditionsData.IRPF.reason === 'Doença' && (
+							<S.Row alignItems='flex-start' row>
 							<Input
 								type='text'
 								width='10%'
@@ -365,6 +387,9 @@ const BenefitForm = () => {
 								</S.Row>
 							</S.Label>
 						</S.Row>
+						)}
+							</>
+						)}
 					</>
 				)}
 				<S.Row last={!conditionsData.paymentSuspension.hasPaymentSuspension}>
@@ -389,7 +414,8 @@ const BenefitForm = () => {
 								</S.Row>
 							</S.Label>
 						</S.Row>
-						<S.Row alignItems='flex-start' row last>
+					{conditionsData.paymentSuspension.reason === 'Doença' && (
+							<S.Row alignItems='flex-start' row last>
 							<Input
 								type='text'
 								width='10%'
@@ -414,6 +440,7 @@ const BenefitForm = () => {
 								</S.Row>
 							</S.Label>
 						</S.Row>
+					)}
 					</>
 				)}
 			</S.Fieldset>

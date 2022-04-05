@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
-import {jsPDF} from 'jspdf';
+import { jsPDF } from 'jspdf';
 
-import { setStep,
+import {
+	setStep,
 	setModalOpen,
 	setModalType,
- } from '../../Dataflow/reducers-and-actions'
+} from '../../Dataflow/reducers-and-actions'
 
 //Components
 import BackNextButton from "../../../../components/Buttons/BackNextButton";
@@ -77,11 +78,11 @@ const benefitList = [{
 
 const Registration = () => {
 
-	
+
 	const step = useSelector(state => state.beneficiary.step);
 	const dispatch = useDispatch();
-	
-	const [atualStep, setAtualStep] = useState( beneficiaryList[0].value);
+
+	const [atualStep, setAtualStep] = useState(beneficiaryList[0].value);
 
 	const beneficiary = 'beneficiary';
 	const financial = 'financial';
@@ -91,27 +92,29 @@ const Registration = () => {
 	const handleDownloadPdf = () => {
 
 		const part1 = document.getElementById('part1');
-		
-        const doc = new jsPDF({
+
+		const doc = new jsPDF({
 			orientation: 'p',
 			format: 'a4',
 			hotfixes: ['printmedia.hotfix.pdf-print-pagecount.js', 'px_scaling'],
 			preventModal: true,
 			unit: 'px',
-			
+
 		});
 
-        doc.html(part1, {
-            callback: function (doc) {
+		doc.html(part1, {
+			callback: function (doc) {
 				doc.save('test.pdf');
-            },
+			},
 			html2canvas: {
 				width: 720,
 			},
+			autoPaging: 'slice',
+			margin: [10, 0, 10, 0]
 
-        });
+		});
 	}
-	
+
 
 	const handleClickNext = () => {
 		switch (step) {
@@ -155,9 +158,6 @@ const Registration = () => {
 
 	// }
 
-	const teste1 = document.getElementById('part1');
-	console.log(teste1?.offsetHeight, teste1?.offsetWidth)
-
 	const handleClickSideList = (value) => {
 		const element = document.getElementById(value);
 		element.scrollIntoView();
@@ -169,14 +169,14 @@ const Registration = () => {
 		if (step === beneficiary) {
 			return beneficiaryList.map(item => (
 				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
-					<S.ListCircle selected={ atualStep === item.value} ></S.ListCircle>
+					<S.ListCircle selected={atualStep === item.value} ></S.ListCircle>
 					<S.SideListItemText  >{item.name}</S.SideListItemText>
 				</S.SideListItem>
 			))
 		} else if (step === benefit) {
 			return benefitList.map(item => (
 				<S.SideListItem onClick={() => handleClickSideList(item.value)} key={item.value}>
-					<S.ListCircle selected={ atualStep === item.value} ></S.ListCircle>
+					<S.ListCircle selected={atualStep === item.value} ></S.ListCircle>
 					<S.SideListItemText>{item.name}</S.SideListItemText>
 				</S.SideListItem>
 			))
@@ -199,12 +199,12 @@ const Registration = () => {
 
 	const handleClickClean = () => {
 		dispatch(setModalOpen());
-        dispatch(setModalType('clean'))
+		dispatch(setModalType('clean'))
 	}
 
 	const handleClickClose = () => {
 		dispatch(setModalOpen());
-        dispatch(setModalType('cancel'))
+		dispatch(setModalType('cancel'))
 	}
 
 	const isBeneficiary = step === beneficiary;
@@ -226,34 +226,34 @@ const Registration = () => {
 
 	useEffect(() => {
 		setAtualStep(step === 'beneficiary' ? beneficiaryList[0].value : benefitList[0].value)
-	}, [step] )
+	}, [step])
 
 	return (
 		<S.Container>
 			<S.Content>
-			{step !== finalStep && <S.Header>
-						<S.RegistrationFluxBox>
-							<S.Circle background={isBeneficiary? beneficiaryIcon: beneficiaryIconOrange} steps={isBeneficiary} isPastStep={ isFinancial || isBenefit} >
-							</S.Circle>
-							{ (step === beneficiary) && <S.StepBox>
-									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
-									<S.Step id='benecifiaryStep' steps={isBeneficiary}  >BENEFICIÁRIO</S.Step>
-								</S.StepBox>}
-							<S.Line  />
-							<S.Circle  background={ isFinancial? financialIcon: isBeneficiary? financialIconGray: financialIconOrange} steps={isFinancial}  >
-							</S.Circle>
-								{ (isFinancial ) && <S.StepBox>
-									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
-									<S.Step id='financialStep' steps={isFinancial}  >FINANCEIRO</S.Step>
-									</S.StepBox>}
-							<S.Line  />
-							<S.Circle  background={isBenefit? benefitIcon: benefitIconGray} steps={isBenefit} >
-							</S.Circle>
-								{isBenefit && <S.StepBox>
-									<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
-									<S.Step steps={isBenefit} >BENEFÍCIO</S.Step>
-								</S.StepBox> }
-						</S.RegistrationFluxBox>
+				{step !== finalStep && <S.Header>
+					<S.RegistrationFluxBox>
+						<S.Circle background={isBeneficiary ? beneficiaryIcon : beneficiaryIconOrange} steps={isBeneficiary} isPastStep={isFinancial || isBenefit} >
+						</S.Circle>
+						{(step === beneficiary) && <S.StepBox>
+							<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+							<S.Step id='benecifiaryStep' steps={isBeneficiary}  >BENEFICIÁRIO</S.Step>
+						</S.StepBox>}
+						<S.Line />
+						<S.Circle background={isFinancial ? financialIcon : isBeneficiary ? financialIconGray : financialIconOrange} steps={isFinancial}  >
+						</S.Circle>
+						{(isFinancial) && <S.StepBox>
+							<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+							<S.Step id='financialStep' steps={isFinancial}  >FINANCEIRO</S.Step>
+						</S.StepBox>}
+						<S.Line />
+						<S.Circle background={isBenefit ? benefitIcon : benefitIconGray} steps={isBenefit} >
+						</S.Circle>
+						{isBenefit && <S.StepBox>
+							<S.StepNumber>Passo {renderStepNumber(step)}/3</S.StepNumber>
+							<S.Step steps={isBenefit} >BENEFÍCIO</S.Step>
+						</S.StepBox>}
+					</S.RegistrationFluxBox>
 				</S.Header>}
 				<S.MiddleBox isFinal={step === finalStep} >
 					<S.FormStepBox>
@@ -263,15 +263,15 @@ const Registration = () => {
 						{step !== beneficiary && (<BackNextButton back text='Voltar' handleClick={handleClickBack} />)}
 					</S.FormStepBox>
 					<S.FormBox isFinal={step === finalStep} >
-					{(step === beneficiary) && <BeneficiaryForm />}
-					{(step === financial) && <FinancialForm />}
-					{(step === benefit) && <BenefitForm />}
-					{(step === finalStep) && <FinalStep />}
+						{(step === beneficiary) && <BeneficiaryForm />}
+						{(step === financial) && <FinancialForm />}
+						{(step === benefit) && <BenefitForm />}
+						{(step === finalStep) && <FinalStep />}
 					</S.FormBox>
 					<S.NextButtonBox>
 						{step === finalStep && <S.DownloadButton onClick={handleDownloadPdf} >
 							<img src={downloadIcon} alt='download' />
-							</S.DownloadButton>}
+						</S.DownloadButton>}
 						{step !== finalStep && <S.CleanCloseBox>
 							<S.CleanButton onClick={handleClickClean}>Limpar todos os campos</S.CleanButton>
 							<S.XButton onClick={handleClickClose}>
@@ -279,13 +279,13 @@ const Registration = () => {
 							</S.XButton>
 						</S.CleanCloseBox>}
 						<S.ButtonContainer>
-						<BackNextButton
-							text={step === finalStep ? 'Finalizar' : 'Próximo'}
-							alt={step === finalStep ? 'Finalizar' : 'Próximo'}
-							source={right}
-							handleClick={handleClickNext}
-							width='142px'
-						/>
+							<BackNextButton
+								text={step === finalStep ? 'Finalizar' : 'Próximo'}
+								alt={step === finalStep ? 'Finalizar' : 'Próximo'}
+								source={right}
+								handleClick={handleClickNext}
+								width='142px'
+							/>
 						</S.ButtonContainer>
 						{step === finalStep && <S.PdfContainer>
 							<PDF />
