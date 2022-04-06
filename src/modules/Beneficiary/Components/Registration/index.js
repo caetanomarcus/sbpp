@@ -83,8 +83,8 @@ const Registration = () => {
 	const beneficiaryState = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep);
 	const finantialState = useSelector(state => state.beneficiary.beneficiaryData.bankData);
 	const benefitialState = useSelector(state => state.beneficiary.beneficiaryData.benefitStep);
-	const {personalData,addressDefault, addressOptional, contact} = beneficiaryState;
-	const {benefitData, paymentData, agreementData, conditionsData, courtPensionData} = benefitialState;
+	const { personalData, addressDefault, addressOptional, contact } = beneficiaryState;
+	const { benefitData, paymentData, agreementData, conditionsData, courtPensionData } = benefitialState;
 	const dispatch = useDispatch();
 
 	const [atualStep, setAtualStep] = useState(beneficiaryList[0].value);
@@ -95,39 +95,42 @@ const Registration = () => {
 	const finalStep = 'finalStep'
 
 
-	const {name, email, hasSocialName, socialName, birthDate, sex, naturalness, uf, nationality, hasDeathInformation, deathDate, deathInfoDate, filiation1, filiation2} = personalData
-	const {rg, issuer, ufRG, issueDate} = beneficiaryState.document
-	const {cep, address, number, district, city, hasMailAdress, correspondenceType, hasDifferentAddress} = addressDefault
+	const { name, email, hasSocialName, socialName, birthDate, sex, naturalness, uf, nationality, hasDeathInformation, deathDate, deathInfoDate, filiation1, filiation2 } = personalData
+	const { rg, issuer, ufRG, issueDate } = beneficiaryState.document
+	const { cep, address, number, district, city, hasMailAdress, correspondenceType, hasDifferentAddress } = addressDefault
 	const ufAddress = addressDefault.uf
-	const {phone1} = contact
-	const {national, accountType, bank, paymentMethod, accountNumber, accountDigit, agency, agencyDigit, hasPowerOfAttorney, powerOfAttorneyName, powerOfAttorneyCPF} = finantialState
-	const {product, susep, proposalNumber, proposalDate, salesStructure, taxationType, has13thMonth} = benefitData
-	const {bookingValue, durationTime, paymentStartDate, paymentEndDate, benefitType, incomeType, quotaValue} = paymentData
-	const {agreementCode, companyName1, branchCode, companyName2, hasAdvance, advanceValue} = agreementData
+	const { phone1 } = contact
+	const { national, accountType, bank, paymentMethod, accountNumber, accountDigit, agency, agencyDigit, hasPowerOfAttorney, powerOfAttorneyName, powerOfAttorneyCPF } = finantialState
+	const { product, susep, proposalNumber, proposalDate, salesStructure, taxationType, has13thMonth } = benefitData
+	const { bookingValue, durationTime, paymentStartDate, paymentEndDate, benefitType, incomeType, quotaValue } = paymentData
+	const { agreementCode, companyName1, branchCode, companyName2, hasAdvance, advanceValue } = agreementData
 	const IRPFHasIRPFIsention = conditionsData.IRPF.hasIRPFIsention
 	const IRPFIsLifeTime = conditionsData.IRPF.isLifeTime
 	const IRPFDeadline = conditionsData.IRPF.deadline
 	const IRPFReason = conditionsData.IRPF.reason
 	const IRPFCid = conditionsData.IRPF.cid
 	const IRPFDescription = conditionsData.IRPF.description
-	const PSHasPaymentSuspesion = conditionsData.paymentSuspension.hasPaymentSuspesion
+	const PSHasPaymentSuspesion = conditionsData.paymentSuspension.hasPaymentSuspension
 	const PSReason = conditionsData.paymentSuspension.reason
 	const PSCid = conditionsData.paymentSuspension.cid
 	const PSDescription = conditionsData.paymentSuspension.description
-	const {hasCourtPension,previdencyRegistration, pensionistRegistration,pensionistName, pensionType, modality, judicialOffice, discountFactor, pensionStart, pensionEnd} = courtPensionData
+	const { hasCourtPension, previdencyRegistration, pensionistRegistration, pensionistName, pensionType, modality, judicialOffice, discountFactor, pensionStart, pensionEnd } = courtPensionData
 	const pensionIncomeType = courtPensionData.incomeType
-	
 
-	
+
+
 	//States for next/sendo button confirmation
-	const personalState = [name , email , birthDate ,sex ,uf ,nationality , naturalness , filiation1 , filiation2]
+	const personalState = [name, email, birthDate, sex, uf, nationality, naturalness, filiation1, filiation2]
 	const documentState = [rg, issuer, issueDate, ufRG]
-	const addressState =[cep, address, number, district, city, ufAddress]
+	const addressState = [cep, address, number, district, city, ufAddress]
 	const addressOptionalState = [addressOptional.cep, addressOptional.address, addressOptional.number, addressOptional.district, addressOptional.city, addressOptional.uf]
 	const contactState = [phone1]
 	const financialState = [accountType, bank, paymentMethod, accountNumber, accountDigit, agency, agencyDigit]
 	const benefitState = [product, susep, proposalNumber, proposalDate, salesStructure, taxationType]
-	const paymentState = [bookingValue, durationTime, paymentStartDate, paymentEndDate, benefitType, incomeType, quotaValue]
+	const paymentState = [bookingValue, durationTime, paymentStartDate, paymentEndDate, incomeType,] //colocar o quotaValue
+	const agreementState = [agreementCode, companyName1, branchCode, companyName2,]
+	const courtPensionState = [hasCourtPension, previdencyRegistration, pensionistRegistration, pensionistName, pensionType, modality, judicialOffice, discountFactor, pensionStart, pensionEnd, pensionIncomeType]
+
 
 
 
@@ -137,8 +140,11 @@ const Registration = () => {
 	const deathinformationStates = [hasDeathInformation, [deathDate, deathInfoDate]]
 	const differentAdress = [hasDifferentAddress, [...addressOptionalState]]
 	const powerOfAttorneyStates = [hasPowerOfAttorney, [powerOfAttorneyName, powerOfAttorneyCPF]]
+	const agreementStates = [hasAdvance, [advanceValue]]
+	const IRPFStates = [IRPFHasIRPFIsention, [IRPFIsLifeTime,IRPFDeadline, IRPFReason,  IRPFCid, IRPFDescription]]
+	const PSStates = [PSHasPaymentSuspesion, [PSReason, PSCid, PSDescription]]
+	const courtPensionStates =[hasCourtPension, [previdencyRegistration, pensionistRegistration, pensionistName, pensionType, modality, judicialOffice, discountFactor, pensionStart, pensionEnd, pensionIncomeType]]
 
-	
 
 	const handleDownloadPdf = () => {
 
@@ -263,7 +269,7 @@ const Registration = () => {
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
 
-	
+
 
 	const canSend = (states, conditionalStates) => { //CONDITIONAL STATES É UMA CALLBACK
 		let sum;
@@ -272,59 +278,90 @@ const Registration = () => {
 		if (conditionalStates) {
 			states.concat(conditionalStates)
 
-			if(conditionalStates === '8a19cb4d-0b0d-4188-b581-a888f5639bc7'){
+			if (conditionalStates === '8a19cb4d-0b0d-4188-b581-a888f5639bc7') {
 				return false
 			}
 		}
 
-		if(!states) {
+		if (!states) {
 			return false
 		}
-		for (let i = 0; i < states.length ; i++ ) {
-			if(i === 0){
+		for (let i = 0; i < states.length; i++) {
+			if (i === 0) {
 				sum = Boolean(states[0])
-			} 
-				sum = sum && Boolean(states[i])
+			}
+			sum = sum && Boolean(states[i])
 		}
-		
+
+
 		return sum
 
-		
+
 	}
 
 
-	
+
 	const conditionalStates = (...args) => {  // OBRIGATÓRIO PASSAR ARGS, CADA ARGS DEVE SER UM ARRAY: O [0] É O ESTADO DO CHECKBOX E [1] É UM ARRAY COM OS ESTADOS QUE SÓ APARECEM SE CHECADO
-		
+		console.log(args)
 		let result = []
-		
-		for (let  i= 0; i < args.length; i++) {
-		
-				if(args[i][0]){
-					if(canSend(args[i][1])) {
-						if (result !== '8a19cb4d-0b0d-4188-b581-a888f5639bc7'){
-							result = [...result, ...args[i][1]]
-						}
-					} 
-					
-					if(!canSend(args[i][1])) {
-						result = '8a19cb4d-0b0d-4188-b581-a888f5639bc7'
+
+		for (let i = 0; i < args.length; i++) {
+
+			if (args[i][0]) {
+				if (canSend(args[i][1])) {
+					if (result !== '8a19cb4d-0b0d-4188-b581-a888f5639bc7') {
+						result = [...result, ...args[i][1]]
 					}
 				}
-			
+
+				if (!canSend(args[i][1])) {
+					result = '8a19cb4d-0b0d-4188-b581-a888f5639bc7'
+				}
+			}
+
 		}
 		return result
 	}
+
+	const verifyStates = (args) => { //usar apenas quando tiver condições encadeadas
+	
+			if (args[1][0] === 'Sim') {
+				return [args[0], [args[1][0]]]
+			}
+
+			if (args[1][0] === 'Não') {
+				if(args[1].includes('Doença')) {
+					return args
+				}
+				return [args[0], [args[1][0], args[1][1], args[1][2]]]
+			}
+
+			if (args[1].includes('Doença')) {
+				return args
+
+			} else {
+				const index = args[1].indexOf(item => item === 'Sim')
+				if (index === -1) {
+					return [args[0], [args[1][0]]]
+				} else {
+					return [args[0], [args[1][index + 1]]]
+				}
+			}
+
+		
+	}
+
+	console.log('ULTRA TESTE BOLADO', verifyStates(IRPFStates))
 
 
 	const enableButton = () => {
 		switch (step) {
 			case beneficiary:
-				return true //canSend(personalState, conditionalStates(socialNameStates, deathinformationStates)) && canSend(documentState) && canSend(addressState, conditionalStates(differentAdress)) && canSend(contactState)
+				return  true //canSend(personalState, conditionalStates(socialNameStates, deathinformationStates)) && canSend(documentState) && canSend(addressState, conditionalStates(differentAdress)) && canSend(contactState)
 			case financial:
-				return  true //canSend(financialState, conditionalStates(powerOfAttorneyStates))
+				return true //canSend(financialState, conditionalStates(powerOfAttorneyStates))
 			case benefit:
-				return canSend(benefitState)
+				return   canSend(benefitState) && canSend(paymentState) && canSend(agreementState, conditionalStates(agreementStates)) && canSend([true], conditionalStates(verifyStates(IRPFStates))) && canSend([true], conditionalStates(verifyStates(PSStates))) && canSend([true],conditionalStates(courtPensionStates))
 			default:
 				return false
 		}

@@ -379,7 +379,7 @@ const beneficiarySlice = createSlice({
 		setPensionType: (state, action) => {
 			state.beneficiaryData.benefitStep.courtPensionData.pensionType = action.payload
 		},
-		setPensioIncomeType: (state, action) => {
+		setPensionIncomeType: (state, action) => {
 			state.beneficiaryData.benefitStep.courtPensionData.incomeType = action.payload
 		},
 		setModality: (state, action) => {
@@ -534,7 +534,7 @@ export const {
 	setPensionistRegistration,
 	setPensionistName,
 	setPensionType,
-	setPensioIncomeType	,
+	setPensionIncomeType	,
 	setModality,
 	setJudicialOffice,
 	setDiscountFactor,

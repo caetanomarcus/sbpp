@@ -390,6 +390,38 @@ const FinalStep = () => {
 
                     </>
                 )}
+                {conditionsData.paymentSuspension.hasPaymentSuspension && (
+                    <>
+                        <S.Row >
+                            <S.Title>Incluir Suspensão de Pagamento?</S.Title>
+                            <S.Checkbox type='checkbox' checked={conditionsData.paymentSuspension.hasPaymentSuspension} readOnly />
+                        </S.Row>
+                        <S.Row>
+                            <S.TextBox>
+                            <S.Title>Motivo</S.Title>
+                            <S.Value>{conditionsData.paymentSuspension.reason}</S.Value>
+                            </S.TextBox>
+                            
+                        </S.Row>
+            
+                        
+                             {conditionsData.paymentSuspension.reason === 'Doença' && (
+                                <S.Row>
+                                <S.TextBox>
+                                    <S.Title>CID</S.Title>
+                                    <S.Value>{conditionsData.paymentSuspension.cid}</S.Value>
+                                </S.TextBox>
+                                <S.TextBox marginLeft='24px'>
+                                    <S.Title>Descrição</S.Title>
+                                    <S.Value>{conditionsData.paymentSuspension.description}</S.Value>
+                                </S.TextBox>
+                            </S.Row>
+                           )}
+ 
+                        
+
+                    </>
+                )}
             </S.Container>
         </S.Wrapper>
     )

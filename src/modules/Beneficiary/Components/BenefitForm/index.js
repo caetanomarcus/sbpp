@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Select } from "../../../../components/Inputs/InputRegistration";
@@ -38,6 +38,7 @@ import {
 	setPensionistRegistration,
 	setPensionistName,
 	setPensionType,
+	setPensionIncomeType,
 	setModality,
 	setJudicialOffice,
 	setDiscountFactor,
@@ -60,12 +61,17 @@ const BenefitForm = () => {
 	const [openIncomeType, setOpenIncomeType] = useState(false);
 	const [openModality, setOpenModality] = useState(false);
 
+	//refs
+	const reasonRef = useRef();
+
 	//Global State and Dispatch
 	const benefitData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.benefitData);
 	const paymentData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.paymentData);
 	const agreementData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.agreementData);
 	const conditionsData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.conditionsData);
 	const courtPensionData = useSelector(state => state.beneficiary.beneficiaryData.benefitStep.courtPensionData);
+
+	const canShowBenefitType = ((paymentData.paymentStartDate.length === 10) && (paymentData.paymentEndDate.length === 10)) && Boolean(paymentData.durationTime)
 
 	const dispatch = useDispatch();
 
@@ -208,6 +214,8 @@ const BenefitForm = () => {
 						<S.Line />
 					</S.PriceTableHead>
 					<S.PriceTableBody>
+					{canShowBenefitType && (
+						<>
 						<S.RowBox>
 							<S.Label row marginBottom='8px' smallWeight >
 								<S.Input type='radio' name='incomeType' value='Renda mensal Temporária' onChange={(e) => dispatch(setIncomeType(e.target.value))} />
@@ -250,6 +258,8 @@ const BenefitForm = () => {
 							</S.Label>
 							<S.RowPrice>R$0,00</S.RowPrice>
 						</S.RowBox>
+						</>
+					)}
 					</S.PriceTableBody>
 				</S.PriceTableBox>
 			</S.Fieldset>
@@ -297,7 +307,10 @@ const BenefitForm = () => {
 						Possui adiantamento?
 						<S.Input
 							type="checkbox"
-							isCheckbox onChange={() => dispatch(setHasAdvance(!agreementData.hasAdvance))}
+							isCheckbox onChange={() => {
+								dispatch(setHasAdvance(!agreementData.hasAdvance))
+								dispatch(setAdvanceValue(''))
+							}}
 							marginLeft='10px'
 							checked={agreementData.hasAdvance}
 						/>
@@ -379,11 +392,12 @@ const BenefitForm = () => {
 								label='Motivo'
 								source={arrow}
 								value={conditionsData.IRPF.reason}
-								handleClickSelect={(e) => handleOpenSelect(e, setOpenReason, openReason)}
+								handleClickSelect={(e) => handleOpenSelect(e, setOpenReason, openReason, reasonRef)}
 								toogle={setOpenReason}
 								state={openReason}
 								action={setReason}
 								options={['Aposentado', 'Falecido', 'Desempregado', 'Doença', 'Outros']}
+								element={reasonRef}
 							/>
 						</S.Row>
 						{conditionsData.IRPF.reason === 'Doença' && (
@@ -431,13 +445,13 @@ const BenefitForm = () => {
 				{conditionsData.paymentSuspension.hasPaymentSuspension && (
 					<>
 						<S.Row>
-							<S.Label > Motivo
-								<S.Row paddingLeft='0' paddingTop='16px'>
-									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Óbito' name='paymentSuspensionReason' /> Óbito
-									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Doença' name='paymentSuspensionReason' marginLeft='16px' /> Doença
-									<S.Input type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Ausência de Prova de Vida' name='paymentSuspensionReason' marginLeft='16px' /> Ausência de Prova de Vida
+							<S.LabelForRadio > Motivo
+								<S.Row paddingLeft='0' paddingTop='16px' alignItems='center'>
+									<S.InsideLabel><S.Input checked={conditionsData.paymentSuspension.reason === 'Óbito'} type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Óbito' name='paymentSuspensionReason' /> Óbito</S.InsideLabel>
+									<S.InsideLabel><S.Input checked={conditionsData.paymentSuspension.reason === 'Doença'} type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Doença' name='paymentSuspensionReason' marginLeft='16px' /> Doença</S.InsideLabel>
+									<S.InsideLabel><S.Input checked={conditionsData.paymentSuspension.reason === 'Ausência de Prova de Vida'} type='radio' isCheckbox onChange={(e) => dispatch(setPaymentSuspensionReason(e.target.value))} value='Ausência de Prova de Vida' name='paymentSuspensionReason' marginLeft='16px' /> Ausência de Prova de Vida</S.InsideLabel>
 								</S.Row>
-							</S.Label>
+							</S.LabelForRadio>
 						</S.Row>
 					{conditionsData.paymentSuspension.reason === 'Doença' && (
 							<S.Row alignItems='flex-start' row last>
@@ -523,7 +537,7 @@ const BenefitForm = () => {
 								handleClickSelect={(e) => handleOpenSelect(e, setOpenIncomeType, openIncomeType)}
 								source={arrow}
 								toogle={setOpenIncomeType}
-								action={setIncomeType}
+								action={setPensionIncomeType}
 								state={openIncomeType}
 								options={['Renda Fixa', 'Renda Variável']}
 							/>

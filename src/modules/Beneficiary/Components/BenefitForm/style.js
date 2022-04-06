@@ -83,6 +83,25 @@ export const Label = styled.label`
 
 `;
 
+export const LabelForRadio = styled.div `
+    font-size: 14px;
+    font-weight: 500;
+    color: #001E64;
+    display:flex;
+    flex-direction: ${props => props.row? 'row': 'column'};
+    margin-right: ${props => props.noLabel ? '0': '65px'};
+    align-items: ${props => props.row? 'center': 'flex-start'};
+    justify-content: flex-start;
+    margin-bottom: ${props => props.marginBottom};
+    font-weight: ${props => props.smallWeight ? '400': '500'};
+    width: ${props => props.width};
+`;
+
+export const InsideLabel = styled.label `
+    display: flex;
+    align-items: center;
+`
+
 export const Input = styled.input`
     margin-left: ${props => props.marginLeft};
     outline: none;

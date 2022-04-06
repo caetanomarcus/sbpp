@@ -29,7 +29,7 @@ const LoginScreen = () => {
                     <Button
                         buttonName='Entrar'
                         background='#001E64'
-                        handleClick={() => navigate('/beneficiary')}
+                        handleClick={() => navigate('/beneficiario')}
                         marginTop='32px'
                     />
                 </S.ButtonContainer>

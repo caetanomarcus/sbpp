@@ -54,7 +54,7 @@ export const Input = ({
 	const handleBlur = () => {
 
 		if ((id === 'cep') && value !== '') {
-			(`https://viacep.com.br/ws/${value}/json/`)
+			fetch(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
 					const newData = {

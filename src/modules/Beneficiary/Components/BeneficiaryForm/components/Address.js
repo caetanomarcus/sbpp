@@ -39,8 +39,7 @@ export const Address = ({
    handleChange
 }) => {
 
-   //LocalState
-   // const [addressDefault.hasMailAddress, setMailingAdress] = useState(false);
+
 
    //Redux State and dispatch
    const addressDefault = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.addressDefault);
@@ -78,7 +77,6 @@ export const Address = ({
                label="Logradouro"
                isDetailed
                value={addressDefault.address}
-               // action={setAddressDefault}
                readOnly
             />            
          </S.Row>
@@ -109,7 +107,6 @@ export const Address = ({
                label="Bairro"
                isDetailed
                value={addressDefault.district}
-               // action={setDistrictDefault}
                readOnly
             />
 
@@ -119,7 +116,6 @@ export const Address = ({
                label="Município"
                isDetailed
                value={addressDefault.city}
-               // action={setCountyDefault}
                readOnly
             />
             
@@ -133,7 +129,6 @@ export const Address = ({
                action={setUfDefault}
                toogle={setOpenUfDefault}
                state={openUfDefault}
-               // isOpened={openUfDefault}
                handleClickSelect={(e) => handleOpenSelect(e, setOpenUfDefault, openUfDefault, adress1Ref ) }
                element={adress1Ref}
             />
@@ -182,8 +177,7 @@ export const Address = ({
                type="text"
                width="12%"
                label="CEP"
-               // optional={!addressDefault.Address}
-               // disabled={!addressDefault.hasMailAddress}
+      
                value={addressOptional.cep}
                action={setCepOptional}
                id='cep2'
@@ -196,8 +190,6 @@ export const Address = ({
                width="80%"
                label="Logradouro"
                isDetailed
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.address}
                action={setAddressOptional}
             >
@@ -209,8 +201,6 @@ export const Address = ({
                type="text"
                width="12%"
                label="Número"
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.number}
                action={setNumberOptional}
             />
@@ -219,8 +209,6 @@ export const Address = ({
                type="text"
                width="36%"
                label="Complemento (opcional)"
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
                value={addressOptional.complement}
                action={setComplementOptional}
             />
@@ -229,8 +217,7 @@ export const Address = ({
                type="text"
                width="40%"
                label="Ponto de Referência (opcional)"
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
+              
                value={addressOptional.referencePoint}
                action={setReferencePointOptional}
             />
@@ -242,8 +229,7 @@ export const Address = ({
                width="49%"
                label="Bairro"
                isDetailed
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
+         
                value={addressOptional.district}
                action={setDistrictOptional}
             />
@@ -253,8 +239,7 @@ export const Address = ({
                width="41%"
                label="Município"
                isDetailed
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
+             
                value={addressOptional.city}
                action={setCountyOptional}
             />
@@ -263,8 +248,7 @@ export const Address = ({
                width="12%"
                label="UF"
                isDetailed
-               // optional={!addressDefault.hasMailAddress}
-               // disabled={!addressDefault.hasMailAddress}
+              
                options={ufs}
                source={grayArrow}
                value={addressOptional.uf}
