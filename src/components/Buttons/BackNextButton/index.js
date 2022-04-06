@@ -3,7 +3,7 @@ import { Buttons, Image } from './style';
 import whiteRight from './../../../assets/icons/white-right.png';
 import orangeLeft from './../../../assets/icons/orange-left.png';
 
-const BackNextButton = ( {text, background, canSend, handleClick, marginTop, sent, back} ) => {
+const BackNextButton = ( {text, background, canSend, handleClick, marginTop, sent, back, disabled} ) => {
     return (
         <Buttons 
         background={background} 
@@ -11,6 +11,7 @@ const BackNextButton = ( {text, background, canSend, handleClick, marginTop, sen
         marginTop={marginTop}
         sent={sent}
         back={back}
+        disabled={disabled}
         >
             <Image src={back? orangeLeft: whiteRight} alt='botão de avançar' />
             <p>{text}</p>

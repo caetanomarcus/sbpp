@@ -450,8 +450,8 @@ export const SearchBox = styled.div`
 `;
 
 export const ClearButton = styled.button`
-    /* width: 106px;
-    height: 30px; */
+    width: 120px;
+    height: 25px;
     display: flex;
     justify-content:space-evenly;
     align-items: center;
@@ -462,12 +462,19 @@ export const ClearButton = styled.button`
     font: 400 10px 'Aestetico', sans-serif;
     color: #828282;
     cursor: pointer;
-    margin-top: 35px;
+    margin-top: 25px;
+    text-decoration: underline;
+    
 
 
     img {
         width: 13px;
         height: 13px;
+    }
+
+    :hover {
+        background: #EFEFEF;
+        border-radius: 4px;
     }
 
 `;

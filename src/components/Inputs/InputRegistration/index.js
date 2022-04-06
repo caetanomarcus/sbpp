@@ -64,7 +64,6 @@ export const Input = ({
 						district: data.bairro,
 						city: data.localidade,
 						uf: data.uf,
-						hasMailAddress: adressState.hasMailAddress,
 						correspondenceType: adressState.correspondenceType,
 						hasDifferentAddress: adressState.hasDifferentAddress,
 					}

@@ -171,11 +171,14 @@ export const DownloadButton = styled.button`
 
 export const CleanCloseBox = styled.div`
     position: absolute ;
-    top: -40px;
-    right: 50px ;
+    top: -45px;
+    right: -5px ;
+    width: 170px ;
 `;
 
 export const CleanButton = styled.button`
+    width: 120px;
+    height: 25px;
     font-size: 10px;
     color: #828282;
     border: none;
@@ -183,17 +186,29 @@ export const CleanButton = styled.button`
     background: transparent ;
     text-decoration: underline;
     cursor: pointer;
+
+    :hover{
+        background: #EFEFEF;
+        border-radius: 4px;
+    }
 `;
 
 export const XButton = styled.button`
+    width: 29px;
+    height: 29px;
     border: none;
     outline: none;
     background: transparent ;
     position: absolute ;
     top: 50%;
-    transform:translateY( -25%) ;
-    left: 155px ;
+    transform:translateY( -40%) ;
+    left: 145px ;
     cursor: pointer ;
+    border-radius: 50%;
+
+    :hover{
+        background: #AAAAAA;
+    }
 `;
 
 export const XIcon = styled.img``;

@@ -187,9 +187,6 @@ const beneficiarySlice = createSlice({
 		setUfDefault: (state, action) => {
 			state.beneficiaryData.beneficiaryStep.addressDefault.uf = action.payload
 		},
-		setHasMailAdress: (state, action) => {
-			state.beneficiaryData.beneficiaryStep.addressDefault.hasMailAddress = action.payload
-		},
 		setAdressType: (state, action) => {
 			state.beneficiaryData.beneficiaryStep.addressDefault.correspondenceType = action.payload
 		},
@@ -428,7 +425,6 @@ export const {
 	setDistrictDefault,
 	setCountyDefault,
 	setUfDefault,
-	setHasMailAdress,
 	setAdressType,
 	setHasDifferentAdress,
 	//

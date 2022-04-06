@@ -44,15 +44,15 @@ const FinancialForm = () => {
     const payments = ['DOC', 'TED', 'Voucher'];
 
 
-    useEffect(() => {
-        fetch('https://brasilapi.com.br/api/banks/v1')
-            .then(response => {
-                return response
-            })
-            .then(data => data.json())
-            .then((item) => setBanks(item))
+    // useEffect(() => {
+    //     fetch('https://brasilapi.com.br/api/banks/v1')
+    //         .then(response => {
+    //             return response
+    //         })
+    //         .then(data => data.json())
+    //         .then((item) => setBanks(item))
 
-    }, [])
+    // }, [])
 
     return (
         <S.Container>

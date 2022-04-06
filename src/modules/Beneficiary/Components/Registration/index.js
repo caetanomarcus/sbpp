@@ -80,6 +80,8 @@ const Registration = () => {
 
 
 	const step = useSelector(state => state.beneficiary.step);
+	const beneficiaryState = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep);
+	const {personalData,addressDefault, addressOptional, contact} = beneficiaryState;
 	const dispatch = useDispatch();
 
 	const [atualStep, setAtualStep] = useState(beneficiaryList[0].value);
@@ -88,8 +90,30 @@ const Registration = () => {
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
+	const {name, email, hasSocialName, socialName, birthDate, sex, naturalness, uf, nationality, hasDeathInformation, deathDate, deathInfoDate, filiation1, filiation2} = personalData
+	const {rg, issuer, ufRG, issueDate} = beneficiaryState.document
+	const {cep, address, number, district, city, hasMailAdress, correspondenceType, hasDifferentAddress} = addressDefault
+	const ufAddress = addressDefault.uf
+
+	
+	//States for next/sendo button confirmation
+	const personalState = [name , email , birthDate ,sex ,uf ,nationality , naturalness , filiation1 , filiation2]
+	const documentState = [rg, issuer, issueDate, ufRG]
+	const addressState =[cep, address, number, district, city, ufAddress]
+	const addressOptionalState = [addressOptional.cep, addressOptional.address, addressOptional.number, addressOptional.district, addressOptional.city, addressOptional.uf]
+
+
+
+
+	//Conditional States
+	const socialNameStates = [hasSocialName, [socialName]]
+	const deathinformationStates = [hasDeathInformation, [deathDate, deathInfoDate]]
+	const differentAdress = [hasDifferentAddress, [...addressOptionalState]]
+
+	
 
 	const handleDownloadPdf = () => {
+
 
 		const part1 = document.getElementById('part1');
 
@@ -211,18 +235,75 @@ const Registration = () => {
 	const isFinancial = step === financial;
 	const isBenefit = step === benefit;
 
-	// const enableButton = (step) => {
-	// 	switch (step) {
-	// 		case beneficiary:
-	// 			return true
-	// 		case financial:
-	// 			return true
-	// 		case benefit:
-	// 			return true
-	// 		default:
-	// 			return false
-	// 	}
-	// }
+	
+
+	const canSend = (states, conditionalStates) => {
+		let sum;
+
+
+		if (conditionalStates) {
+			states.concat(conditionalStates)
+
+			if(conditionalStates === '8a19cb4d-0b0d-4188-b581-a888f5639bc7'){
+				return false
+			}
+		}
+
+		if(!states) {
+			return false
+		}
+		for (let i = 0; i < states.length ; i++ ) {
+			if(i === 0){
+				sum = Boolean(states[0])
+			} 
+				sum = sum && Boolean(states[i])
+		}
+		
+		return sum
+	}
+
+
+	
+	const conditionalStates = (...args) => {  // OBRIGATÓRIO PASSAR ARGS, CADA ARGS DEVE SER UM ARRAY: O [0] É O ESTADO DO CHECKBOX E [1] É UM ARRAY COM OS ESTADOS QUE SÓ APARECEM SE CHECADO
+		
+		let result = []
+		
+		for (let  i= 0; i < args.length; i++) {
+		
+				if(args[i][0]){
+					if(canSend(args[i][1])) {
+						if (result !== '8a19cb4d-0b0d-4188-b581-a888f5639bc7'){
+							result = [...result, ...args[i][1]]
+						}
+					} 
+					
+					if(!canSend(args[i][1])) {
+						result = '8a19cb4d-0b0d-4188-b581-a888f5639bc7'
+					}
+				}
+			
+		}
+
+
+		return result
+
+
+	}
+
+	console.log(differentAdress)
+
+	const enableButton = () => {
+		switch (step) {
+			case beneficiary:
+				return canSend(personalState, conditionalStates(socialNameStates, deathinformationStates)) && canSend(documentState) && canSend(addressState, conditionalStates(differentAdress))
+			case financial:
+				return true
+			case benefit:
+				return true
+			default:
+				return false
+		}
+	}
 
 	useEffect(() => {
 		setAtualStep(step === 'beneficiary' ? beneficiaryList[0].value : benefitList[0].value)
@@ -285,6 +366,8 @@ const Registration = () => {
 								source={right}
 								handleClick={handleClickNext}
 								width='142px'
+								disabled={!enableButton()}
+								sent={enableButton()}
 							/>
 						</S.ButtonContainer>
 						{step === finalStep && <S.PdfContainer>

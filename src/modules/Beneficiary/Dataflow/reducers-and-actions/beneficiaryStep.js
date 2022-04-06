@@ -18,7 +18,7 @@ export const beneficiaryStep = {
         filiation2: '',
     },
     document: {
-        rg: '',
+        ufRG: '',
         issuer: '',
         uf: '',
         issueDate: '',
@@ -31,7 +31,6 @@ export const beneficiaryStep = {
         district: '',
         city:'',
         uf: '',
-        hasMailAddress: false,
         correspondenceType: '',
         hasDifferentAddress: false,
     },

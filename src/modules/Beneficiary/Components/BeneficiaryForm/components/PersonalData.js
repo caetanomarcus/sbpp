@@ -49,6 +49,7 @@ export const PersonalData = ({
 
    //Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.personalData);
+   const step = useSelector(state => state.beneficiary.step);
    const dispatch = useDispatch();
 
    //Refs
@@ -58,6 +59,7 @@ export const PersonalData = ({
    const genderRef = useRef();
 
    const paises = countries.map(country => country.nome_pais);
+   const beneficiary = 'beneficiary';
 
    useEffect(() => {
       dispatch(setName(client.name));
@@ -90,10 +92,15 @@ export const PersonalData = ({
          .then(data => {
             const cidades = data.map(city => city.nome);
             dispatch(setUfList(cidades))
+            
          })
-         dispatch(setNaturalness(''))
+         // if (step === beneficiary) {
+         //    dispatch(setNaturalness(''))
+         // }
       }
    }, [personalData.uf, dispatch])
+
+
    return (
       <S.Fieldset id="data">
          <S.Legend>Dados </S.Legend>
@@ -162,6 +169,7 @@ export const PersonalData = ({
                         name='sexo'
                         value='Feminino'
                         onChange={(e) => dispatch(setSex(e.target.value))}
+                        checked={personalData.sex === 'Feminino'}
                      />
                      Feminino
                   </S.LabelRadio>
@@ -172,6 +180,7 @@ export const PersonalData = ({
                         name='sexo'
                         value='Masculino'
                         onChange={(e) => dispatch(setSex(e.target.value))}
+                        checked={personalData.sex === 'Masculino'}
                      />
                      Masculino
                   </S.LabelRadio>
@@ -231,15 +240,15 @@ export const PersonalData = ({
             <Select
                width="40%"
                noLabel
-               value={personalData.naturalness}
-               handleClickSelect={(e) => handleOpenSelect(e, setOpenNaturalness, openNaturalness, naturalnessRef)}
                options={personalData.ufList}
                toogle={setOpenNaturalness}
                state={openNaturalness}
                source={grayArrow}
+               value={personalData.naturalness}
                action={setNaturalness}
                isOpened={openNaturalness}
                id='naturalness'
+               handleClickSelect={(e) => handleOpenSelect(e, setOpenNaturalness, openNaturalness, naturalnessRef)}
                element={naturalnessRef}
                placeholder='Cidade'
                disabled={personalData.nationality !== 'Brasil'}
