@@ -235,9 +235,12 @@ const beneficiarySlice = createSlice({
 		setBank: (state, action) => {
 			state.beneficiaryData.bankData.bank = action.payload
 		},
+		setBankList: (state, action) => {
+			state.beneficiaryData.bankData.bankList = action.payload
+		},
 	
 		setAgency: (state, action) => {
-			state.beneficiaryData.bankData.agencyNumber = action.payload
+			state.beneficiaryData.bankData.agency = action.payload
 		},
 		setAgencyDigit: (state, action) => {
 			state.beneficiaryData.bankData.agencyDigit = action.payload
@@ -261,13 +264,32 @@ const beneficiarySlice = createSlice({
 		setPaymentMethod: (state, action) => {
 			state.beneficiaryData.bankData.paymentMethod = action.payload
 		},
+		setProduct: (state, action) => {
+			state.beneficiaryData.benefitStep.benefitData.product = action.payload
+		},
+		setSusep : (state, action) => {
+			state.beneficiaryData.benefitStep.benefitData.susep = action.payload
+		},
+		setProposalNumber: (state, action) => {
+			state.beneficiaryData.benefitStep.benefitData.proposalNumber = action.payload
+		},
+		setProposalDate: (state, action) => {
+			state.beneficiaryData.benefitStep.benefitData.proposalDate = action.payload
+		},
 		setSalesStructure: (state, action) => {
 			state.beneficiaryData.benefitStep.benefitData.salesStructure = action.payload
 		},
+		setTaxationType: (state, action) => {
+			state.beneficiaryData.benefitStep.benefitData.taxationType = action.payload
+		},
+
 		setHas13thMonth: (state, action) => {
 			state.beneficiaryData.benefitStep.benefitData.has13thMonth = action.payload
 		},
 		//payment data
+		setBookingValue: (state, action) => {
+			state.beneficiaryData.benefitStep.paymentData.bookingValue = action.payload
+		},
 		setDurationTime: (state, action) => {
 			state.beneficiaryData.benefitStep.paymentData.durationTime = action.payload
 		},
@@ -277,10 +299,29 @@ const beneficiarySlice = createSlice({
 		setPaymentEndDate: (state, action) => {
 			state.beneficiaryData.benefitStep.paymentData.paymentEndDate = action.payload
 		},
+		setBenefitType: (state, action) => {
+			state.beneficiaryData.benefitStep.paymentData.benefitType = action.payload
+		},
 		setIncomeType: (state, action) => {
 			state.beneficiaryData.benefitStep.paymentData.incomeType = action.payload
 		},
+		setQuotaValue: (state, action) => {
+			state.beneficiaryData.benefitStep.paymentData.quotaValue = action.payload
+		},
 		//agreement data
+
+		setAgreementCode: (state, action) => {
+			state.beneficiaryData.benefitStep.agreementData.agreementCode = action.payload
+		},
+		setCompanyName1: (state, action) => {
+			state.beneficiaryData.benefitStep.agreementData.companyName1 = action.payload
+		},
+		setCompanyName2: (state, action) => {
+			state.beneficiaryData.benefitStep.agreementData.companyName2 = action.payload
+		},
+		setBranchCode: (state, action) => {
+			state.beneficiaryData.benefitStep.agreementData.branchCode = action.payload
+		},
 		setHasAdvance: (state, action) => {
 			state.beneficiaryData.benefitStep.agreementData.hasAdvance = action.payload
 		},
@@ -442,6 +483,7 @@ export const {
 	setPhone2,
 	//
 	setBank,
+	setBankList,
 	setPaymentMethod,
 	setAgency,
 	setAgencyDigit,
@@ -451,16 +493,29 @@ export const {
 	setPowerOfAttorneyName,
 	setPowerOfAttorneyCpf,
 	//
+	setProduct,
+	setSusep,
+	setProposalNumber,
+	setProposalDate,
 	setSalesStructure,
+	setTaxationType,
 	setHas13thMonth,
 	//
+	setBookingValue,
 	setDurationTime,
 	setPaymentStartDate,
 	setPaymentEndDate,
+	setBenefitType,
 	setIncomeType,
+	setQuotaValue,
 	//
+	setAgreementCode,
+	setCompanyName1,
+	setCompanyName2,
+	setBranchCode,
 	setHasAdvance,
 	setAdvanceValue,
+	
 	//
 	setHasIRPFIsention,
 	setIsLifeTime,

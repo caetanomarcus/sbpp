@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Input, Select } from "../../../../components/Inputs/InputRegistration";
 import { useSelector, useDispatch } from 'react-redux'
+import {setBankList} from '../../Dataflow/reducers-and-actions'
+import axios from 'axios';
 import {
     setAccountType,
     setBank,
@@ -26,7 +28,6 @@ const FinancialForm = () => {
     const [openAccount, setOpenAccount] = useState(false)
     const [openBanks, setOpenBanks] = useState(false)
     const [openPayment, setOpenPayment] = useState(false);
-    const [banks, setBanks] = useState([]);
 
 
     //Redux State and dispatch
@@ -44,17 +45,13 @@ const FinancialForm = () => {
     const payments = ['DOC', 'TED', 'Voucher'];
 
 
-    // useEffect(() => {
-    //     fetch('https://brasilapi.com.br/api/banks/v1')
-    //         .then(response => {
-    //             return response
-    //         })
-    //         .then(data => data.json())
-    //         .then((item) => setBanks(item))
-
-    // }, [])
+    useEffect(() => {
+      axios.get('https://brasilapi.com.br/api/banks/v1')
+        .then(res => dispatch(setBankList(res.data.map(bank => bank.name))) )
+    }, [])
 
     return (
+    
         <S.Container>
             <S.Row>
                 <Select
@@ -96,15 +93,16 @@ const FinancialForm = () => {
                 <Select
                     width="65%"
                     label="Banco"
-                    value={bankData.bank.name}
+                    value={bankData.bank}
                     handleClickSelect={(e) => handleOpenSelect(e, setOpenBanks, openBanks, bankRef)}
-                    options={banks}
+                    options={bankData.bankList}
                     toogle={setOpenBanks}
                     state={openBanks}
                     source={grayArrow}
                     action={setBank}
                     isOpened={openBanks}
                     element={bankRef}
+                    id='bank'
                 />
             </S.Row>
             <S.Row>
@@ -112,7 +110,7 @@ const FinancialForm = () => {
                     type="text"
                     width="10%"
                     label="Agência"
-                    value={bankData.agencyNumber}
+                    value={bankData.agency}
                     action={setAgency}
                     id="agency"
                     placeholder='0000-0'

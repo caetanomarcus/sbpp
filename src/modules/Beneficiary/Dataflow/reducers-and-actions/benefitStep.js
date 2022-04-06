@@ -3,7 +3,7 @@ const benefitStep = {
         product: '',
         susep: '',
         proposalNumber: '',
-        proposalData: '',
+        proposalDate: '',
         salesStructure: '',
         taxationType: '',
         has13thMonth: false,
@@ -18,7 +18,7 @@ const benefitStep = {
         quotaValue: '',
     },
     agreementData: {
-        agrementCode: '',
+        agreementCode: '',
         companyName1: '',
         branchCode: '',
         companyName2: '',

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setAllAdress, setAllAdressOptional } from '../../../modules/Beneficiary/Dataflow/reducers-and-actions';
 import {phoneMask} from './masks';
 import cross from '../../../assets/icons/cross.svg';
+import loading from '../../../assets/icons/loading.png';
 
 
 export const Input = ({
@@ -53,7 +54,7 @@ export const Input = ({
 	const handleBlur = () => {
 
 		if ((id === 'cep') && value !== '') {
-			fetch(`https://viacep.com.br/ws/${value}/json/`)
+			(`https://viacep.com.br/ws/${value}/json/`)
 				.then(res => res.json())
 				.then(data => {
 					const newData = {
@@ -212,8 +213,14 @@ export const Select = ({
 			if(id === 'naturalness') {
 				setOpcoes(options)
 			}
+
+			if(id === 'bank') {
+				setOpcoes(options)
+			}
 		
 	}, [options, id])
+
+
 
 	const handleBlur = () => {
 		setTimeout(() => {
@@ -252,7 +259,7 @@ export const Select = ({
 
 				{state && (
 					<S.Options height={calcHeight} initialModal={initialModal} width={width} >
-						{opcoes.map((option, index) => {
+						{(opcoes.length > 0) && opcoes.map((option, index) => {
 							return (
 								<S.Button
 									key={index}
@@ -262,6 +269,7 @@ export const Select = ({
 								</S.Button>
 							)
 						})}
+						{!opcoes && <img src={loading} alt="loading" />}
 
 					</S.Options>
 				)}

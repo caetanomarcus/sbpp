@@ -124,6 +124,10 @@ export const Options = styled.div`
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+    img {
+        width: 20px;
+    }
 `
 
 export const Button = styled.button`

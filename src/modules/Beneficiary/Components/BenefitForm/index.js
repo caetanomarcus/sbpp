@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from './style'
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Select } from "../../../../components/Inputs/InputRegistration";
 import {
+	setProduct,
+	setSusep,
+	setProposalNumber,
+	setProposalDate,
 	setSalesStructure,
+	setTaxationType,
 	setHas13thMonth,
+	setBookingValue,
 	setDurationTime,
 	setPaymentStartDate,
 	setPaymentEndDate,
+	setBenefitType,
+	setIncomeType,
+	setQuotaValue,
+	setAgreementCode,
+	setCompanyName1,
+	setCompanyName2,
+	setBranchCode,
 	setHasAdvance,
-	setAdvanceValue,
+	setAdvanceValue,	
 	setHasIRPFIsention,
 	setIsLifeTime,
 	setDeadline,
@@ -25,7 +38,6 @@ import {
 	setPensionistRegistration,
 	setPensionistName,
 	setPensionType,
-	setIncomeType,
 	setModality,
 	setJudicialOffice,
 	setDiscountFactor,
@@ -57,6 +69,19 @@ const BenefitForm = () => {
 
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		dispatch(setProduct("201 - Tradicional Individual"));
+		dispatch(setSusep("15414.901749/2014-95"));
+		dispatch(setProposalNumber("1829203818301182"));
+		dispatch(setProposalDate("01/03/2022"));
+		dispatch(setTaxationType("Progressivo"));
+		dispatch(setBookingValue("R$ 1.000,00"));
+		dispatch(setAgreementCode('1996'));
+		dispatch(setCompanyName1("Sul América Companhia Nacional de Seguros"));
+		dispatch(setCompanyName2("Sul América Companhia Nacional de Seguros"));
+		dispatch(setBranchCode('001'));
+	})
+
 	return (
 		<S.Container>
 			<S.Fieldset id='benefit'>
@@ -67,7 +92,7 @@ const BenefitForm = () => {
 						type='text'
 						width='100%'
 						label="Produto"
-						value="201 - Tradicional Individual"
+						value={benefitData.product}
 						disabled
 						noPadding
 					/>
@@ -76,7 +101,7 @@ const BenefitForm = () => {
 						type='text'
 						width='100%'
 						label="Processo Susep"
-						value="15414.901749/2014-95"
+						value={benefitData.susep}
 					/>
 				</S.Row>
 
@@ -85,7 +110,7 @@ const BenefitForm = () => {
 						type='text'
 
 						label="Número da Proposta"
-						value="1829203818301182"
+						value={benefitData.proposalNumber}
 						disabled
 						noPadding
 					/>
@@ -93,7 +118,7 @@ const BenefitForm = () => {
 						type='text'
 
 						label="Data da proposta"
-						value="01/03/2022"
+						value={benefitData.proposalDate}
 						disabled
 						noPadding
 						marginRight='0'
@@ -112,7 +137,7 @@ const BenefitForm = () => {
 					<Input
 						type='text'
 						label="Tipo de Tributação"
-						value="Progressivo"
+						value={benefitData.taxationType}
 						disabled
 						noPadding
 						width='15%'
@@ -135,7 +160,7 @@ const BenefitForm = () => {
 					<Input
 						type='text'
 						label="Valor de Reserva"
-						value="R$5.000,00"
+						value={paymentData.bookingValue}
 						disabled
 						noPadding
 					/>
@@ -235,7 +260,7 @@ const BenefitForm = () => {
 						type='text'
 						width='20%'
 						label="Código Convênio"
-						value="1996"
+						value={agreementData.agreementCode}
 						disabled
 						noPadding
 					/>
@@ -243,7 +268,7 @@ const BenefitForm = () => {
 						type='text'
 						width='100%'
 						label="Nome da Empresa"
-						value="Sul América Companhia Nacional de Seguros"
+						value={agreementData.companyName1}
 						disabled
 						noPadding
 					/>
@@ -254,7 +279,7 @@ const BenefitForm = () => {
 						type='text'
 						width='20%'
 						label="Código Filial"
-						value="001"
+						value={agreementData.branchCode}
 						disabled
 						noPadding
 					/>
@@ -262,7 +287,7 @@ const BenefitForm = () => {
 						type='text'
 						width='100%'
 						label="Nome da Empresa"
-						value="Sul América Companhia Nacional de Seguros"
+						value= {agreementData.companyName2}
 						disabled
 						noPadding
 					/>

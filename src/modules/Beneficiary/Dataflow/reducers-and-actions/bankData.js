@@ -2,6 +2,7 @@ const bankData = {
     national: true,
     accountType: '',
     bank: '',
+    bankList: [],
     paymentMethod: '',
     accountNumber: '',
     accountDigit: '',

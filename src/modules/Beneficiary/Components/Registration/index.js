@@ -81,7 +81,10 @@ const Registration = () => {
 
 	const step = useSelector(state => state.beneficiary.step);
 	const beneficiaryState = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep);
+	const finantialState = useSelector(state => state.beneficiary.beneficiaryData.bankData);
+	const benefitialState = useSelector(state => state.beneficiary.beneficiaryData.benefitStep);
 	const {personalData,addressDefault, addressOptional, contact} = beneficiaryState;
+	const {benefitData, paymentData, agreementData, conditionsData, courtPensionData} = benefitialState;
 	const dispatch = useDispatch();
 
 	const [atualStep, setAtualStep] = useState(beneficiaryList[0].value);
@@ -90,10 +93,30 @@ const Registration = () => {
 	const financial = 'financial';
 	const benefit = 'benefit';
 	const finalStep = 'finalStep'
+
+
 	const {name, email, hasSocialName, socialName, birthDate, sex, naturalness, uf, nationality, hasDeathInformation, deathDate, deathInfoDate, filiation1, filiation2} = personalData
 	const {rg, issuer, ufRG, issueDate} = beneficiaryState.document
 	const {cep, address, number, district, city, hasMailAdress, correspondenceType, hasDifferentAddress} = addressDefault
 	const ufAddress = addressDefault.uf
+	const {phone1} = contact
+	const {national, accountType, bank, paymentMethod, accountNumber, accountDigit, agency, agencyDigit, hasPowerOfAttorney, powerOfAttorneyName, powerOfAttorneyCPF} = finantialState
+	const {product, susep, proposalNumber, proposalDate, salesStructure, taxationType, has13thMonth} = benefitData
+	const {bookingValue, durationTime, paymentStartDate, paymentEndDate, benefitType, incomeType, quotaValue} = paymentData
+	const {agreementCode, companyName1, branchCode, companyName2, hasAdvance, advanceValue} = agreementData
+	const IRPFHasIRPFIsention = conditionsData.IRPF.hasIRPFIsention
+	const IRPFIsLifeTime = conditionsData.IRPF.isLifeTime
+	const IRPFDeadline = conditionsData.IRPF.deadline
+	const IRPFReason = conditionsData.IRPF.reason
+	const IRPFCid = conditionsData.IRPF.cid
+	const IRPFDescription = conditionsData.IRPF.description
+	const PSHasPaymentSuspesion = conditionsData.paymentSuspension.hasPaymentSuspesion
+	const PSReason = conditionsData.paymentSuspension.reason
+	const PSCid = conditionsData.paymentSuspension.cid
+	const PSDescription = conditionsData.paymentSuspension.description
+	const {hasCourtPension,previdencyRegistration, pensionistRegistration,pensionistName, pensionType, modality, judicialOffice, discountFactor, pensionStart, pensionEnd} = courtPensionData
+	const pensionIncomeType = courtPensionData.incomeType
+	
 
 	
 	//States for next/sendo button confirmation
@@ -101,6 +124,10 @@ const Registration = () => {
 	const documentState = [rg, issuer, issueDate, ufRG]
 	const addressState =[cep, address, number, district, city, ufAddress]
 	const addressOptionalState = [addressOptional.cep, addressOptional.address, addressOptional.number, addressOptional.district, addressOptional.city, addressOptional.uf]
+	const contactState = [phone1]
+	const financialState = [accountType, bank, paymentMethod, accountNumber, accountDigit, agency, agencyDigit]
+	const benefitState = [product, susep, proposalNumber, proposalDate, salesStructure, taxationType]
+	const paymentState = [bookingValue, durationTime, paymentStartDate, paymentEndDate, benefitType, incomeType, quotaValue]
 
 
 
@@ -109,6 +136,7 @@ const Registration = () => {
 	const socialNameStates = [hasSocialName, [socialName]]
 	const deathinformationStates = [hasDeathInformation, [deathDate, deathInfoDate]]
 	const differentAdress = [hasDifferentAddress, [...addressOptionalState]]
+	const powerOfAttorneyStates = [hasPowerOfAttorney, [powerOfAttorneyName, powerOfAttorneyCPF]]
 
 	
 
@@ -237,7 +265,7 @@ const Registration = () => {
 
 	
 
-	const canSend = (states, conditionalStates) => {
+	const canSend = (states, conditionalStates) => { //CONDITIONAL STATES É UMA CALLBACK
 		let sum;
 
 
@@ -260,6 +288,8 @@ const Registration = () => {
 		}
 		
 		return sum
+
+		
 	}
 
 
@@ -283,23 +313,18 @@ const Registration = () => {
 				}
 			
 		}
-
-
 		return result
-
-
 	}
 
-	console.log(differentAdress)
 
 	const enableButton = () => {
 		switch (step) {
 			case beneficiary:
-				return canSend(personalState, conditionalStates(socialNameStates, deathinformationStates)) && canSend(documentState) && canSend(addressState, conditionalStates(differentAdress))
+				return true //canSend(personalState, conditionalStates(socialNameStates, deathinformationStates)) && canSend(documentState) && canSend(addressState, conditionalStates(differentAdress)) && canSend(contactState)
 			case financial:
-				return true
+				return  true //canSend(financialState, conditionalStates(powerOfAttorneyStates))
 			case benefit:
-				return true
+				return canSend(benefitState)
 			default:
 				return false
 		}
