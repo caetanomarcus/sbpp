@@ -49,7 +49,6 @@ export const PersonalData = ({
 
    //Redux State and dispatch
    const personalData = useSelector(state => state.beneficiary.beneficiaryData.beneficiaryStep.personalData);
-   const step = useSelector(state => state.beneficiary.step);
    const dispatch = useDispatch();
 
    //Refs
@@ -59,7 +58,6 @@ export const PersonalData = ({
    const genderRef = useRef();
 
    const paises = countries.map(country => country.nome_pais);
-   const beneficiary = 'beneficiary';
 
    useEffect(() => {
       dispatch(setName(client.name));
@@ -68,21 +66,6 @@ export const PersonalData = ({
    }, [dispatch, client.name, client.email]);
 
    const ufs = _ufs.map(uf => uf.sigla);
-
-   // const renderCitiesList = (uf) => {
-   //    if(uf) {
-   //       fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
-   //       .then(res => res.json())
-   //       .then(data => {
-   //          const cidades = data.map(city => city.nome);
-   //          const numbersOfList = cidades.length % 100 === 0 ? cidades.length % 100  : (cidades.length % 100 + 1);
-   //          setUfList(cidades)
-         
-   //       })
-   //       console.log(ufList)
-   //       return ufList
-   //    }
-   // }
 
 
    useEffect(() => {

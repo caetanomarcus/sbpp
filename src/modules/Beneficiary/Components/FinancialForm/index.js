@@ -48,7 +48,7 @@ const FinancialForm = () => {
     useEffect(() => {
       axios.get('https://brasilapi.com.br/api/banks/v1')
         .then(res => dispatch(setBankList(res.data.map(bank => bank.name))) )
-    }, [])
+    }, [dispatch])
 
     return (
     
